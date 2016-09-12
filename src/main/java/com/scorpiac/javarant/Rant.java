@@ -1,7 +1,8 @@
 package com.scorpiac.javarant;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 public class Rant extends RantContent {
     private int id;
@@ -16,6 +17,18 @@ public class Rant extends RantContent {
         this.image = image;
         this.tags = tags;
         this.commentCount = commentCount;
+    }
+
+    static Rant fromJson(JsonObject json) {
+        return new Rant(
+                json.get("id").getAsInt(),
+                json.get("user_username").getAsString(),
+                json.get("score").getAsInt(),
+                json.get("text").getAsString(),
+                json.get("attached_image").getAsString(),
+                Util.jsonToList(json.get("tags").getAsJsonArray(), JsonElement::getAsString).toArray(new String[0]),
+                json.get("num_comments").getAsInt()
+        );
     }
 
     /**
@@ -33,11 +46,11 @@ public class Rant extends RantContent {
      * Fetch and store the comments on this rant.
      */
     public void fetchComments() {
-        List<Comment> comments = new ArrayList<>(commentCount);
+        // Rants url, rant id, app id.
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.RANTS_URL, id, DevRant.APP_ID);
+        JsonArray commentsJson = DevRant.request(url).getAsJsonObject().get("comments").getAsJsonArray();
 
-        // Save the comments and comment count.
-        this.comments = comments.toArray(new Comment[comments.size()]);
-        commentCount = this.comments.length;
+        comments = Util.jsonToList(commentsJson, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
     }
 
     /**
@@ -72,6 +85,6 @@ public class Rant extends RantContent {
      * Get the amount of comments on this rant.
      */
     public int getCommentCount() {
-        return commentCount;
+        return comments == null ? commentCount : comments.length;
     }
 }

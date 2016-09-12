@@ -12,13 +12,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class DevRant {
-    public static final String BASE_URL = "https://www.devrant.io";
-    public static final String USER_URL = BASE_URL + "/users";
-    public static final String RANT_URL = BASE_URL + "/rants";
-    public static final String API_URL = BASE_URL + "/api/devrant";
-    public static final String RANTS_URL = API_URL + "/rants";
-
-    private static final String APP_ID = "3";
+    static final String APP_ID = "3";
+    static final String BASE_URL = "https://www.devrant.io";
+    static final String USER_URL = BASE_URL + "/users";
+    static final String RANT_URL = BASE_URL + "/rants";
+    static final String API_URL = BASE_URL + "/api/devrant";
+    static final String RANTS_URL = API_URL + "/rants";
 
     public static Rant[] getRants(Sort sort, int limit, int skip) {
         // Rants url, app id, sort, skip, limit.
@@ -28,7 +27,7 @@ public class DevRant {
         return json == null ? new Rant[0] : rantArrayFromJson(json.getAsJsonObject());
     }
 
-    private static JsonElement request(String url) {
+    static JsonElement request(String url) {
         HttpURLConnection connection;
         InputStream inputStream;
 
@@ -61,27 +60,8 @@ public class DevRant {
         Rant[] rants = new Rant[rantArray.size()];
 
         for (int i = 0; i < rants.length; i++)
-            rants[i] = rantFromJson(rantArray.get(i).getAsJsonObject());
+            rants[i] = Rant.fromJson(rantArray.get(i).getAsJsonObject());
 
         return rants;
-    }
-
-    private static Rant rantFromJson(JsonObject json) {
-        return new Rant(
-                json.get("id").getAsInt(),
-                json.get("user_username").getAsString(),
-                json.get("score").getAsInt(),
-                json.get("text").getAsString(),
-                json.get("attached_image").getAsString(),
-                toStringArray(json.get("tags").getAsJsonArray()),
-                json.get("num_comments").getAsInt()
-        );
-    }
-
-    private static String[] toStringArray(JsonArray json) {
-        String[] result = new String[json.size()];
-        for (int i = 0; i < result.length; i++)
-            result[i] = json.get(i).getAsString();
-        return result;
     }
 }
