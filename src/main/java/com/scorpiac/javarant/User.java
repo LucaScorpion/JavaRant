@@ -104,50 +104,62 @@ public class User {
     }
 
     public String getAbout() {
+        fetchData();
         return about;
     }
 
     public String getLocation() {
+        fetchData();
         return location;
     }
 
     public String getSkills() {
+        fetchData();
         return skills;
     }
 
     public String getGithub() {
+        fetchData();
         return github;
     }
 
     public Rant[] getRants() {
+        fetchData();
         return rants;
     }
 
     public Rant[] getUpvoted() {
+        fetchData();
         return upvoted;
     }
 
     public Comment[] getComments() {
+        fetchData();
         return comments;
     }
 
     public Rant[] getFavorites() {
+        fetchData();
         return favorites;
     }
 
     public int getRantsCount() {
+        fetchData();
         return rantsCount;
     }
 
     public int getUpvotedCount() {
+        fetchData();
         return upvotedCount;
     }
 
     public int getCommentsCount() {
+        fetchData();
         return commentsCount;
     }
 
     public int getFavoritesCount() {
+        fetchData();
         return favoritesCount;
     }
 
