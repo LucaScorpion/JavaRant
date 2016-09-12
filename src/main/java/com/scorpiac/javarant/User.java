@@ -34,16 +34,16 @@ public class User {
         this.score = score;
     }
 
+    public static User byId(int id) {
+        return new User(id);
+    }
+
     static User fromJson(JsonObject json) {
         return new User(
                 json.get("user_id").getAsInt(),
                 json.get("user_username").getAsString(),
                 json.get("user_score").getAsInt()
         );
-    }
-
-    public static User byId(int id) {
-        return new User(id);
     }
 
     /**
@@ -149,5 +149,10 @@ public class User {
 
     public int getFavoritesCount() {
         return favoritesCount;
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 }
