@@ -24,10 +24,14 @@ public class Rant extends RantContent {
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
                 json.get("text").getAsString(),
-                json.get("attached_image").getAsString(),
+                getImage(json.get("attached_image")),
                 Util.jsonToList(json.get("tags").getAsJsonArray(), JsonElement::getAsString).toArray(new String[0]),
                 json.get("num_comments").getAsInt()
         );
+    }
+
+    private static String getImage(JsonElement image) {
+        return image.isJsonObject() ? image.getAsJsonObject().get("url").getAsString() : "";
     }
 
     /**
@@ -46,7 +50,7 @@ public class Rant extends RantContent {
      */
     public void fetchComments() {
         // Rants url, rant id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.RANTS_URL, this.getId(), DevRant.APP_ID);
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, this.getId(), DevRant.APP_ID);
         JsonArray commentsJson = DevRant.request(url).getAsJsonObject().get("comments").getAsJsonArray();
 
         comments = Util.jsonToList(commentsJson, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
