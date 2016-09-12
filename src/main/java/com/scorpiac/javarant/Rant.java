@@ -5,15 +5,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 public class Rant extends RantContent {
-    private int id;
     private String image;
     private String[] tags;
     private int commentCount;
     private Comment[] comments;
 
-    public Rant(int id, String author, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
-        super(author, upvotes, downvotes, text);
-        this.id = id;
+    public Rant(int id, User user, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
+        super(id, user, upvotes, downvotes, text);
         this.image = image;
         this.tags = tags;
         this.commentCount = commentCount;
@@ -22,7 +20,7 @@ public class Rant extends RantContent {
     static Rant fromJson(JsonObject json) {
         return new Rant(
                 json.get("id").getAsInt(),
-                json.get("user_username").getAsString(),
+                User.fromJson(json),
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
                 json.get("text").getAsString(),
@@ -48,24 +46,17 @@ public class Rant extends RantContent {
      */
     public void fetchComments() {
         // Rants url, rant id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.RANTS_URL, id, DevRant.APP_ID);
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.RANTS_URL, this.getId(), DevRant.APP_ID);
         JsonArray commentsJson = DevRant.request(url).getAsJsonObject().get("comments").getAsJsonArray();
 
         comments = Util.jsonToList(commentsJson, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
     }
 
     /**
-     * Get the rant id.
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
      * Get the link to the rant.
      */
     public String rantLink() {
-        return DevRant.RANT_URL + id;
+        return DevRant.RANT_URL + "/" + this.getId();
     }
 
     /**

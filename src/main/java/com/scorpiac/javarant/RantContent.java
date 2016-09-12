@@ -1,30 +1,32 @@
 package com.scorpiac.javarant;
 
 public abstract class RantContent {
-    private String author;
+    private int id;
+    private User user;
     private int upvotes;
     private int downvotes;
     private String content;
 
-    public RantContent(String author, int upvotes, int downvotes, String content) {
-        this.author = author;
+    public RantContent(int id, User user, int upvotes, int downvotes, String content) {
+        this.id = id;
+        this.user = user;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.content = content;
     }
 
     /**
-     * Get the link to the author's profile.
+     * Get the id.
      */
-    public String authorLink() {
-        return DevRant.USER_URL + author;
+    public int getId() {
+        return id;
     }
 
     /**
      * Get the author.
      */
-    public String getAuthor() {
-        return author;
+    public User getUser() {
+        return user;
     }
 
     /**
