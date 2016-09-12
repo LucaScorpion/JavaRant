@@ -2,12 +2,14 @@ package com.scorpiac.javarant;
 
 public abstract class RantContent {
     private String author;
-    private int score;
+    private int upvotes;
+    private int downvotes;
     private String content;
 
-    public RantContent(String author, int score, String content) {
+    public RantContent(String author, int upvotes, int downvotes, String content) {
         this.author = author;
-        this.score = score;
+        this.upvotes = upvotes;
+        this.downvotes = downvotes;
         this.content = content;
     }
 
@@ -26,10 +28,24 @@ public abstract class RantContent {
     }
 
     /**
+     * Get the amount of upvotes.
+     */
+    public int getUpvotes() {
+        return upvotes;
+    }
+
+    /**
+     * Get the amount of downvotes.
+     */
+    public int getDownvotes() {
+        return downvotes;
+    }
+
+    /**
      * Get the score.
      */
     public int getScore() {
-        return score;
+        return upvotes - downvotes;
     }
 
     /**

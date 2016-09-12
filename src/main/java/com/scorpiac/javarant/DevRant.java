@@ -22,9 +22,8 @@ public class DevRant {
     public static Rant[] getRants(Sort sort, int limit, int skip) {
         // Rants url, app id, sort, skip, limit.
         String url = String.format("%1$s?app=%2$s&sort=%3$s&skip=%4$d&limit=%5$d", RANTS_URL, APP_ID, sort.toString(), skip, limit);
-        JsonElement json = request(url);
-
-        return json == null ? new Rant[0] : rantArrayFromJson(json.getAsJsonObject());
+        JsonArray rantsJson = request(url).getAsJsonObject().get("rants").getAsJsonArray();
+        return Util.jsonToList(rantsJson, elem -> Rant.fromJson(elem.getAsJsonObject())).toArray(new Rant[0]);
     }
 
     static JsonElement request(String url) {
@@ -52,16 +51,5 @@ public class DevRant {
         connection.disconnect();
 
         return json;
-    }
-
-    private static Rant[] rantArrayFromJson(JsonObject json) {
-        // Get the rant array.
-        JsonArray rantArray = json.getAsJsonArray("rants");
-        Rant[] rants = new Rant[rantArray.size()];
-
-        for (int i = 0; i < rants.length; i++)
-            rants[i] = Rant.fromJson(rantArray.get(i).getAsJsonObject());
-
-        return rants;
     }
 }

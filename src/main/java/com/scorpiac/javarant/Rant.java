@@ -11,8 +11,8 @@ public class Rant extends RantContent {
     private int commentCount;
     private Comment[] comments;
 
-    public Rant(int id, String author, int score, String text, String image, String[] tags, int commentCount) {
-        super(author, score, text);
+    public Rant(int id, String author, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
+        super(author, upvotes, downvotes, text);
         this.id = id;
         this.image = image;
         this.tags = tags;
@@ -23,7 +23,8 @@ public class Rant extends RantContent {
         return new Rant(
                 json.get("id").getAsInt(),
                 json.get("user_username").getAsString(),
-                json.get("score").getAsInt(),
+                json.get("num_upvotes").getAsInt(),
+                json.get("num_downvotes").getAsInt(),
                 json.get("text").getAsString(),
                 json.get("attached_image").getAsString(),
                 Util.jsonToList(json.get("tags").getAsJsonArray(), JsonElement::getAsString).toArray(new String[0]),
