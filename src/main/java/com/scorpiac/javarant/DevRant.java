@@ -1,6 +1,5 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -14,12 +13,16 @@ import java.net.URL;
 public class DevRant {
     static final String APP_ID = "3";
     static final String BASE_URL = "https://www.devrant.io";
+
+    // API endpoints.
     static final String USER_URL = "/users";
     static final String RANT_URL = "/rants";
     static final String API_URL = "/api";
     static final String API_RANTS_URL = API_URL + "/devrant/rants";
+    static final String API_SEARCH_URL = API_URL + "/devrant/search";
     static final String API_SURPRISE_URL = API_RANTS_URL + "/surprise";
     static final String API_USERS_URL = API_URL + "/users";
+    static final String API_USER_ID_URL = API_URL + "/get-user-id";
 
     /**
      * Get a list of rants.
@@ -32,8 +35,31 @@ public class DevRant {
     public static Rant[] getRants(Sort sort, int limit, int skip) {
         // Rants url, app id, sort, skip, limit.
         String url = String.format("%1$s?app=%2$s&sort=%3$s&skip=%4$d&limit=%5$d", API_RANTS_URL, APP_ID, sort.toString(), skip, limit);
-        JsonArray rantsJson = request(url).get("rants").getAsJsonArray();
-        return Util.jsonToList(rantsJson, elem -> Rant.fromJson(elem.getAsJsonObject())).toArray(new Rant[0]);
+        JsonObject json = request(url);
+
+        // Check for success.
+        if (!Util.jsonSuccess(json))
+            return null;
+
+        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(elem.getAsJsonObject())).toArray(new Rant[0]);
+    }
+
+    /**
+     * Search for rants matching a certain term.
+     *
+     * @param term The term to search for.
+     * @return An array of rants matching the search term.
+     */
+    public static Rant[] search(String term) {
+        // Search url, app id, term.
+        String url = String.format("%1$s?app=%2$s&term=%3$s", API_SEARCH_URL, APP_ID, term);
+        JsonObject json = request(url);
+
+        // Check for success.
+        if (!Util.jsonSuccess(json))
+            return null;
+
+        return Util.jsonToList(json.get("results").getAsJsonArray(), elem -> Rant.fromJson(elem.getAsJsonObject())).toArray(new Rant[0]);
     }
 
     /**
@@ -44,8 +70,13 @@ public class DevRant {
     public static Rant surprise() {
         // Surprise url, app id.
         String url = String.format("%1$s?app=%2$s", API_SURPRISE_URL, APP_ID);
-        JsonObject rantJson = request(url).get("rant").getAsJsonObject();
-        return Rant.fromJson(rantJson);
+        JsonObject json = request(url);
+
+        // Check for success.
+        if (!Util.jsonSuccess(json))
+            return null;
+
+        return Rant.fromJson(json.get("rant").getAsJsonObject());
     }
 
     /**
@@ -79,5 +110,15 @@ public class DevRant {
         connection.disconnect();
 
         return json.getAsJsonObject();
+    }
+
+    /**
+     * Create a link to the DevRant site.
+     *
+     * @param url The url to link to.
+     * @return The complete url.
+     */
+    static String link(String url) {
+        return BASE_URL + url;
     }
 }

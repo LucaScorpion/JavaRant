@@ -11,7 +11,7 @@ public class Rant extends RantContent {
     private int commentCount;
     private Comment[] comments;
 
-    Rant(int id, User user, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
+    private Rant(int id, User user, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
         super(id, user, upvotes, downvotes, text);
         this.image = image;
         this.tags = tags;
@@ -30,7 +30,7 @@ public class Rant extends RantContent {
         JsonObject json = DevRant.request(url);
 
         // Check if the rant exists.
-        if (json == null || !json.get("success").getAsBoolean())
+        if (!Util.jsonSuccess(json))
             throw new NoSuchRantException(id);
 
         // Get the rant and comments.
@@ -88,7 +88,7 @@ public class Rant extends RantContent {
         JsonObject json = DevRant.request(url);
 
         // Check for success.
-        if (json == null || !json.get("success").getAsBoolean())
+        if (!Util.jsonSuccess(json))
             return false;
 
         // Get the comments.
@@ -101,7 +101,7 @@ public class Rant extends RantContent {
      * Get the link to the rant.
      */
     public String rantLink() {
-        return DevRant.RANT_URL + "/" + this.getId();
+        return DevRant.link(DevRant.RANT_URL + "/" + this.getId());
     }
 
     /**

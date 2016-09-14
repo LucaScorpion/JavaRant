@@ -40,7 +40,7 @@ public class User {
      * @param username The username of the user.
      * @param score    The score of the user.
      */
-    User(int id, String username, int score) {
+    private User(int id, String username, int score) {
         this.id = id;
         this.username = username;
         this.score = score;
@@ -70,11 +70,11 @@ public class User {
      */
     public static User byUsername(String username) {
         // Users url, user id, app id.
-        String url = String.format("%1$s/get-user-id?app=%2$s&username=%3$s", DevRant.API_URL, DevRant.APP_ID, username);
+        String url = String.format("%1$s?app=%2$s&username=%3$s", DevRant.API_USER_ID_URL, DevRant.APP_ID, username);
         JsonObject json = DevRant.request(url);
 
         // Check if the user exists.
-        if (json == null || !json.get("success").getAsBoolean())
+        if (!Util.jsonSuccess(json))
             throw new NoSuchUserException(username);
 
         return byId(json.get("user_id").getAsInt());
@@ -99,7 +99,7 @@ public class User {
         JsonObject json = DevRant.request(url);
 
         // Check for success.
-        if (json == null || !json.get("success").getAsBoolean())
+        if (!Util.jsonSuccess(json))
             return false;
         fetched = true;
 
@@ -136,6 +136,10 @@ public class User {
      */
     public boolean isFetched() {
         return fetched;
+    }
+
+    public String userLink() {
+        return DevRant.link(DevRant.USER_URL + "/" + username);
     }
 
     /**

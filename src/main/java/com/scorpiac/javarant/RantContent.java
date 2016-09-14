@@ -7,7 +7,7 @@ public abstract class RantContent {
     private int downvotes;
     private String content;
 
-    public RantContent(int id, User user, int upvotes, int downvotes, String content) {
+    protected RantContent(int id, User user, int upvotes, int downvotes, String content) {
         this.id = id;
         this.user = user;
         this.upvotes = upvotes;
