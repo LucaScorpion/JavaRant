@@ -7,6 +7,7 @@ public class Main {
         User author = rants[0].getUser();
         author.fetchData();
         User me = User.byId(102959);
+        Rant random = DevRant.surprise();
         System.out.println("Done.");
     }
 }
