@@ -1,6 +1,7 @@
 package com.scorpiac.javarant;
 
 import com.google.gson.JsonObject;
+import com.scorpiac.javarant.exceptions.NoSuchUserException;
 
 public class User {
     // Data that is always available.
@@ -28,7 +29,7 @@ public class User {
         fetchData();
     }
 
-    public User(int id, String username, int score) {
+    User(int id, String username, int score) {
         this.id = id;
         this.username = username;
         this.score = score;
@@ -36,16 +37,24 @@ public class User {
 
     public static User byId(int id) {
         User result = new User(id);
-        // If the user id does not exist the fetch was unsuccessful.
-        return result.isFetched() ? result : null;
+
+        // Check if the user exists.
+        if (!result.isFetched())
+            throw new NoSuchUserException(id);
+
+        return result;
     }
 
     public static User byUsername(String username) {
         // Users url, user id, app id.
         String url = String.format("%1$s/get-user-id?app=%2$s&username=%3$s", DevRant.API_URL, DevRant.APP_ID, username);
-        JsonObject result = DevRant.request(url).getAsJsonObject();
+        JsonObject json = DevRant.request(url);
 
-        return result.get("success").getAsBoolean() ? byId(result.get("user_id").getAsInt()) : null;
+        // Check if the user exists.
+        if (json == null || !json.get("success").getAsBoolean())
+            throw new NoSuchUserException(username);
+
+        return byId(json.get("user_id").getAsInt());
     }
 
     static User fromJson(JsonObject json) {
