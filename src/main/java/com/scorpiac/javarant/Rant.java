@@ -3,6 +3,7 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.scorpiac.javarant.exceptions.NoSuchRantException;
 
 public class Rant extends RantContent {
     private String image;
@@ -10,11 +11,33 @@ public class Rant extends RantContent {
     private int commentCount;
     private Comment[] comments;
 
-    public Rant(int id, User user, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
+    Rant(int id, User user, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
         super(id, user, upvotes, downvotes, text);
         this.image = image;
         this.tags = tags;
         this.commentCount = commentCount;
+    }
+
+    /**
+     * Get a rant by its id. This will also retrieve the comments.
+     *
+     * @param id The id of the rant to get.
+     * @return The rant.
+     */
+    public static Rant byId(int id) {
+        // Users url, rant id, app id.
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, id, DevRant.APP_ID);
+        JsonObject json = DevRant.request(url);
+
+        // Check if the rant exists.
+        if (json == null || !json.get("success").getAsBoolean())
+            throw new NoSuchRantException(id);
+
+        // Get the rant and comments.
+        Rant rant = fromJson(json.get("rant").getAsJsonObject());
+        rant.commentsFromJson(json.get("comments").getAsJsonArray());
+
+        return rant;
     }
 
     static Rant fromJson(JsonObject json) {
@@ -28,6 +51,15 @@ public class Rant extends RantContent {
                 Util.jsonToList(json.get("tags").getAsJsonArray(), JsonElement::getAsString).toArray(new String[0]),
                 json.get("num_comments").getAsInt()
         );
+    }
+
+    /**
+     * Set the comments from a JSON array.
+     *
+     * @param commentArray The JSON array to get the comments from.
+     */
+    private void commentsFromJson(JsonArray commentArray) {
+        comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
     }
 
     private static String getImage(JsonElement image) {
@@ -47,13 +79,22 @@ public class Rant extends RantContent {
 
     /**
      * Fetch and store the comments on this rant.
+     *
+     * @return Whether the data was fetched successfully.
      */
-    public void fetchComments() {
+    public boolean fetchComments() {
         // Rants url, rant id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, this.getId(), DevRant.APP_ID);
-        JsonArray commentsJson = DevRant.request(url).get("comments").getAsJsonArray();
+        JsonObject json = DevRant.request(url);
 
-        comments = Util.jsonToList(commentsJson, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
+        // Check for success.
+        if (json == null || !json.get("success").getAsBoolean())
+            return false;
+
+        // Get the comments.
+        commentsFromJson(json.get("comments").getAsJsonArray());
+
+        return true;
     }
 
     /**

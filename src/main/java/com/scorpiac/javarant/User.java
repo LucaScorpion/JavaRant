@@ -24,27 +24,50 @@ public class User {
     private int commentsCount;
     private int favoritesCount;
 
+    /**
+     * Create a new user.
+     *
+     * @param id The id of the user.
+     */
     private User(int id) {
         this.id = id;
-        fetchData();
     }
 
+    /**
+     * Create a new user.
+     *
+     * @param id       The id of the user.
+     * @param username The username of the user.
+     * @param score    The score of the user.
+     */
     User(int id, String username, int score) {
         this.id = id;
         this.username = username;
         this.score = score;
     }
 
+    /**
+     * Get a user by their id. This will also fetch all the user data.
+     *
+     * @param id The id of the user to get.
+     * @return The user.
+     */
     public static User byId(int id) {
-        User result = new User(id);
+        User user = new User(id);
 
         // Check if the user exists.
-        if (!result.isFetched())
+        if (!user.fetchData())
             throw new NoSuchUserException(id);
 
-        return result;
+        return user;
     }
 
+    /**
+     * Get a user by their username. This will also fetch all the user data.
+     *
+     * @param username The username of the user to get.
+     * @return The user.
+     */
     public static User byUsername(String username) {
         // Users url, user id, app id.
         String url = String.format("%1$s/get-user-id?app=%2$s&username=%3$s", DevRant.API_URL, DevRant.APP_ID, username);
@@ -67,15 +90,17 @@ public class User {
 
     /**
      * Fetch the user data from the user profile.
+     *
+     * @return Whether the data was fetched successfully.
      */
-    public void fetchData() {
+    public boolean fetchData() {
         // Users url, user id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS_URL, id, DevRant.APP_ID);
         JsonObject json = DevRant.request(url);
 
         // Check for success.
         if (json == null || !json.get("success").getAsBoolean())
-            return;
+            return false;
         fetched = true;
 
         // JSON objects.
@@ -102,8 +127,13 @@ public class User {
         upvoted = Util.jsonToList(subContentJson.get("upvoted").getAsJsonArray(), rant -> Rant.fromJson(rant.getAsJsonObject())).toArray(new Rant[0]);
         comments = Util.jsonToList(subContentJson.get("comments").getAsJsonArray(), comment -> Comment.fromJson(comment.getAsJsonObject())).toArray(new Comment[0]);
         favorites = Util.jsonToList(subContentJson.get("favorites").getAsJsonArray(), rant -> Rant.fromJson(rant.getAsJsonObject())).toArray(new Rant[0]);
+
+        return true;
     }
 
+    /**
+     * Get whether the user data is fetched.
+     */
     public boolean isFetched() {
         return fetched;
     }

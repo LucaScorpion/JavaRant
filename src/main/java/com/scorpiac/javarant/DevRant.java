@@ -14,9 +14,9 @@ import java.net.URL;
 public class DevRant {
     static final String APP_ID = "3";
     static final String BASE_URL = "https://www.devrant.io";
-    static final String USER_URL = BASE_URL + "/users";
-    static final String RANT_URL = BASE_URL + "/rants";
-    static final String API_URL = BASE_URL + "/api";
+    static final String USER_URL = "/users";
+    static final String RANT_URL = "/rants";
+    static final String API_URL = "/api";
     static final String API_RANTS_URL = API_URL + "/devrant/rants";
     static final String API_SURPRISE_URL = API_RANTS_URL + "/surprise";
     static final String API_USERS_URL = API_URL + "/users";
@@ -60,7 +60,7 @@ public class DevRant {
 
         try {
             // Create the URL and connection, get the input stream.
-            connection = (HttpURLConnection) new URL(url).openConnection();
+            connection = (HttpURLConnection) new URL(BASE_URL + url).openConnection();
             inputStream = connection.getResponseCode() == 200 ? connection.getInputStream() : connection.getErrorStream();
         } catch (IOException i) {
             i.printStackTrace();

@@ -1,8 +1,8 @@
 package com.scorpiac.javarant;
 
 public abstract class RantContent {
-    private int id;
-    private User user;
+    private final int id;
+    private final User user;
     private int upvotes;
     private int downvotes;
     private String content;
