@@ -35,7 +35,17 @@ public class User {
     }
 
     public static User byId(int id) {
-        return new User(id);
+        User result = new User(id);
+        // If the user id does not exist the fetch was unsuccessful.
+        return result.isFetched() ? result : null;
+    }
+
+    public static User byUsername(String username) {
+        // Users url, user id, app id.
+        String url = String.format("%1$s/get-user-id?app=%2$s&username=%3$s", DevRant.API_URL, DevRant.APP_ID, username);
+        JsonObject result = DevRant.request(url).getAsJsonObject();
+
+        return result.get("success").getAsBoolean() ? byId(result.get("user_id").getAsInt()) : null;
     }
 
     static User fromJson(JsonObject json) {
@@ -50,26 +60,29 @@ public class User {
      * Fetch the user data from the user profile.
      */
     public void fetchData() {
-        // Check if we already fetched the data.
-        if (fetched)
+        // Users url, user id, app id.
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS_URL, id, DevRant.APP_ID);
+        JsonObject json = DevRant.request(url);
+
+        // Check for success.
+        if (json == null || !json.get("success").getAsBoolean())
             return;
         fetched = true;
 
-        // Users url, user id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS_URL, id, DevRant.APP_ID);
-        JsonObject userJson = DevRant.request(url).getAsJsonObject().get("profile").getAsJsonObject();
-        JsonObject contentJson = userJson.get("content").getAsJsonObject();
+        // JSON objects.
+        JsonObject profileJson = json.get("profile").getAsJsonObject();
+        JsonObject contentJson = profileJson.get("content").getAsJsonObject();
         JsonObject subContentJson = contentJson.get("content").getAsJsonObject();
         JsonObject countsJson = contentJson.get("counts").getAsJsonObject();
 
         // Set all the fields.
-        username = userJson.get("username").getAsString();
-        score = userJson.get("score").getAsInt();
+        username = profileJson.get("username").getAsString();
+        score = profileJson.get("score").getAsInt();
 
-        about = userJson.get("about").getAsString();
-        location = userJson.get("location").getAsString();
-        skills = userJson.get("skills").getAsString();
-        github = userJson.get("github").getAsString();
+        about = profileJson.get("about").getAsString();
+        location = profileJson.get("location").getAsString();
+        skills = profileJson.get("skills").getAsString();
+        github = profileJson.get("github").getAsString();
 
         rantsCount = countsJson.get("rants").getAsInt();
         upvotedCount = countsJson.get("upvoted").getAsInt();
@@ -80,6 +93,10 @@ public class User {
         upvoted = Util.jsonToList(subContentJson.get("upvoted").getAsJsonArray(), rant -> Rant.fromJson(rant.getAsJsonObject())).toArray(new Rant[0]);
         comments = Util.jsonToList(subContentJson.get("comments").getAsJsonArray(), comment -> Comment.fromJson(comment.getAsJsonObject())).toArray(new Comment[0]);
         favorites = Util.jsonToList(subContentJson.get("favorites").getAsJsonArray(), rant -> Rant.fromJson(rant.getAsJsonObject())).toArray(new Rant[0]);
+    }
+
+    public boolean isFetched() {
+        return fetched;
     }
 
     /**

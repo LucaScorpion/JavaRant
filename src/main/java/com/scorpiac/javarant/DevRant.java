@@ -23,42 +23,45 @@ public class DevRant {
 
     /**
      * Get a list of rants.
-     * @param sort The sorting method.
+     *
+     * @param sort  The sorting method.
      * @param limit How many rants to get.
-     * @param skip How many rants to skip.
+     * @param skip  How many rants to skip.
      * @return An array of rants.
      */
     public static Rant[] getRants(Sort sort, int limit, int skip) {
         // Rants url, app id, sort, skip, limit.
         String url = String.format("%1$s?app=%2$s&sort=%3$s&skip=%4$d&limit=%5$d", API_RANTS_URL, APP_ID, sort.toString(), skip, limit);
-        JsonArray rantsJson = request(url).getAsJsonObject().get("rants").getAsJsonArray();
+        JsonArray rantsJson = request(url).get("rants").getAsJsonArray();
         return Util.jsonToList(rantsJson, elem -> Rant.fromJson(elem.getAsJsonObject())).toArray(new Rant[0]);
     }
 
     /**
      * Get a random rant with at leatst 15 +1's.
+     *
      * @return A random rant.
      */
     public static Rant surprise() {
         // Surprise url, app id.
         String url = String.format("%1$s?app=%2$s", API_SURPRISE_URL, APP_ID);
-        JsonObject rantJson = request(url).getAsJsonObject().get("rant").getAsJsonObject();
+        JsonObject rantJson = request(url).get("rant").getAsJsonObject();
         return Rant.fromJson(rantJson);
     }
 
     /**
      * Make a request to the DevRant server.
+     *
      * @param url The complete url to make the request to.
-     * @return A JsonElement containing the response.
+     * @return A JsonObject containing the response.
      */
-    static JsonElement request(String url) {
+    static JsonObject request(String url) {
         HttpURLConnection connection;
         InputStream inputStream;
 
         try {
             // Create the URL and connection, get the input stream.
             connection = (HttpURLConnection) new URL(url).openConnection();
-            inputStream = connection.getInputStream();
+            inputStream = connection.getResponseCode() == 200 ? connection.getInputStream() : connection.getErrorStream();
         } catch (IOException i) {
             i.printStackTrace();
             return null;
@@ -75,6 +78,6 @@ public class DevRant {
         }
         connection.disconnect();
 
-        return json;
+        return json.getAsJsonObject();
     }
 }

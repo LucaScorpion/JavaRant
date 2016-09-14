@@ -51,7 +51,7 @@ public class Rant extends RantContent {
     public void fetchComments() {
         // Rants url, rant id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, this.getId(), DevRant.APP_ID);
-        JsonArray commentsJson = DevRant.request(url).getAsJsonObject().get("comments").getAsJsonArray();
+        JsonArray commentsJson = DevRant.request(url).get("comments").getAsJsonArray();
 
         comments = Util.jsonToList(commentsJson, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
     }
@@ -81,6 +81,6 @@ public class Rant extends RantContent {
      * Get the amount of comments on this rant.
      */
     public int getCommentCount() {
-        return comments == null ? commentCount : comments.length;
+        return commentCount;
     }
 }
