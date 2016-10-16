@@ -90,12 +90,23 @@ public class User {
     }
 
     /**
-     * Fetch the user data from the user profile.
+     * Fetch the user data from the user profile. If the data is already fetched, it will not be fetched again.
      *
      * @return Whether the data was fetched successfully.
      */
     public boolean fetchData() {
-        if (isFetched())
+        return fetchData(false);
+    }
+
+    /**
+     * Fetch the user data from the user profile.
+     *
+     * @param force Whether to fetch the data even if it was already fetched.
+     * @return Whether the data was fetched successfully.
+     */
+    public boolean fetchData(boolean force) {
+        // Check if we already fetched and force is false.
+        if (fetched && !force)
             return true;
 
         // Users url, user id, app id.

@@ -72,17 +72,30 @@ public class Rant extends RantContent {
      * @return The comments.
      */
     public Comment[] getComments() {
-        if (comments == null)
-            fetchComments();
+        fetchComments();
         return comments;
+    }
+
+    /**
+     * Fetch and store the comments on this rant. If the comments are already fetched, they will not be fetched again.
+     *
+     * @return Whether the data was fetched successfully.
+     */
+    public boolean fetchComments() {
+        return fetchComments(false);
     }
 
     /**
      * Fetch and store the comments on this rant.
      *
+     * @param force Whether to fetch the data even if it was already fetched.
      * @return Whether the data was fetched successfully.
      */
-    public boolean fetchComments() {
+    public boolean fetchComments(boolean force) {
+        // Check if we already fetched and force is false.
+        if (comments != null && !force)
+            return true;
+
         // Rants url, rant id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, this.getId(), DevRant.APP_ID);
         JsonObject json = DevRant.request(url);
