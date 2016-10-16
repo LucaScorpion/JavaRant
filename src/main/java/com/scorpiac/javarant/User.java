@@ -23,6 +23,7 @@ public class User {
     private int upvotedCount;
     private int commentsCount;
     private int favoritesCount;
+    private String avatar;
 
     /**
      * Create a new user.
@@ -94,6 +95,9 @@ public class User {
      * @return Whether the data was fetched successfully.
      */
     public boolean fetchData() {
+        if (isFetched())
+            return true;
+
         // Users url, user id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS_URL, id, DevRant.APP_ID);
         JsonObject json = DevRant.request(url);
@@ -108,10 +112,12 @@ public class User {
         JsonObject contentJson = profileJson.get("content").getAsJsonObject();
         JsonObject subContentJson = contentJson.get("content").getAsJsonObject();
         JsonObject countsJson = contentJson.get("counts").getAsJsonObject();
+        JsonObject avatarJson = profileJson.get("avatar").getAsJsonObject();
 
         // Set all the fields.
         username = profileJson.get("username").getAsString();
         score = profileJson.get("score").getAsInt();
+        avatar = avatarJson.get("i").getAsString();
 
         about = profileJson.get("about").getAsString();
         location = profileJson.get("location").getAsString();
@@ -140,6 +146,11 @@ public class User {
 
     public String userLink() {
         return DevRant.link(DevRant.USER_URL + "/" + username);
+    }
+
+    public String avatarLink() {
+        fetchData();
+        return DevRant.avatarLink(avatar);
     }
 
     /**

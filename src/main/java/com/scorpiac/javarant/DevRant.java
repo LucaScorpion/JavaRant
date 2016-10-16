@@ -13,6 +13,7 @@ import java.net.URL;
 public class DevRant {
     static final String APP_ID = "3";
     static final String BASE_URL = "https://www.devrant.io";
+    static final String AVATARS_URL = "https://avatars.devrant.io";
 
     // API endpoints.
     static final String USER_URL = "/users";
@@ -120,5 +121,14 @@ public class DevRant {
      */
     static String link(String url) {
         return BASE_URL + url;
+    }
+
+    /**
+     * Create a link to an avatar.
+     * @param avatarUrl The avatar url.
+     * @return The complete url.
+     */
+    static String avatarLink(String avatarUrl) {
+        return AVATARS_URL + "/" + avatarUrl;
     }
 }
