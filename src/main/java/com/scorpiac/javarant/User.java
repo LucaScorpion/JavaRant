@@ -108,11 +108,11 @@ public class User {
         fetched = true;
 
         // JSON objects.
-        JsonObject profileJson = json.get("profile").getAsJsonObject();
-        JsonObject contentJson = profileJson.get("content").getAsJsonObject();
-        JsonObject subContentJson = contentJson.get("content").getAsJsonObject();
-        JsonObject countsJson = contentJson.get("counts").getAsJsonObject();
-        JsonObject avatarJson = profileJson.get("avatar").getAsJsonObject();
+        JsonObject profileJson = json.getAsJsonObject("profile");
+        JsonObject contentJson = profileJson.getAsJsonObject("content");
+        JsonObject subContentJson = contentJson.getAsJsonObject("content");
+        JsonObject countsJson = contentJson.getAsJsonObject("counts");
+        JsonObject avatarJson = profileJson.getAsJsonObject("avatar");
 
         // Set all the fields.
         username = profileJson.get("username").getAsString();

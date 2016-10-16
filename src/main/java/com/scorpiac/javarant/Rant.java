@@ -48,7 +48,7 @@ public class Rant extends RantContent {
                 json.get("num_downvotes").getAsInt(),
                 json.get("text").getAsString(),
                 getImage(json.get("attached_image")),
-                Util.jsonToList(json.get("tags").getAsJsonArray(), JsonElement::getAsString).toArray(new String[0]),
+                Util.jsonToList(json.getAsJsonArray("tags"), JsonElement::getAsString).toArray(new String[0]),
                 json.get("num_comments").getAsInt()
         );
     }
@@ -92,7 +92,7 @@ public class Rant extends RantContent {
             return false;
 
         // Get the comments.
-        commentsFromJson(json.get("comments").getAsJsonArray());
+        commentsFromJson(json.getAsJsonArray("comments"));
 
         return true;
     }
