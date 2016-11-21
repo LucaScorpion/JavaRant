@@ -6,7 +6,24 @@
 
     <groupId>com.scorpiac.javarant</groupId>
     <artifactId>javarant</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>JavaRant</name>
+    <description>A devRant wrapper for Java.</description>
+    <url>https://github.com/LucaScorpion/JavaRant</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://mit-license.org/license.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/LucaScorpion/JavaRant</url>
+    </scm>
 
     <build>
         <plugins>
