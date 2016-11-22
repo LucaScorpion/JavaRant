@@ -1,6 +1,15 @@
 # JavaRant
 A devRant wrapper for Java.
 
+## Using JavaRant
+JavaRant is available on Maven, simply add this dependency to your pom.xml file:
+
+	<dependency>
+	    <groupId>com.scorpiac.javarant</groupId>
+	    <artifactId>javarant</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
 ## Class overview
 
 ### DevRant
