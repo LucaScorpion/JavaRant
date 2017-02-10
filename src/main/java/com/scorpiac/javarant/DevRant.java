@@ -15,9 +15,11 @@ public class DevRant {
     static final String BASE_URL = "https://www.devrant.io";
     static final String AVATARS_URL = "https://avatars.devrant.io";
 
-    // API endpoints.
     static final String USER_URL = "/users";
     static final String RANT_URL = "/rants";
+    static final String COLLAB_URL = "/collabs";
+
+    // API endpoints.
     static final String API_URL = "/api";
     static final String API_RANTS_URL = API_URL + "/devrant/rants";
     static final String API_SEARCH_URL = API_URL + "/devrant/search";
@@ -25,6 +27,7 @@ public class DevRant {
     static final String API_USERS_URL = API_URL + "/users";
     static final String API_USER_ID_URL = API_URL + "/get-user-id";
     static final String API_WEEKLY_URL = API_URL + "/devrant/weekly-rants";
+    static final String API_COLLABS_URL = API_URL + "/devrant/collabs";
 
     /**
      * Get a list of rants.
@@ -96,6 +99,23 @@ public class DevRant {
             return null;
 
         return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(elem.getAsJsonObject())).toArray(new Rant[0]);
+    }
+
+    /**
+     * Get the collab rants.
+     *
+     * @return The collab rants
+     */
+    public static Collab[] collabs() {
+        // Collab url, app id.
+        String url = String.format("%1$s?app=%2$s&", API_COLLABS_URL, APP_ID);
+        JsonObject json = request(url);
+
+        // Check for success.
+        if (!Util.jsonSuccess(json))
+            return null;
+
+        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Collab.fromJson(elem.getAsJsonObject())).toArray(new Collab[0]);
     }
 
     /**

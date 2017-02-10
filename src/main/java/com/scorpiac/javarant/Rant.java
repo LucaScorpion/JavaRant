@@ -10,7 +10,7 @@ public class Rant extends RantContent {
     private int commentCount;
     private Comment[] comments;
 
-    private Rant(int id, User user, int upvotes, int downvotes, String text, Image image, String[] tags, int commentCount) {
+    protected Rant(int id, User user, int upvotes, int downvotes, String text, Image image, String[] tags, int commentCount) {
         super(id, user, upvotes, downvotes, text, image);
         this.tags = tags;
         this.commentCount = commentCount;
@@ -23,7 +23,7 @@ public class Rant extends RantContent {
      * @return The rant.
      */
     public static Rant byId(int id) {
-        // Users url, rant id, app id.
+        // Rants url, rant id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, id, DevRant.APP_ID);
         JsonObject json = DevRant.request(url);
 
@@ -56,7 +56,7 @@ public class Rant extends RantContent {
      *
      * @param commentArray The JSON array to get the comments from.
      */
-    private void commentsFromJson(JsonArray commentArray) {
+    protected void commentsFromJson(JsonArray commentArray) {
         comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
     }
 
@@ -91,7 +91,7 @@ public class Rant extends RantContent {
             return true;
 
         // Rants url, rant id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, this.getId(), DevRant.APP_ID);
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, getId(), DevRant.APP_ID);
         JsonObject json = DevRant.request(url);
 
         // Check for success.
@@ -107,8 +107,8 @@ public class Rant extends RantContent {
     /**
      * Get the link to the rant.
      */
-    public String rantLink() {
-        return DevRant.link(DevRant.RANT_URL + "/" + this.getId());
+    public String link() {
+        return DevRant.link(DevRant.RANT_URL + "/" + getId());
     }
 
     /**

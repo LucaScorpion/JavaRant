@@ -3,7 +3,7 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonObject;
 
 public class Comment extends RantContent {
-    private Comment(int id, User user, int upvotes, int downvotes, String content, Image image) {
+    protected Comment(int id, User user, int upvotes, int downvotes, String content, Image image) {
         super(id, user, upvotes, downvotes, content, image);
     }
 
