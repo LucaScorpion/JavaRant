@@ -161,7 +161,7 @@ public class User {
 
     public String avatarLink() {
         fetchData();
-        return DevRant.avatarLink(avatar);
+        return DevRant.AVATARS_URL + "/" + avatar;
     }
 
     /**

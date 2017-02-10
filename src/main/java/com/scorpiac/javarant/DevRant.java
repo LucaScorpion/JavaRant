@@ -140,14 +140,4 @@ public class DevRant {
     static String link(String url) {
         return BASE_URL + url;
     }
-
-    /**
-     * Create a link to an avatar.
-     *
-     * @param avatarUrl The avatar url.
-     * @return The complete url.
-     */
-    static String avatarLink(String avatarUrl) {
-        return AVATARS_URL + "/" + avatarUrl;
-    }
 }
