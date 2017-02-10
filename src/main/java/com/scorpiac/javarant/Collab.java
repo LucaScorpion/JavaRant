@@ -3,6 +3,7 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.scorpiac.javarant.exceptions.NoSuchRantException;
+import com.scorpiac.javarant.exceptions.NotACollabException;
 
 public class Collab extends Rant {
     private String projectType;
@@ -42,6 +43,10 @@ public class Collab extends Rant {
     }
 
     static Collab fromJson(JsonObject json) {
+        // Check if the rant is also a collab.
+        if (json.has("id") && !json.has("c_type_long"))
+            throw new NotACollabException(json.get("id").getAsInt());
+
         return new Collab(
                 json.get("id").getAsInt(),
                 User.fromJson(json),
