@@ -81,6 +81,12 @@ public class User {
         return byId(json.get("user_id").getAsInt());
     }
 
+    /**
+     * Create a user from a JSON object.
+     *
+     * @param json The JSON object to create the user from.
+     * @return The created user.
+     */
     static User fromJson(JsonObject json) {
         return new User(
                 json.get("user_id").getAsInt(),
@@ -155,10 +161,16 @@ public class User {
         return fetched;
     }
 
+    /**
+     * Get the link to the user.
+     */
     public String userLink() {
         return DevRant.link(DevRant.USER_URL + "/" + username);
     }
 
+    /**
+     * Get the link to the user's avatar.
+     */
     public String avatarLink() {
         fetchData();
         return DevRant.AVATARS_URL + "/" + avatar;
@@ -185,61 +197,97 @@ public class User {
         return score;
     }
 
+    /**
+     * Get information about the user.
+     */
     public String getAbout() {
         fetchData();
         return about;
     }
 
+    /**
+     * Get the user's location.
+     */
     public String getLocation() {
         fetchData();
         return location;
     }
 
+    /**
+     * Get the user's skills.
+     */
     public String getSkills() {
         fetchData();
         return skills;
     }
 
+    /**
+     * Get the user's GitHub username.
+     */
     public String getGithub() {
         fetchData();
         return github;
     }
 
+    /**
+     * Get the rants that this user posted.
+     */
     public Rant[] getRants() {
         fetchData();
         return rants;
     }
 
+    /**
+     * Get the rants that this user upvoted.
+     */
     public Rant[] getUpvoted() {
         fetchData();
         return upvoted;
     }
 
+    /**
+     * Get this user's comments.
+     */
     public Comment[] getComments() {
         fetchData();
         return comments;
     }
 
+    /**
+     * Get this user's favorites.
+     */
     public Rant[] getFavorites() {
         fetchData();
         return favorites;
     }
 
+    /**
+     * Get the amount of rants that this user has posted.
+     */
     public int getRantsCount() {
         fetchData();
         return rantsCount;
     }
 
+    /**
+     * Get the amount of rants that this user has upvoted.
+     */
     public int getUpvotedCount() {
         fetchData();
         return upvotedCount;
     }
 
+    /**
+     * Get the amount of comments that this user has posted.
+     */
     public int getCommentsCount() {
         fetchData();
         return commentsCount;
     }
 
+    /**
+     * Get the amount of rants that this user has favorited.
+     */
     public int getFavoritesCount() {
         fetchData();
         return favoritesCount;

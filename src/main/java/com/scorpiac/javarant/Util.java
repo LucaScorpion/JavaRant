@@ -12,6 +12,14 @@ class Util {
     private Util() {
     }
 
+    /**
+     * Create a list from a JSON array.
+     *
+     * @param json      The JSON array to convert to a list.
+     * @param converter The converter for converting individual JSON elements.
+     * @param <T>       The type to convert the elements to.
+     * @return A list of elements converted from the JSON.
+     */
     static <T> List<T> jsonToList(JsonArray json, Function<JsonElement, T> converter) {
         List<T> result = new ArrayList<>(json.size());
         json.forEach(j -> result.add(converter.apply(j)));
