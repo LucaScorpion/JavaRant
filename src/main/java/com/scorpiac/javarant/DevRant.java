@@ -65,7 +65,7 @@ public class DevRant {
     }
 
     /**
-     * Get a random rant with at leatst 15 +1's.
+     * Get a random rant with at least 15 +1's.
      *
      * @return A random rant.
      */
