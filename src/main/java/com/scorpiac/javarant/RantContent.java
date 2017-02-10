@@ -6,13 +6,15 @@ public abstract class RantContent {
     private int upvotes;
     private int downvotes;
     private String content;
+    private Image image;
 
-    protected RantContent(int id, User user, int upvotes, int downvotes, String content) {
+    protected RantContent(int id, User user, int upvotes, int downvotes, String content, Image image) {
         this.id = id;
         this.user = user;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.content = content;
+        this.image = image;
     }
 
     /**
@@ -55,6 +57,13 @@ public abstract class RantContent {
      */
     public String getContent() {
         return content;
+    }
+
+    /**
+     * Get the image, or {@code null} if there is none.
+     */
+    public Image getImage() {
+        return image;
     }
 
     @Override

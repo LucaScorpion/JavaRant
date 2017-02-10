@@ -6,14 +6,12 @@ import com.google.gson.JsonObject;
 import com.scorpiac.javarant.exceptions.NoSuchRantException;
 
 public class Rant extends RantContent {
-    private String image;
     private String[] tags;
     private int commentCount;
     private Comment[] comments;
 
-    private Rant(int id, User user, int upvotes, int downvotes, String text, String image, String[] tags, int commentCount) {
-        super(id, user, upvotes, downvotes, text);
-        this.image = image;
+    private Rant(int id, User user, int upvotes, int downvotes, String text, Image image, String[] tags, int commentCount) {
+        super(id, user, upvotes, downvotes, text, image);
         this.tags = tags;
         this.commentCount = commentCount;
     }
@@ -47,7 +45,7 @@ public class Rant extends RantContent {
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
                 json.get("text").getAsString(),
-                getImage(json.get("attached_image")),
+                Image.fromJson(json.get("attached_image")),
                 Util.jsonToList(json.getAsJsonArray("tags"), JsonElement::getAsString).toArray(new String[0]),
                 json.get("num_comments").getAsInt()
         );
@@ -60,10 +58,6 @@ public class Rant extends RantContent {
      */
     private void commentsFromJson(JsonArray commentArray) {
         comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
-    }
-
-    private static String getImage(JsonElement image) {
-        return image.isJsonObject() ? image.getAsJsonObject().get("url").getAsString() : "";
     }
 
     /**
@@ -115,13 +109,6 @@ public class Rant extends RantContent {
      */
     public String rantLink() {
         return DevRant.link(DevRant.RANT_URL + "/" + this.getId());
-    }
-
-    /**
-     * Get the link to the image, or null if there is none.
-     */
-    public String imageLink() {
-        return image;
     }
 
     /**

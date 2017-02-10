@@ -27,10 +27,10 @@ class Util {
     }
 
     /**
-     * Check whether the JSON is not null and the success member is true.
+     * Check whether the JSON is not {@code null} and the success member is true.
      *
      * @param json The JSON to check.
-     * @return True if the JSON is not null and has a success member which is true.
+     * @return True if the JSON is not {@code null} and has a success member which is true.
      */
     static boolean jsonSuccess(JsonObject json) {
         return json != null && json.get("success").getAsBoolean();
