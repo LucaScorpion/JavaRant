@@ -24,6 +24,7 @@ public class DevRant {
     static final String API_SURPRISE_URL = API_RANTS_URL + "/surprise";
     static final String API_USERS_URL = API_URL + "/users";
     static final String API_USER_ID_URL = API_URL + "/get-user-id";
+    static final String API_WEEKLY_URL = API_URL + "/devrant/weekly-rants";
 
     /**
      * Get a list of rants.
@@ -81,6 +82,23 @@ public class DevRant {
     }
 
     /**
+     * Get the weekly rants.
+     *
+     * @return The weekly rants.
+     */
+    public static Rant[] weekly() {
+        // Weekly url, app id.
+        String url = String.format("%1$s?app=%2$s", API_WEEKLY_URL, APP_ID);
+        JsonObject json = request(url);
+
+        // Check for success.
+        if (!Util.jsonSuccess(json))
+            return null;
+
+        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(elem.getAsJsonObject())).toArray(new Rant[0]);
+    }
+
+    /**
      * Make a request to the DevRant server.
      *
      * @param url The complete url to make the request to.
@@ -125,6 +143,7 @@ public class DevRant {
 
     /**
      * Create a link to an avatar.
+     *
      * @param avatarUrl The avatar url.
      * @return The complete url.
      */
