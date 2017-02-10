@@ -48,7 +48,7 @@ Additionally you can call `getScore()` which calculates the total score.
 
 ### Rant
 Rants are get through one of the methods in `DevRant`, or by an id (`Rant.byId(id)`).
-This will throw a `NoSuchRantException` if the id is invalid.
+The latter will throw a `NoSuchRantException` if the id is invalid.
 In addition to the `RantContent` attributes, a `Rant` also contains:
 
 - tags
@@ -70,6 +70,31 @@ Comment[] comments = rant.getComments();
 
 // Force fetch the comments.
 boolean success = rant.fetchComments(true);
+```
+
+### Collab
+Collabs are an extension of rants.
+They are get through `DevRant.collabs()` or by an id (`Collab.byId(id)`).
+The latter will throw a `NoSuchRantException` if the id is invalid, or a `NotACollabException` if it is simply a rant instead of a collab.
+Besides the attributes from a rant, collabs have the following attributes:
+
+- projectType
+- description
+- techStack
+- teamSize
+- url
+
+Like with a rant the comments can be fetched or force fetched.
+There is also more data which needs to be fetched, similar to the comments this is done by calling `fetchData()` or `fetchData(force)` to force fetch it.
+
+Examples:
+
+```
+// Get a collab by its id.
+Collab collab = Collab.byId(420392);
+
+// Force fetch the data.
+boolean success = collab.fetchData(true);
 ```
 
 ### Comment
