@@ -17,4 +17,14 @@ public class Comment extends RantContent {
                 Image.fromJson(json.get("attached_image"))
         );
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Comment && ((Comment) obj).getId() == getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
+    }
 }

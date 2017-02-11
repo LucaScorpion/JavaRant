@@ -28,6 +28,16 @@ public class Image {
         return new Image(obj.get("url").getAsString(), obj.get("width").getAsInt(), obj.get("height").getAsInt());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Image && ((Image) obj).getUrl().equals(url);
+    }
+
+    @Override
+    public int hashCode() {
+        return url.hashCode();
+    }
+
     /**
      * Get the image url.
      *

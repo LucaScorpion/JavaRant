@@ -176,6 +176,16 @@ public class User {
         return DevRant.AVATARS_URL + "/" + avatar;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof User && ((User) obj).getId() == id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
     /**
      * Get the user id.
      */

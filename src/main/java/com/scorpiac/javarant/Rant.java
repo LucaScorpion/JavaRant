@@ -111,6 +111,16 @@ public class Rant extends RantContent {
         return DevRant.link(DevRant.RANT_URL + "/" + getId());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Rant && ((Rant) obj).getId() == getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
+    }
+
     /**
      * Get the tags from this rant.
      */
