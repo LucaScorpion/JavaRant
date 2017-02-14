@@ -113,12 +113,7 @@ public class Rant extends RantContent {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Rant && ((Rant) obj).getId() == getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return getId();
+        return super.equals(obj) && obj instanceof Rant;
     }
 
     /**

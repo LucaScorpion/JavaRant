@@ -20,11 +20,6 @@ public class Comment extends RantContent {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Comment && ((Comment) obj).getId() == getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return getId();
+        return super.equals(obj) && obj instanceof Comment;
     }
 }

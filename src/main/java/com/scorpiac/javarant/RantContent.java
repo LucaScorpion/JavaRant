@@ -17,6 +17,16 @@ public abstract class RantContent {
         this.image = image;
     }
 
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof RantContent && ((RantContent) obj).getId() == id;
+    }
+
     /**
      * Get the id.
      */
