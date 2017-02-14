@@ -29,7 +29,7 @@ public class Collab extends Rant {
     public static Collab byId(int id) {
         // Collabs url, collab id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, id, DevRant.APP_ID);
-        JsonObject json = DevRant.request(url);
+        JsonObject json = DevRant.get(url);
 
         // Check if the collab exists.
         if (!Util.jsonSuccess(json))
@@ -88,7 +88,7 @@ public class Collab extends Rant {
 
         // Collabs url, collab id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, getId(), DevRant.APP_ID);
-        JsonObject json = DevRant.request(url);
+        JsonObject json = DevRant.get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -105,7 +105,7 @@ public class Collab extends Rant {
      */
     @Override
     public String link() {
-        return DevRant.link(DevRant.COLLAB_URL + "/" + getId());
+        return DevRant.BASE_URL + DevRant.COLLAB_URL + '/' + getId();
     }
 
     /**

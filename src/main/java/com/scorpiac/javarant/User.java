@@ -72,7 +72,7 @@ public class User {
     public static User byUsername(String username) {
         // Users url, user id, app id.
         String url = String.format("%1$s?app=%2$s&username=%3$s", DevRant.API_USER_ID_URL, DevRant.APP_ID, username);
-        JsonObject json = DevRant.request(url);
+        JsonObject json = DevRant.get(url);
 
         // Check if the user exists.
         if (!Util.jsonSuccess(json))
@@ -117,7 +117,7 @@ public class User {
 
         // Users url, user id, app id.
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS_URL, id, DevRant.APP_ID);
-        JsonObject json = DevRant.request(url);
+        JsonObject json = DevRant.get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -165,7 +165,7 @@ public class User {
      * Get the link to the user.
      */
     public String userLink() {
-        return DevRant.link(DevRant.USER_URL + "/" + username);
+        return DevRant.BASE_URL + DevRant.USER_URL + '/' + username;
     }
 
     /**

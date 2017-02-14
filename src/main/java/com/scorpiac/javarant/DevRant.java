@@ -12,6 +12,8 @@ import java.net.URL;
 
 public class DevRant {
     static final String APP_ID = "3";
+    static final String PLAT_ID = "3";
+
     static final String BASE_URL = "https://www.devrant.io";
     static final String AVATARS_URL = "https://avatars.devrant.io";
 
@@ -28,6 +30,9 @@ public class DevRant {
     static final String API_USER_ID_URL = API_URL + "/get-user-id";
     static final String API_WEEKLY_URL = API_URL + "/devrant/weekly-rants";
     static final String API_COLLABS_URL = API_URL + "/devrant/collabs";
+    static final String API_AUTH_TOKEN = API_USERS_URL + "/auth-token";
+    static final String API_COMMENT = "/comments";
+    static final String API_VOTE = "/vote";
 
     /**
      * Get a list of rants.
@@ -37,10 +42,10 @@ public class DevRant {
      * @param skip  How many rants to skip.
      * @return An array of rants.
      */
-    public static Rant[] getRants(Sort sort, int limit, int skip) {
+    public Rant[] rants(Sort sort, int limit, int skip) {
         // Rants url, app id, sort, skip, limit.
         String url = String.format("%1$s?app=%2$s&sort=%3$s&skip=%4$d&limit=%5$d", API_RANTS_URL, APP_ID, sort.toString(), skip, limit);
-        JsonObject json = request(url);
+        JsonObject json = get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -55,10 +60,10 @@ public class DevRant {
      * @param term The term to search for.
      * @return An array of rants matching the search term.
      */
-    public static Rant[] search(String term) {
+    public Rant[] search(String term) {
         // Search url, app id, term.
         String url = String.format("%1$s?app=%2$s&term=%3$s", API_SEARCH_URL, APP_ID, term);
-        JsonObject json = request(url);
+        JsonObject json = get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -72,10 +77,10 @@ public class DevRant {
      *
      * @return A random rant.
      */
-    public static Rant surprise() {
+    public Rant surprise() {
         // Surprise url, app id.
         String url = String.format("%1$s?app=%2$s", API_SURPRISE_URL, APP_ID);
-        JsonObject json = request(url);
+        JsonObject json = get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -89,10 +94,10 @@ public class DevRant {
      *
      * @return The weekly rants.
      */
-    public static Rant[] weekly() {
+    public Rant[] weekly() {
         // Weekly url, app id.
         String url = String.format("%1$s?app=%2$s", API_WEEKLY_URL, APP_ID);
-        JsonObject json = request(url);
+        JsonObject json = get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -104,12 +109,12 @@ public class DevRant {
     /**
      * Get the collab rants.
      *
-     * @return The collab rants
+     * @return The collab rants.
      */
-    public static Collab[] collabs() {
+    public Collab[] collabs() {
         // Collab url, app id.
         String url = String.format("%1$s?app=%2$s&", API_COLLABS_URL, APP_ID);
-        JsonObject json = request(url);
+        JsonObject json = get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -119,18 +124,40 @@ public class DevRant {
     }
 
     /**
-     * Make a request to the DevRant server.
+     * Make a GET-request to the devRant server.
      *
-     * @param url The complete url to make the request to.
+     * @param url The url to make the request to.
      * @return A JsonObject containing the response.
      */
-    static JsonObject request(String url) {
+    static JsonObject get(String url) {
+        return request(url, "GET");
+    }
+
+    /**
+     * Make a POST-request to the devRant server.
+     *
+     * @param url The url to make the request to.
+     * @return A JsonObject containing the response.
+     */
+    static JsonObject post(String url) {
+        return request(url, "POST");
+    }
+
+    /**
+     * Make a request to the devRant server.
+     *
+     * @param url    The url to make the request to.
+     * @param method The request method to use (e.g. "GET" or "POST").
+     * @return A JsonObject containing the response.
+     */
+    private static JsonObject request(String url, String method) {
         HttpURLConnection connection;
         InputStream inputStream;
 
         try {
             // Create the URL and connection, get the input stream.
             connection = (HttpURLConnection) new URL(BASE_URL + url).openConnection();
+            connection.setRequestMethod(method);
             inputStream = connection.getResponseCode() == 200 ? connection.getInputStream() : connection.getErrorStream();
         } catch (IOException i) {
             i.printStackTrace();
@@ -149,15 +176,5 @@ public class DevRant {
         connection.disconnect();
 
         return json.getAsJsonObject();
-    }
-
-    /**
-     * Create a link to the DevRant site.
-     *
-     * @param url The url to link to.
-     * @return The complete url.
-     */
-    static String link(String url) {
-        return BASE_URL + url;
     }
 }
