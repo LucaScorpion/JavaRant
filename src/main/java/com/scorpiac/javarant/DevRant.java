@@ -1,14 +1,13 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+import org.apache.http.client.fluent.Request;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class DevRant {
     static final String APP_ID = "3";
@@ -127,54 +126,44 @@ public class DevRant {
      * Make a GET-request to the devRant server.
      *
      * @param url The url to make the request to.
-     * @return A JsonObject containing the response.
+     * @return A {@link JsonObject} containing the response.
      */
     static JsonObject get(String url) {
-        return request(url, "GET");
+        return executeRequest(Request.Get(BASE_URL + url));
     }
 
     /**
      * Make a POST-request to the devRant server.
      *
      * @param url The url to make the request to.
-     * @return A JsonObject containing the response.
+     * @return A {@link JsonObject} containing the response.
      */
     static JsonObject post(String url) {
-        return request(url, "POST");
+        return executeRequest(Request.Post(BASE_URL + url));
     }
 
     /**
-     * Make a request to the devRant server.
+     * Execute a request to the devRant server.
      *
-     * @param url    The url to make the request to.
-     * @param method The request method to use (e.g. "GET" or "POST").
-     * @return A JsonObject containing the response.
+     * @param request The request to execute.
+     * @return A {@link JsonObject} containing the response.
      */
-    private static JsonObject request(String url, String method) {
-        HttpURLConnection connection;
-        InputStream inputStream;
-
+    private static JsonObject executeRequest(Request request) {
+        // Make the request and get the returned content as a stream.
+        InputStream stream;
         try {
-            // Create the URL and connection, get the input stream.
-            connection = (HttpURLConnection) new URL(BASE_URL + url).openConnection();
-            connection.setRequestMethod(method);
-            inputStream = connection.getResponseCode() == 200 ? connection.getInputStream() : connection.getErrorStream();
-        } catch (IOException i) {
-            i.printStackTrace();
+            stream = request.execute().returnContent().asStream();
+        } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
 
-        // Parse the response.
-        JsonElement json = new JsonParser().parse(new InputStreamReader(inputStream));
-
-        // Close the stream reader, disconnect.
-        try {
-            inputStream.close();
+        // Parse the response as json.
+        try (JsonReader reader = new JsonReader(new InputStreamReader(stream))) {
+            return new JsonParser().parse(reader).getAsJsonObject();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        connection.disconnect();
-
-        return json.getAsJsonObject();
     }
 }
