@@ -3,11 +3,15 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DevRant {
     static final String APP_ID = "3";
@@ -138,12 +142,18 @@ public class DevRant {
      * @param url The url to make the request to.
      * @return A {@link JsonObject} containing the response.
      */
-    static JsonObject post(String url) {
-        return executeRequest(Request.Post(BASE_URL + url));
+    static JsonObject post(String url, NameValuePair... params) {
+        List<NameValuePair> paramList = new ArrayList<>(params.length + 2);
+
+        // Add the parameters which always need to be present.
+        paramList.add(new BasicNameValuePair("app", APP_ID));
+        paramList.add(new BasicNameValuePair("plat", PLAT_ID));
+
+        return executeRequest(Request.Post(BASE_URL + url).bodyForm(paramList));
     }
 
     /**
-     * Execute a request to the devRant server.
+     * Execute a request and parse the response.
      *
      * @param request The request to execute.
      * @return A {@link JsonObject} containing the response.
