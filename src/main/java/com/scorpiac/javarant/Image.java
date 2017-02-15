@@ -40,8 +40,6 @@ public class Image {
 
     /**
      * Get the image url.
-     *
-     * @return
      */
     public String getUrl() {
         return url;
