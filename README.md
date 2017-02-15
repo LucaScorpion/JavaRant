@@ -15,23 +15,70 @@ JavaRant is available on Maven, simply add this dependency to your `pom.xml` fil
 ## Class overview
 
 ### DevRant
-This is the main class to get rants.
-From here you can get a list of rants, get a random rant, or search for rants containing a specific term.
-
-Examples:
+This is the main class to interact with devRant.
+To use it, you first need to create an instance of it.
 
 ```
-// Get the first 10 rants.
-Rant[] rants = DevRant.getRants(Sort.ALGO, 10, 0);
+DevRant devRant = new DevRant();
+```
 
-// Get a random rant.
-Rant random = DevRant.surprise();
+It can then be used to get rants and collabs from the feed or by searching.
 
-// Search for rants containing "wtf".
-Rant[] wtf = DevRant.search("wtf");
+```
+List<Rant> rants = devRant.rants(Sort.ALGO, 10, 0);
+List<Rant> wtf = devRant.search("wtf");
+List<Rant> weekly = devRant.weekly();
 
-// Get the weekly rants.
-Rant[] weekly = DevRant.weekly();
+List<Collab> collabs = devRant.collabs();
+
+Rant random = devRant.surprise();
+```
+
+It can also be used to get specific items based on an id (or username).
+These methods will throw an exception if the specified item does not exist (`NoSuchRantException` for rants and `NoSuchUserException` for users).
+Additionally, `getCollab` will also throw a `NotACollabException` if the requested rant is a normal rant instead of a collab.
+
+```
+Rant rant = devRant.getRant(422850);
+Collab collab = devRant.getCollab(420025);
+
+User me = devRant.getUser("LucaScorpion");
+User me2 = devRant.getUser(102959);
+```
+
+To post or vote anything we first need to log in.
+This will make a request to get an authentication token, which is stored for later use.
+Your username and password will _not_ be stored.
+The login method uses `char[]` instead of `String` for the password parameter for security reasons (and most of the times you have a password it should already be in the form of a `char[]`).
+
+```
+devRant.login("username", "password".toCharArray());
+```
+
+Voting on rants and comments can be done by passing the `Rant` or `Comment` object to vote on, or by directly passing the id.
+
+```
+devRant.vote(rant, Vote.DOWN);
+devRant.vote(comment, Vote.NONE);
+
+devRant.voteRant(429863, Vote.UP);
+devRant.voteComment(424558, Vote.UP);
+```
+
+To post a rant you simply need the content and tags.
+To post a comment you need the text and a `Rant` object, or the id of the rant to comment on.
+
+```
+devRant.postRant("Hello world!", "hello, not a rant");
+
+devRant.postComment(rant, "This is a comment.");
+devRant.postComment(424553, "And another one.");
+```
+
+You can log out to clear the authorization token.
+
+```
+devRant.logout();
 ```
 
 ### RantContent
@@ -41,15 +88,12 @@ This is the base class for rants and comments, which have the following attribut
 - user
 - upvotes
 - downvotes
+- score
 - content
 - image
 
-Additionally you can call `getScore()` which calculates the total score.
-
 ### Rant
-Rants are get through one of the methods in `DevRant`, or by an id (`Rant.byId(id)`).
-The latter will throw a `NoSuchRantException` if the id is invalid.
-In addition to the `RantContent` attributes, a `Rant` also contains:
+In addition to the `RantContent` attributes, rants also contain:
 
 - tags
 - commentCount
@@ -59,24 +103,9 @@ The comments can be accessed by calling `getComments()`.
 This will also fetch them if that has not been done yet.
 Alternatively you can call `fetchComments()` to fetch the comments, or `fetchComments(force)` to force fetch them (i.e. fetch them again).
 
-Examples:
-
-```
-// Get a rant by its id.
-Rant rant = Rant.byId(136761);
-
-// Fetch and get the comments.
-Comment[] comments = rant.getComments();
-
-// Force fetch the comments.
-boolean success = rant.fetchComments(true);
-```
-
 ### Collab
 Collabs are an extension of rants.
-They are get through `DevRant.collabs()` or by an id (`Collab.byId(id)`).
-The latter will throw a `NoSuchRantException` if the id is invalid, or a `NotACollabException` if it is simply a rant instead of a collab.
-Besides the attributes from a rant, collabs have the following attributes:
+Besides the attributes from a rant, collabs contain the following:
 
 - projectType
 - description
@@ -87,42 +116,26 @@ Besides the attributes from a rant, collabs have the following attributes:
 Like with a rant the comments can be fetched or force fetched.
 There is also more data which needs to be fetched, similar to the comments this is done by calling `fetchData()` or `fetchData(force)` to force fetch it.
 
-Examples:
-
-```
-// Get a collab by its id.
-Collab collab = Collab.byId(420392);
-
-// Force fetch the data.
-boolean success = collab.fetchData(true);
-```
-
 ### Comment
 A comment only contains the attributes from `RantContent`.
 
 ### Image
-An image contains a link to the image on devRant, and a width and height.
+An image has the following attributes:
+
+- url
+- width
+- height
 
 ### User
-Users can be get from rants, comments, by id (`User.byId(id)`) or username (`User.byUsername(username)`).
-The latter two will throw a `NoSuchUserException` for non-existing users.
+Users can be get from rants, comments, by id or username.
 When they are get from a rant or comment, only the id, username and score are given.
 The other data will be fetched and stored as soon as it's accessed.
 Alternatively you can fetch the data by calling `fetchData()`, or `fetchData(force)` to force fetch the data (i.e. fetch it again).
 
-Examples:
-
-```
-// Get a user by their id.
-User me = User.byId(102959);
-
-// Get a user by their username.
-User alsoMe = User.byUsername("LucaScorpion");
-
-// Fetch the data.
-boolean success = me.fetchData();
-```
-
 ### Sort
-These are the different sort options which are used by `DevRant.getRants`.
+These are the different sort options, which are used when getting rants from the feed.
 You can pick between `ALGO`, `RECENT` or `TOP`.
+
+### Vote
+These are the different vote options, which are used to vote on rants and comments.
+The vote options are `UP`, `NONE` and `DOWN`.
