@@ -96,7 +96,7 @@ public class DevRant {
      * @param skip  How many rants to skip.
      * @return An array of rants.
      */
-    public Rant[] rants(Sort sort, int limit, int skip) {
+    public List<Rant> rants(Sort sort, int limit, int skip) {
         // Rants url, app id, sort, skip, limit.
         String url = String.format("%1$s?app=%2$s&sort=%3$s&skip=%4$d&limit=%5$d", API_RANTS, APP_ID, sort.toString(), skip, limit);
         JsonObject json = get(url);
@@ -105,7 +105,7 @@ public class DevRant {
         if (!Util.jsonSuccess(json))
             return null;
 
-        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject())).toArray(new Rant[0]);
+        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
     }
 
     /**
@@ -114,7 +114,7 @@ public class DevRant {
      * @param term The term to search for.
      * @return An array of rants matching the search term.
      */
-    public Rant[] search(String term) {
+    public List<Rant> search(String term) {
         // Search url, app id, term.
         String url = String.format("%1$s?app=%2$s&term=%3$s", API_SEARCH, APP_ID, term);
         JsonObject json = get(url);
@@ -123,7 +123,7 @@ public class DevRant {
         if (!Util.jsonSuccess(json))
             return null;
 
-        return Util.jsonToList(json.get("results").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject())).toArray(new Rant[0]);
+        return Util.jsonToList(json.get("results").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
     }
 
     /**
@@ -148,7 +148,7 @@ public class DevRant {
      *
      * @return The weekly rants.
      */
-    public Rant[] weekly() {
+    public List<Rant> weekly() {
         // Weekly url, app id.
         String url = String.format("%1$s?app=%2$s", API_WEEKLY, APP_ID);
         JsonObject json = get(url);
@@ -157,7 +157,7 @@ public class DevRant {
         if (!Util.jsonSuccess(json))
             return null;
 
-        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject())).toArray(new Rant[0]);
+        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
     }
 
     /**
@@ -165,7 +165,7 @@ public class DevRant {
      *
      * @return The collab rants.
      */
-    public Collab[] collabs() {
+    public List<Collab> collabs() {
         // Collab url, app id.
         String url = String.format("%1$s?app=%2$s&", API_COLLABS, APP_ID);
         JsonObject json = get(url);
@@ -174,7 +174,7 @@ public class DevRant {
         if (!Util.jsonSuccess(json))
             return null;
 
-        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Collab.fromJson(this, elem.getAsJsonObject())).toArray(new Collab[0]);
+        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Collab.fromJson(this, elem.getAsJsonObject()));
     }
 
     /**

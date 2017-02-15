@@ -4,12 +4,15 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class Rant extends RantContent {
-    private String[] tags;
-    private int commentCount;
-    private Comment[] comments;
+import java.util.Collections;
+import java.util.List;
 
-    protected Rant(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String text, Image image, String[] tags, int commentCount) {
+public class Rant extends RantContent {
+    private List<String> tags;
+    private int commentCount;
+    private List<Comment> comments;
+
+    protected Rant(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String text, Image image, List<String> tags, int commentCount) {
         super(devRant, id, user, upvotes, downvotes, score, text, image);
         this.tags = tags;
         this.commentCount = commentCount;
@@ -25,7 +28,7 @@ public class Rant extends RantContent {
                 json.get("score").getAsInt(),
                 json.get("text").getAsString(),
                 Image.fromJson(json.get("attached_image")),
-                Util.jsonToList(json.getAsJsonArray("tags"), JsonElement::getAsString).toArray(new String[0]),
+                Util.jsonToList(json.getAsJsonArray("tags"), JsonElement::getAsString),
                 json.get("num_comments").getAsInt()
         );
     }
@@ -42,7 +45,7 @@ public class Rant extends RantContent {
      * @param commentArray The JSON array to get the comments from.
      */
     protected void commentsFromJson(JsonArray commentArray) {
-        comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(devRant, elem.getAsJsonObject())).toArray(new Comment[0]);
+        comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(devRant, elem.getAsJsonObject()));
     }
 
     /**
@@ -50,13 +53,13 @@ public class Rant extends RantContent {
      *
      * @return The comments.
      */
-    public Comment[] getComments() {
+    public List<Comment> getComments() {
         fetchComments();
-        return comments;
+        return Collections.unmodifiableList(comments);
     }
 
     /**
-     * Fetch and store the comments on this rant. If the comments are already fetched, they will not be fetched again.
+     * Fetch the comments on this rant. If the comments are already fetched, they will not be fetched again.
      *
      * @return Whether the data was fetched successfully.
      */
@@ -65,9 +68,9 @@ public class Rant extends RantContent {
     }
 
     /**
-     * Fetch and store the comments on this rant.
+     * Fetch the comments on this rant.
      *
-     * @param force Whether to fetch the data even if it was already fetched.
+     * @param force Whether to fetch the comments even if it they are already fetched.
      * @return Whether the data was fetched successfully.
      */
     public boolean fetchComments(boolean force) {
@@ -79,13 +82,10 @@ public class Rant extends RantContent {
         String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS, getId(), DevRant.APP_ID);
         JsonObject json = devRant.get(url);
 
-        // Check for success.
         if (!Util.jsonSuccess(json))
             return false;
 
-        // Get the comments.
         commentsFromJson(json.getAsJsonArray("comments"));
-
         return true;
     }
 
@@ -102,14 +102,14 @@ public class Rant extends RantContent {
     }
 
     /**
-     * Get the tags from this rant.
+     * Get the tags.
      */
-    public String[] getTags() {
-        return tags;
+    public List<String> getTags() {
+        return Collections.unmodifiableList(tags);
     }
 
     /**
-     * Get the amount of comments on this rant.
+     * Get the amount of comments.
      */
     public int getCommentCount() {
         return commentCount;

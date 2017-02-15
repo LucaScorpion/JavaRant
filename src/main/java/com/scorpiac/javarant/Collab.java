@@ -4,6 +4,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.scorpiac.javarant.exceptions.NotACollabException;
 
+import java.util.Collections;
+
 public class Collab extends Rant {
     private String projectType;
 
@@ -15,7 +17,7 @@ public class Collab extends Rant {
     private String url;
 
     protected Collab(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String projectType, String summary, int commentCount) {
-        super(devRant, id, user, upvotes, downvotes, score, summary, null, new String[0], commentCount);
+        super(devRant, id, user, upvotes, downvotes, score, summary, null, Collections.emptyList(), commentCount);
         this.projectType = projectType;
     }
 

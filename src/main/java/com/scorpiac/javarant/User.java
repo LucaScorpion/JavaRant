@@ -3,6 +3,9 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonObject;
 import com.scorpiac.javarant.exceptions.NoSuchUserException;
 
+import java.util.Collections;
+import java.util.List;
+
 public class User extends DevRantHolder {
     // Data that is always available.
     private int id;
@@ -15,10 +18,10 @@ public class User extends DevRantHolder {
     private String location;
     private String skills;
     private String github;
-    private Rant[] rants;
-    private Rant[] upvoted;
-    private Comment[] comments;
-    private Rant[] favorites;
+    private List<Rant> rants;
+    private List<Rant> upvoted;
+    private List<Comment> comments;
+    private List<Rant> favorites;
     private int rantsCount;
     private int upvotedCount;
     private int commentsCount;
@@ -106,10 +109,10 @@ public class User extends DevRantHolder {
         commentsCount = countsJson.get("comments").getAsInt();
         favoritesCount = countsJson.get("favorites").getAsInt();
 
-        rants = Util.jsonToList(subContentJson.get("rants").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject())).toArray(new Rant[0]);
-        upvoted = Util.jsonToList(subContentJson.get("upvoted").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject())).toArray(new Rant[0]);
-        comments = Util.jsonToList(subContentJson.get("comments").getAsJsonArray(), comment -> Comment.fromJson(devRant, comment.getAsJsonObject())).toArray(new Comment[0]);
-        favorites = Util.jsonToList(subContentJson.get("favorites").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject())).toArray(new Rant[0]);
+        rants = Util.jsonToList(subContentJson.get("rants").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject()));
+        upvoted = Util.jsonToList(subContentJson.get("upvoted").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject()));
+        comments = Util.jsonToList(subContentJson.get("comments").getAsJsonArray(), comment -> Comment.fromJson(devRant, comment.getAsJsonObject()));
+        favorites = Util.jsonToList(subContentJson.get("favorites").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject()));
 
         return true;
     }
@@ -202,33 +205,33 @@ public class User extends DevRantHolder {
     /**
      * Get the rants that this user posted.
      */
-    public Rant[] getRants() {
+    public List<Rant> getRants() {
         fetchData();
-        return rants;
+        return Collections.unmodifiableList(rants);
     }
 
     /**
      * Get the rants that this user upvoted.
      */
-    public Rant[] getUpvoted() {
+    public List<Rant> getUpvoted() {
         fetchData();
-        return upvoted;
+        return Collections.unmodifiableList(upvoted);
     }
 
     /**
      * Get this user's comments.
      */
-    public Comment[] getComments() {
+    public List<Comment> getComments() {
         fetchData();
-        return comments;
+        return Collections.unmodifiableList(comments);
     }
 
     /**
      * Get this user's favorites.
      */
-    public Rant[] getFavorites() {
+    public List<Rant> getFavorites() {
         fetchData();
-        return favorites;
+        return Collections.unmodifiableList(favorites);
     }
 
     /**
