@@ -304,6 +304,30 @@ public class DevRant {
     }
 
     /**
+     * Post a comment.
+     *
+     * @param rant    The rant to post the comment on.
+     * @param comment The content of the comment.
+     * @return Whether posting the comment was successful.
+     */
+    public boolean postComment(Rant rant, String comment) {
+        return postComment(rant.getId(), comment);
+    }
+
+    /**
+     * Post a comment.
+     *
+     * @param rantId  The id of the rant to post the comment on.
+     * @param comment The content of the comment.
+     * @return Whether posting the comment was successful.
+     */
+    public boolean postComment(int rantId, String comment) {
+        // Rants url, rant, comments url.
+        String url = String.format("%1$s/%2$d%3$s", API_RANTS, rantId, API_COMMENT);
+        return Util.jsonSuccess(post(url, new BasicNameValuePair("comment", comment)));
+    }
+
+    /**
      * Make a POST-request to the devRant server.
      *
      * @param url    The url to make the request to.
