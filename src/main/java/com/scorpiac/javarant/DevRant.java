@@ -98,7 +98,7 @@ public class DevRant {
      * @param skip  How many rants to skip.
      * @return An array of rants.
      */
-    public List<Rant> rants(Sort sort, int limit, int skip) {
+    public List<Rant> getRants(Sort sort, int limit, int skip) {
         JsonObject json = get(API_RANTS,
                 new BasicNameValuePair("sort", sort.toString()),
                 new BasicNameValuePair("limit", String.valueOf(limit)),
@@ -133,7 +133,7 @@ public class DevRant {
      *
      * @return A random rant.
      */
-    public Rant surprise() {
+    public Rant getSurprise() {
         JsonObject json = get(API_SURPRISE);
 
         // Check for success.
@@ -148,7 +148,7 @@ public class DevRant {
      *
      * @return The weekly rants.
      */
-    public List<Rant> weekly() {
+    public List<Rant> getWeekly() {
         JsonObject json = get(API_WEEKLY);
 
         // Check for success.
@@ -163,7 +163,7 @@ public class DevRant {
      *
      * @return The collab rants.
      */
-    public List<Collab> collabs() {
+    public List<Collab> getCollabs() {
         JsonObject json = get(API_COLLABS);
 
         // Check for success.

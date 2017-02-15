@@ -8,7 +8,7 @@ JavaRant is available on Maven, simply add this dependency to your `pom.xml` fil
 <dependency>
 	<groupId>com.scorpiac.javarant</groupId>
 	<artifactId>javarant</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 </dependency>
 ```
 
@@ -25,13 +25,13 @@ DevRant devRant = new DevRant();
 It can then be used to get rants and collabs from the feed or by searching.
 
 ```
-List<Rant> rants = devRant.rants(Sort.ALGO, 10, 0);
+List<Rant> rants = devRant.getRants(Sort.ALGO, 10, 0);
 List<Rant> wtf = devRant.search("wtf");
-List<Rant> weekly = devRant.weekly();
+List<Rant> weekly = devRant.getWeekly();
 
-List<Collab> collabs = devRant.collabs();
+List<Collab> collabs = devRant.getCollabs();
 
-Rant random = devRant.surprise();
+Rant random = devRant.getSurprise();
 ```
 
 It can also be used to get specific items based on an id (or username).

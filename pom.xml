@@ -6,7 +6,7 @@
 
     <groupId>com.scorpiac.javarant</groupId>
     <artifactId>javarant</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>JavaRant</name>
