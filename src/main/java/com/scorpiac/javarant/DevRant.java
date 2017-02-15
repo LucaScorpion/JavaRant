@@ -13,6 +13,8 @@ import org.apache.http.message.BasicNameValuePair;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -323,6 +325,39 @@ public class DevRant {
      * @return A {@link JsonObject} containing the response.
      */
     JsonObject post(String url, NameValuePair... params) {
+        List<NameValuePair> paramList = getParameters(params);
+        return executeRequest(Request.Post(BASE_URL + url).bodyForm(paramList));
+    }
+
+    /**
+     * Make a GET-request to the devRant server.
+     *
+     * @param url The url to make the request to.
+     * @return A {@link JsonObject} containing the response.
+     */
+    JsonObject get(String url, NameValuePair... params) {
+        StringBuilder finalUrl = new StringBuilder(url).append('?');
+        List<NameValuePair> paramList = getParameters(params);
+
+        // Add all parameters.
+        try {
+            for (NameValuePair param : paramList)
+                finalUrl.append('&').append(param.getName()).append('=').append(URLEncoder.encode(param.getValue(), "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            // This never happens.
+            e.printStackTrace();
+        }
+
+        return executeRequest(Request.Get(BASE_URL + finalUrl.toString()));
+    }
+
+    /**
+     * Get a list with all the parameters, including default and auth parameters.
+     *
+     * @param params The parameters to use.
+     * @return A list containing the given parameters, the default parameters, and the auth parameters.
+     */
+    private List<NameValuePair> getParameters(NameValuePair... params) {
         List<NameValuePair> paramList = new ArrayList<>(params.length + 5);
         paramList.addAll(Arrays.asList(params));
 
@@ -337,27 +372,7 @@ public class DevRant {
             paramList.add(new BasicNameValuePair("user_id", auth.getUserId()));
         }
 
-        return executeRequest(Request.Post(BASE_URL + url).bodyForm(paramList));
-    }
-
-    /**
-     * Make a GET-request to the devRant server.
-     *
-     * @param url The url to make the request to.
-     * @return A {@link JsonObject} containing the response.
-     */
-    JsonObject get(String url, NameValuePair... params) {
-        StringBuilder finalUrl = new StringBuilder(url).append("?app=").append(APP_ID).append("&plat=").append(PLAT_ID);
-
-        // Add all parameters.
-        for (NameValuePair param : params)
-            finalUrl.append('&').append(param.getName()).append('=').append(param.getValue());
-
-        // Add the auth information.
-        if (isLoggedIn())
-            finalUrl.append("&token_id=").append(auth.getId()).append("&token_key=").append(auth.getKey()).append("&user_id=").append(auth.getUserId());
-
-        return executeRequest(Request.Get(BASE_URL + finalUrl.toString()));
+        return paramList;
     }
 
     /**
