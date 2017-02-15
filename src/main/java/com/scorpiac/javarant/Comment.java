@@ -3,8 +3,8 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonObject;
 
 public class Comment extends RantContent {
-    protected Comment(DevRant devRant, int id, User user, int upvotes, int downvotes, String content, Image image) {
-        super(devRant, id, user, upvotes, downvotes, content, image);
+    protected Comment(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String content, Image image) {
+        super(devRant, id, user, upvotes, downvotes, score, content, image);
     }
 
     static Comment fromJson(DevRant devRant, JsonObject json) {
@@ -14,6 +14,7 @@ public class Comment extends RantContent {
                 User.fromJson(devRant, json),
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
+                json.get("score").getAsInt(),
                 json.get("body").getAsString(),
                 Image.fromJson(json.get("attached_image"))
         );

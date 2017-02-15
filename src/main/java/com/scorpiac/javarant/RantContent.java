@@ -5,15 +5,17 @@ public abstract class RantContent extends DevRantHolder {
     private final User user;
     private int upvotes;
     private int downvotes;
+    private int score;
     private String content;
     private Image image;
 
-    protected RantContent(DevRant devRant, int id, User user, int upvotes, int downvotes, String content, Image image) {
+    protected RantContent(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String content, Image image) {
         super(devRant);
         this.id = id;
         this.user = user;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
+        this.score = score;
         this.content = content;
         this.image = image;
     }
@@ -60,7 +62,7 @@ public abstract class RantContent extends DevRantHolder {
      * Get the score.
      */
     public int getScore() {
-        return upvotes - downvotes;
+        return score;
     }
 
     /**
