@@ -241,6 +241,30 @@ public class DevRant {
     }
 
     /**
+     * Vote on a rant.
+     *
+     * @param rant The rant to vote on.
+     * @param vote The vote.
+     * @return Whether the vote was successful.
+     */
+    public boolean vote(Rant rant, Vote vote) {
+        return voteRant(rant.getId(), vote);
+    }
+
+    /**
+     * Vote on a rant.
+     *
+     * @param id   The id of the rant.
+     * @param vote The vote.
+     * @return Whether the vote was successful.
+     */
+    public boolean voteRant(int id, Vote vote) {
+        // Rants url, id, vote.
+        String url = String.format("%1$s/%2$d%3$s", API_RANTS, id, API_VOTE);
+        return Util.jsonSuccess(post(url, new BasicNameValuePair("vote", String.valueOf(vote.getValue()))));
+    }
+
+    /**
      * Make a POST-request to the devRant server.
      *
      * @param url    The url to make the request to.
