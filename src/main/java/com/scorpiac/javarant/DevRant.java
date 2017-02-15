@@ -30,14 +30,15 @@ public class DevRant {
 
     // API endpoints.
     static final String API = "/api";
-    static final String API_RANTS = API + "/devrant/rants";
-    static final String API_SEARCH = API + "/devrant/search";
+    static final String API_DEVRANT = API + "/devrant";
+    static final String API_RANTS = API_DEVRANT + "/rants";
+    static final String API_SEARCH = API_DEVRANT + "/search";
     static final String API_SURPRISE = API_RANTS + "/surprise";
     static final String API_USERS = API + "/users";
     static final String API_USER_ID = API + "/get-user-id";
-    static final String API_WEEKLY = API + "/devrant/weekly-rants";
-    static final String API_COLLABS = API + "/devrant/collabs";
-    static final String API_STORIES = API + "/devrant/story-rants";
+    static final String API_WEEKLY = API_DEVRANT + "/weekly-rants";
+    static final String API_COLLABS = API_DEVRANT + "/collabs";
+    static final String API_STORIES = API_DEVRANT + "/story-rants";
     static final String API_AUTH_TOKEN = API_USERS + "/auth-token";
     static final String API_COMMENT = "/comments";
     static final String API_VOTE = "/vote";
@@ -259,8 +260,32 @@ public class DevRant {
      * @return Whether the vote was successful.
      */
     public boolean voteRant(int id, Vote vote) {
-        // Rants url, id, vote.
+        // Rants url, id, vote url.
         String url = String.format("%1$s/%2$d%3$s", API_RANTS, id, API_VOTE);
+        return Util.jsonSuccess(post(url, new BasicNameValuePair("vote", String.valueOf(vote.getValue()))));
+    }
+
+    /**
+     * Vote on a comment.
+     *
+     * @param comment The comment to vote on.
+     * @param vote    The vote.
+     * @return Whether the vote was successful.
+     */
+    public boolean vote(Comment comment, Vote vote) {
+        return voteComment(comment.getId(), vote);
+    }
+
+    /**
+     * Vote on a comment.
+     *
+     * @param id   The id of the comment.
+     * @param vote The vote.
+     * @return Whether the vote was successful.
+     */
+    public boolean voteComment(int id, Vote vote) {
+        // API url, comments url, id, vote url.
+        String url = String.format("%1$s%2$s/%3$d%4$s", API, API_COMMENT, id, API_VOTE);
         return Util.jsonSuccess(post(url, new BasicNameValuePair("vote", String.valueOf(vote.getValue()))));
     }
 
