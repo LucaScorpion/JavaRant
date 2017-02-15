@@ -290,6 +290,20 @@ public class DevRant {
     }
 
     /**
+     * Post a rant.
+     *
+     * @param rant The content of the rant.
+     * @param tags The tags.
+     * @return Whether posting the rant was successful.
+     */
+    public boolean postRant(String rant, String tags) {
+        return Util.jsonSuccess(post(API_RANTS,
+                new BasicNameValuePair("rant", rant),
+                new BasicNameValuePair("tags", tags)
+        ));
+    }
+
+    /**
      * Make a POST-request to the devRant server.
      *
      * @param url    The url to make the request to.
