@@ -74,9 +74,7 @@ public class Collab extends Rant {
         if (fetched && !force)
             return true;
 
-        // Collabs url, collab id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS, getId(), DevRant.APP_ID);
-        JsonObject json = devRant.get(url);
+        JsonObject json = devRant.get(DevRant.API_RANTS + '/' + getId());
 
         // Check for success.
         if (!Util.jsonSuccess(json))

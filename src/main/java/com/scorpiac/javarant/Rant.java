@@ -77,10 +77,8 @@ public class Rant extends RantContent {
         // Check if we already fetched and force is false.
         if (comments != null && !force)
             return true;
-
-        // Rants url, rant id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS, getId(), DevRant.APP_ID);
-        JsonObject json = devRant.get(url);
+        
+        JsonObject json = devRant.get(DevRant.API_RANTS + '/' + getId());
 
         if (!Util.jsonSuccess(json))
             return false;

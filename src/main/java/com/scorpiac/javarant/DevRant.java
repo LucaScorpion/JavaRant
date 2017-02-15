@@ -97,9 +97,11 @@ public class DevRant {
      * @return An array of rants.
      */
     public List<Rant> rants(Sort sort, int limit, int skip) {
-        // Rants url, app id, sort, skip, limit.
-        String url = String.format("%1$s?app=%2$s&sort=%3$s&skip=%4$d&limit=%5$d", API_RANTS, APP_ID, sort.toString(), skip, limit);
-        JsonObject json = get(url);
+        JsonObject json = get(API_RANTS,
+                new BasicNameValuePair("sort", sort.toString()),
+                new BasicNameValuePair("limit", String.valueOf(limit)),
+                new BasicNameValuePair("skip", String.valueOf(skip))
+        );
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -115,9 +117,7 @@ public class DevRant {
      * @return An array of rants matching the search term.
      */
     public List<Rant> search(String term) {
-        // Search url, app id, term.
-        String url = String.format("%1$s?app=%2$s&term=%3$s", API_SEARCH, APP_ID, term);
-        JsonObject json = get(url);
+        JsonObject json = get(API_SEARCH, new BasicNameValuePair("term", term));
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -132,9 +132,7 @@ public class DevRant {
      * @return A random rant.
      */
     public Rant surprise() {
-        // Surprise url, app id.
-        String url = String.format("%1$s?app=%2$s", API_SURPRISE, APP_ID);
-        JsonObject json = get(url);
+        JsonObject json = get(API_SURPRISE);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -149,9 +147,7 @@ public class DevRant {
      * @return The weekly rants.
      */
     public List<Rant> weekly() {
-        // Weekly url, app id.
-        String url = String.format("%1$s?app=%2$s", API_WEEKLY, APP_ID);
-        JsonObject json = get(url);
+        JsonObject json = get(API_WEEKLY);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -166,9 +162,7 @@ public class DevRant {
      * @return The collab rants.
      */
     public List<Collab> collabs() {
-        // Collab url, app id.
-        String url = String.format("%1$s?app=%2$s&", API_COLLABS, APP_ID);
-        JsonObject json = get(url);
+        JsonObject json = get(API_COLLABS);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -184,9 +178,7 @@ public class DevRant {
      * @return The rant.
      */
     public Rant getRant(int id) {
-        // Rants url, rant id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS, id, DevRant.APP_ID);
-        JsonObject json = get(url);
+        JsonObject json = get(API_RANTS + '/' + id);
 
         // Check if the rant exists.
         if (!Util.jsonSuccess(json))
@@ -202,9 +194,7 @@ public class DevRant {
      * @return The collab.
      */
     public Collab getCollab(int id) {
-        // Collabs url, collab id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS, id, DevRant.APP_ID);
-        JsonObject json = get(url);
+        JsonObject json = get(API_RANTS + '/' + id);
 
         // Check if the collab exists.
         if (!Util.jsonSuccess(json))
@@ -220,9 +210,7 @@ public class DevRant {
      * @return The user.
      */
     public User getUser(String username) {
-        // Users url, user id, app id.
-        String url = String.format("%1$s?app=%2$s&username=%3$s", DevRant.API_USER_ID, DevRant.APP_ID, username);
-        JsonObject json = get(url);
+        JsonObject json = get(API_USER_ID, new BasicNameValuePair("username", username));
 
         // Check if the user exists.
         if (!Util.jsonSuccess(json))
@@ -358,8 +346,18 @@ public class DevRant {
      * @param url The url to make the request to.
      * @return A {@link JsonObject} containing the response.
      */
-    JsonObject get(String url) {
-        return executeRequest(Request.Get(BASE_URL + url));
+    JsonObject get(String url, NameValuePair... params) {
+        StringBuilder finalUrl = new StringBuilder(url).append("?app=").append(APP_ID).append("&plat=").append(PLAT_ID);
+
+        // Add all parameters.
+        for (NameValuePair param : params)
+            finalUrl.append('&').append(param.getName()).append('=').append(param.getValue());
+
+        // Add the auth information.
+        if (isLoggedIn())
+            finalUrl.append("&token_id=").append(auth.getId()).append("&token_key=").append(auth.getKey()).append("&user_id=").append(auth.getUserId());
+
+        return executeRequest(Request.Get(BASE_URL + finalUrl.toString()));
     }
 
     /**

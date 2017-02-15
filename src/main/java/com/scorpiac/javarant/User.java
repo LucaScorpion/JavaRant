@@ -77,10 +77,8 @@ public class User extends DevRantHolder {
         // Check if we already fetched and force is false.
         if (fetched && !force)
             return true;
-
-        // Users url, user id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS, id, DevRant.APP_ID);
-        JsonObject json = devRant.get(url);
+        
+        JsonObject json = devRant.get(DevRant.API_USERS + '/' + id);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
