@@ -3,7 +3,7 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonObject;
 import com.scorpiac.javarant.exceptions.NoSuchUserException;
 
-public class User {
+public class User extends DevRantHolder {
     // Data that is always available.
     private int id;
     private String username;
@@ -25,74 +25,34 @@ public class User {
     private int favoritesCount;
     private String avatar;
 
-    /**
-     * Create a new user.
-     *
-     * @param id The id of the user.
-     */
-    private User(int id) {
-        this.id = id;
+    private User(DevRant devRant) {
+        super(devRant);
     }
 
-    /**
-     * Create a new user.
-     *
-     * @param id       The id of the user.
-     * @param username The username of the user.
-     * @param score    The score of the user.
-     */
-    private User(int id, String username, int score) {
+    User(DevRant devRant, int id) {
+        super(devRant);
         this.id = id;
-        this.username = username;
-        this.score = score;
-    }
 
-    /**
-     * Get a user by their id. This will also fetch all the user data.
-     *
-     * @param id The id of the user to get.
-     * @return The user.
-     */
-    public static User byId(int id) {
-        User user = new User(id);
-
-        // Check if the user exists.
-        if (!user.fetchData())
+        // Fetch the data, check if the user exists.
+        if (!fetchData())
             throw new NoSuchUserException(id);
-
-        return user;
-    }
-
-    /**
-     * Get a user by their username. This will also fetch all the user data.
-     *
-     * @param username The username of the user to get.
-     * @return The user.
-     */
-    public static User byUsername(String username) {
-        // Users url, user id, app id.
-        String url = String.format("%1$s?app=%2$s&username=%3$s", DevRant.API_USER_ID_URL, DevRant.APP_ID, username);
-        JsonObject json = DevRant.get(url);
-
-        // Check if the user exists.
-        if (!Util.jsonSuccess(json))
-            throw new NoSuchUserException(username);
-
-        return byId(json.get("user_id").getAsInt());
     }
 
     /**
      * Create a user from a JSON object.
      *
-     * @param json The JSON object to create the user from.
+     * @param devRant The devRant client to use.
+     * @param json    The JSON object to create the user from.
      * @return The created user.
      */
-    static User fromJson(JsonObject json) {
-        return new User(
-                json.get("user_id").getAsInt(),
-                json.get("user_username").getAsString(),
-                json.get("user_score").getAsInt()
-        );
+    static User fromJson(DevRant devRant, JsonObject json) {
+        User result = new User(devRant);
+
+        result.id = json.get("user_id").getAsInt();
+        result.username = json.get("user_username").getAsString();
+        result.score = json.get("user_score").getAsInt();
+
+        return result;
     }
 
     /**
@@ -116,8 +76,8 @@ public class User {
             return true;
 
         // Users url, user id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS_URL, id, DevRant.APP_ID);
-        JsonObject json = DevRant.get(url);
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_USERS, id, DevRant.APP_ID);
+        JsonObject json = devRant.get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
@@ -146,10 +106,10 @@ public class User {
         commentsCount = countsJson.get("comments").getAsInt();
         favoritesCount = countsJson.get("favorites").getAsInt();
 
-        rants = Util.jsonToList(subContentJson.get("rants").getAsJsonArray(), rant -> Rant.fromJson(rant.getAsJsonObject())).toArray(new Rant[0]);
-        upvoted = Util.jsonToList(subContentJson.get("upvoted").getAsJsonArray(), rant -> Rant.fromJson(rant.getAsJsonObject())).toArray(new Rant[0]);
-        comments = Util.jsonToList(subContentJson.get("comments").getAsJsonArray(), comment -> Comment.fromJson(comment.getAsJsonObject())).toArray(new Comment[0]);
-        favorites = Util.jsonToList(subContentJson.get("favorites").getAsJsonArray(), rant -> Rant.fromJson(rant.getAsJsonObject())).toArray(new Rant[0]);
+        rants = Util.jsonToList(subContentJson.get("rants").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject())).toArray(new Rant[0]);
+        upvoted = Util.jsonToList(subContentJson.get("upvoted").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject())).toArray(new Rant[0]);
+        comments = Util.jsonToList(subContentJson.get("comments").getAsJsonArray(), comment -> Comment.fromJson(devRant, comment.getAsJsonObject())).toArray(new Comment[0]);
+        favorites = Util.jsonToList(subContentJson.get("favorites").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject())).toArray(new Rant[0]);
 
         return true;
     }

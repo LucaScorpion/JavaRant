@@ -2,7 +2,6 @@ package com.scorpiac.javarant;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.scorpiac.javarant.exceptions.NoSuchRantException;
 import com.scorpiac.javarant.exceptions.NotACollabException;
 
 public class Collab extends Rant {
@@ -15,47 +14,33 @@ public class Collab extends Rant {
     private String teamSize;
     private String url;
 
-    protected Collab(int id, User user, int upvotes, int downvotes, String projectType, String summary, int commentCount) {
-        super(id, user, upvotes, downvotes, summary, null, new String[0], commentCount);
+    protected Collab(DevRant devRant, int id, User user, int upvotes, int downvotes, String projectType, String summary, int commentCount) {
+        super(devRant, id, user, upvotes, downvotes, summary, null, new String[0], commentCount);
         this.projectType = projectType;
     }
 
-    /**
-     * Get a collab by its id.
-     *
-     * @param id The id of the collab to get.
-     * @return The collab.
-     */
-    public static Collab byId(int id) {
-        // Collabs url, collab id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, id, DevRant.APP_ID);
-        JsonObject json = DevRant.get(url);
-
-        // Check if the collab exists.
-        if (!Util.jsonSuccess(json))
-            throw new NoSuchRantException(id);
-
-        // Get the collab and data.
-        JsonObject obj = json.get("rant").getAsJsonObject();
-        Collab collab = fromJson(obj);
-        collab.setData(obj, json.get("comments").getAsJsonArray());
-        return collab;
-    }
-
-    static Collab fromJson(JsonObject json) {
+    static Collab fromJson(DevRant devRant, JsonObject json) {
         // Check if the rant is also a collab.
-        if (json.has("id") && !json.has("c_type_long"))
+        if (!json.has("c_type_long"))
             throw new NotACollabException(json.get("id").getAsInt());
 
         return new Collab(
+                devRant,
                 json.get("id").getAsInt(),
-                User.fromJson(json),
+                User.fromJson(devRant, json),
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
                 json.get("c_type_long").getAsString(),
                 json.get("text").getAsString(),
                 json.get("num_comments").getAsInt()
         );
+    }
+
+    static Collab fromJson(DevRant devRant, JsonObject collab, JsonArray comments) {
+        Collab result = fromJson(devRant, collab);
+        result.setData(collab, comments);
+        result.fetched = true;
+        return result;
     }
 
     private void setData(JsonObject collab, JsonArray comments) {
@@ -87,8 +72,8 @@ public class Collab extends Rant {
             return true;
 
         // Collabs url, collab id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, getId(), DevRant.APP_ID);
-        JsonObject json = DevRant.get(url);
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS, getId(), DevRant.APP_ID);
+        JsonObject json = devRant.get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))

@@ -1,6 +1,6 @@
 package com.scorpiac.javarant;
 
-public abstract class RantContent {
+public abstract class RantContent extends DevRantHolder {
     private final int id;
     private final User user;
     private int upvotes;
@@ -8,7 +8,8 @@ public abstract class RantContent {
     private String content;
     private Image image;
 
-    protected RantContent(int id, User user, int upvotes, int downvotes, String content, Image image) {
+    protected RantContent(DevRant devRant, int id, User user, int upvotes, int downvotes, String content, Image image) {
+        super(devRant);
         this.id = id;
         this.user = user;
         this.upvotes = upvotes;

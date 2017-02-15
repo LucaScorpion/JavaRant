@@ -3,45 +3,23 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.scorpiac.javarant.exceptions.NoSuchRantException;
 
 public class Rant extends RantContent {
     private String[] tags;
     private int commentCount;
     private Comment[] comments;
 
-    protected Rant(int id, User user, int upvotes, int downvotes, String text, Image image, String[] tags, int commentCount) {
-        super(id, user, upvotes, downvotes, text, image);
+    protected Rant(DevRant devRant, int id, User user, int upvotes, int downvotes, String text, Image image, String[] tags, int commentCount) {
+        super(devRant, id, user, upvotes, downvotes, text, image);
         this.tags = tags;
         this.commentCount = commentCount;
     }
 
-    /**
-     * Get a rant by its id. This will also retrieve the comments.
-     *
-     * @param id The id of the rant to get.
-     * @return The rant.
-     */
-    public static Rant byId(int id) {
-        // Rants url, rant id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, id, DevRant.APP_ID);
-        JsonObject json = DevRant.get(url);
-
-        // Check if the rant exists.
-        if (!Util.jsonSuccess(json))
-            throw new NoSuchRantException(id);
-
-        // Get the rant and comments.
-        Rant rant = fromJson(json.get("rant").getAsJsonObject());
-        rant.commentsFromJson(json.get("comments").getAsJsonArray());
-
-        return rant;
-    }
-
-    static Rant fromJson(JsonObject json) {
+    static Rant fromJson(DevRant devRant, JsonObject json) {
         return new Rant(
+                devRant,
                 json.get("id").getAsInt(),
-                User.fromJson(json),
+                User.fromJson(devRant, json),
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
                 json.get("text").getAsString(),
@@ -51,13 +29,19 @@ public class Rant extends RantContent {
         );
     }
 
+    static Rant fromJson(DevRant devRant, JsonObject rant, JsonArray comments) {
+        Rant result = fromJson(devRant, rant);
+        result.commentsFromJson(comments);
+        return result;
+    }
+
     /**
      * Set the comments from a JSON array.
      *
      * @param commentArray The JSON array to get the comments from.
      */
     protected void commentsFromJson(JsonArray commentArray) {
-        comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(elem.getAsJsonObject())).toArray(new Comment[0]);
+        comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(devRant, elem.getAsJsonObject())).toArray(new Comment[0]);
     }
 
     /**
@@ -91,8 +75,8 @@ public class Rant extends RantContent {
             return true;
 
         // Rants url, rant id, app id.
-        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS_URL, getId(), DevRant.APP_ID);
-        JsonObject json = DevRant.get(url);
+        String url = String.format("%1$s/%2$d?app=%3$s", DevRant.API_RANTS, getId(), DevRant.APP_ID);
+        JsonObject json = devRant.get(url);
 
         // Check for success.
         if (!Util.jsonSuccess(json))
