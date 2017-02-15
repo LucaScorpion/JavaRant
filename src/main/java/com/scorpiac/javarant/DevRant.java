@@ -3,6 +3,7 @@ package com.scorpiac.javarant;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import com.scorpiac.javarant.exceptions.AuthenticationException;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DevRant {
@@ -36,6 +38,38 @@ public class DevRant {
     static final String API_AUTH_TOKEN = API_USERS_URL + "/auth-token";
     static final String API_COMMENT = "/comments";
     static final String API_VOTE = "/vote";
+
+    private Auth auth;
+
+    /**
+     * Log in to devRant.
+     *
+     * @param username The username.
+     * @param password The password.
+     * @throws AuthenticationException If the login data is invalid.
+     */
+    public void login(String username, char[] password) throws AuthenticationException {
+        if (auth != null)
+            throw new IllegalStateException("A user is already logged in.");
+
+        auth = new Auth(username, password);
+    }
+
+    /**
+     * Log out of devRant.
+     */
+    public void logout() {
+        auth = null;
+    }
+
+    /**
+     * Check whether a user is logged in.
+     *
+     * @return {@code true} if a user is logged in.
+     */
+    public boolean isLoggedIn() {
+        return auth != null;
+    }
 
     /**
      * Get a list of rants.
@@ -127,6 +161,25 @@ public class DevRant {
     }
 
     /**
+     * Make a POST-request with authorization to the devRant server.
+     *
+     * @param url    The url to make the request to.
+     * @param params The parameters to post.
+     * @return A {@link JsonObject} containing the response.
+     */
+    JsonObject authPost(String url, NameValuePair... params) {
+        List<NameValuePair> paramList = new ArrayList<>(params.length + 3);
+        paramList.addAll(Arrays.asList(params));
+
+        // Add the auth information.
+        paramList.add(new BasicNameValuePair("token_id", auth.getId()));
+        paramList.add(new BasicNameValuePair("token_key", auth.getKey()));
+        paramList.add(new BasicNameValuePair("user_id", auth.getUserId()));
+
+        return post(url, params);
+    }
+
+    /**
      * Make a GET-request to the devRant server.
      *
      * @param url The url to make the request to.
@@ -139,11 +192,13 @@ public class DevRant {
     /**
      * Make a POST-request to the devRant server.
      *
-     * @param url The url to make the request to.
+     * @param url    The url to make the request to.
+     * @param params The parameters to post.
      * @return A {@link JsonObject} containing the response.
      */
     static JsonObject post(String url, NameValuePair... params) {
         List<NameValuePair> paramList = new ArrayList<>(params.length + 2);
+        paramList.addAll(Arrays.asList(params));
 
         // Add the parameters which always need to be present.
         paramList.add(new BasicNameValuePair("app", APP_ID));
