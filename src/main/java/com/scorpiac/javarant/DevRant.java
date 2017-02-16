@@ -47,6 +47,7 @@ public class DevRant {
     static final String API_NOTIFS = API_USERS + "/me/notif-feed";
 
     private Auth auth;
+    private int timeout = 15000;
 
     /**
      * Log in to devRant.
@@ -381,11 +382,11 @@ public class DevRant {
      * @param request The request to execute.
      * @return A {@link JsonObject} containing the response.
      */
-    private static JsonObject executeRequest(Request request) {
+    private JsonObject executeRequest(Request request) {
         // Make the request and get the returned content as a stream.
         InputStream stream;
         try {
-            stream = request.execute().returnContent().asStream();
+            stream = request.socketTimeout(timeout).connectTimeout(timeout).execute().returnContent().asStream();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -398,5 +399,21 @@ public class DevRant {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Set the request timeout. This timeout will be used for the socket and connection timeout.
+     *
+     * @param timeout The timeout in milliseconds to set, or -1 to set no timeout.
+     */
+    public void setRequestTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    /**
+     * Get the current request timeout in milliseconds.
+     */
+    public int getRequestTimeout() {
+        return timeout;
     }
 }
