@@ -18,6 +18,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 public class DevRant {
     static final String APP_ID = "3";
@@ -98,36 +99,20 @@ public class DevRant {
      * @param sort  The sorting method.
      * @param limit How many rants to get.
      * @param skip  How many rants to skip.
-     * @return An array of rants.
+     * @return An list of rants.
      */
     public List<Rant> getRants(Sort sort, int limit, int skip) {
-        JsonObject json = get(API_RANTS,
-                new BasicNameValuePair("sort", sort.toString()),
-                new BasicNameValuePair("limit", String.valueOf(limit)),
-                new BasicNameValuePair("skip", String.valueOf(skip))
-        );
-
-        // Check for success.
-        if (!Util.jsonSuccess(json))
-            return null;
-
-        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
+        return getFeed(API_RANTS, elem -> Rant.fromJson(this, elem), sort, limit, skip);
     }
 
     /**
      * Search for rants matching a certain term.
      *
      * @param term The term to search for.
-     * @return An array of rants matching the search term.
+     * @return A list of rants matching the search term.
      */
     public List<Rant> search(String term) {
-        JsonObject json = get(API_SEARCH, new BasicNameValuePair("term", term));
-
-        // Check for success.
-        if (!Util.jsonSuccess(json))
-            return null;
-
-        return Util.jsonToList(json.get("results").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
+        return getFeed(API_SEARCH, elem -> Rant.fromJson(this, elem), new BasicNameValuePair("term", term));
     }
 
     /**
@@ -137,61 +122,58 @@ public class DevRant {
      */
     public Rant getSurprise() {
         JsonObject json = get(API_SURPRISE);
-
-        // Check for success.
-        if (!Util.jsonSuccess(json))
-            return null;
-
-        return Rant.fromJson(this, json.get("rant").getAsJsonObject());
+        return Util.jsonSuccess(json) ? Rant.fromJson(this, json.get("rant").getAsJsonObject()) : null;
     }
 
     /**
      * Get the weekly rants.
      *
+     * @param sort  The sorting method.
+     * @param limit How many rants to get.
+     * @param skip  How many rants to skip.
      * @return The weekly rants.
      */
-    public List<Rant> getWeekly() {
-        JsonObject json = get(API_WEEKLY);
-
-        // Check for success.
-        if (!Util.jsonSuccess(json))
-            return null;
-
-        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
+    public List<Rant> getWeekly(Sort sort, int limit, int skip) {
+        return getFeed(API_WEEKLY, elem -> Rant.fromJson(this, elem), sort, limit, skip);
     }
 
     /**
-     * Get the collab rants.
+     * Get the collabs.
      *
-     * @return The collab rants.
+     * @param limit How many rants to get.
+     * @param skip  How many rants to skip.
+     * @return A list of collabs.
      */
-    public List<Collab> getCollabs() {
-        JsonObject json = get(API_COLLABS);
-
-        // Check for success.
-        if (!Util.jsonSuccess(json))
-            return null;
-
-        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Collab.fromJson(this, elem.getAsJsonObject()));
+    public List<Collab> getCollabs(int limit, int skip) {
+        return getFeed(API_COLLABS, elem -> Collab.fromJson(this, elem.getAsJsonObject()),
+                new BasicNameValuePair("limit", String.valueOf(limit)),
+                new BasicNameValuePair("skip", String.valueOf(skip))
+        );
     }
 
     /**
      * Get the story rants.
      *
-     * @return The story rants.
+     * @param sort  The sorting method.
+     * @param limit How many rants to get.
+     * @param skip  How many rants to skip.
+     * @return A list of story rants.
      */
     public List<Rant> getStories(Sort sort, int limit, int skip) {
-        JsonObject json = get(API_STORIES,
+        return getFeed(API_STORIES, elem -> Rant.fromJson(this, elem), sort, limit, skip);
+    }
+
+    private <T> List<T> getFeed(String url, Function<JsonObject, T> converter, Sort sort, int limit, int skip) {
+        return getFeed(url, converter,
                 new BasicNameValuePair("sort", sort.toString()),
                 new BasicNameValuePair("limit", String.valueOf(limit)),
                 new BasicNameValuePair("skip", String.valueOf(skip))
         );
+    }
 
-        // Check for success.
-        if (!Util.jsonSuccess(json))
-            return null;
-
-        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
+    private <T> List<T> getFeed(String url, Function<JsonObject, T> converter, NameValuePair... params) {
+        JsonObject json = get(url, params);
+        return Util.jsonSuccess(json) ? Util.jsonToList(json.get("rants").getAsJsonArray(), obj -> converter.apply(obj.getAsJsonObject())) : null;
     }
 
     /**
