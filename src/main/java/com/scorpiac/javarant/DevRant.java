@@ -48,6 +48,7 @@ public class DevRant {
 
     private Auth auth;
     private int timeout = 15000;
+    private boolean hideReposts = false;
 
     /**
      * Log in to devRant.
@@ -130,7 +131,7 @@ public class DevRant {
     }
 
     /**
-     * Get a random rant with at least 15 +1's.
+     * Get a random rant with at least 15 ++'s.
      *
      * @return A random rant.
      */
@@ -172,6 +173,25 @@ public class DevRant {
             return null;
 
         return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Collab.fromJson(this, elem.getAsJsonObject()));
+    }
+
+    /**
+     * Get the story rants.
+     *
+     * @return The story rants.
+     */
+    public List<Rant> getStories(Sort sort, int limit, int skip) {
+        JsonObject json = get(API_STORIES,
+                new BasicNameValuePair("sort", sort.toString()),
+                new BasicNameValuePair("limit", String.valueOf(limit)),
+                new BasicNameValuePair("skip", String.valueOf(skip))
+        );
+
+        // Check for success.
+        if (!Util.jsonSuccess(json))
+            return null;
+
+        return Util.jsonToList(json.get("rants").getAsJsonArray(), elem -> Rant.fromJson(this, elem.getAsJsonObject()));
     }
 
     /**
@@ -365,6 +385,7 @@ public class DevRant {
         // Add the parameters which always need to be present.
         paramList.add(new BasicNameValuePair("app", APP_ID));
         paramList.add(new BasicNameValuePair("plat", PLAT_ID));
+        paramList.add(new BasicNameValuePair("hide_reposts", hideReposts ? "1" : "0"));
 
         // Add the auth information.
         if (isLoggedIn()) {
@@ -415,5 +436,21 @@ public class DevRant {
      */
     public int getRequestTimeout() {
         return timeout;
+    }
+
+    /**
+     * Set whether to hide reposts.
+     *
+     * @param hideReposts Whether to hide reposts.
+     */
+    public void setHideReposts(boolean hideReposts) {
+        this.hideReposts = hideReposts;
+    }
+
+    /**
+     * Get whether to hide reposts.
+     */
+    public boolean getHideReposts() {
+        return hideReposts;
     }
 }
