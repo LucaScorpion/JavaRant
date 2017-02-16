@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class DevRant {
     static final String APP_ID = "3";
@@ -167,7 +168,8 @@ public class DevRant {
         return getFeed(url, converter,
                 new BasicNameValuePair("sort", sort.toString()),
                 new BasicNameValuePair("limit", String.valueOf(limit)),
-                new BasicNameValuePair("skip", String.valueOf(skip))
+                new BasicNameValuePair("skip", String.valueOf(skip)),
+                sort.getParameter()
         );
     }
 
@@ -255,7 +257,7 @@ public class DevRant {
     public boolean voteRant(int id, Vote vote) {
         // Rants url, id, vote url.
         String url = String.format("%1$s/%2$d%3$s", API_RANTS, id, API_VOTE);
-        return Util.jsonSuccess(post(url, new BasicNameValuePair("vote", String.valueOf(vote.getValue()))));
+        return Util.jsonSuccess(post(url, new BasicNameValuePair("vote", vote.toString()), vote.getParameter()));
     }
 
     /**
@@ -279,7 +281,7 @@ public class DevRant {
     public boolean voteComment(int id, Vote vote) {
         // API url, comments url, id, vote url.
         String url = String.format("%1$s%2$s/%3$d%4$s", API, API_COMMENT, id, API_VOTE);
-        return Util.jsonSuccess(post(url, new BasicNameValuePair("vote", String.valueOf(vote.getValue()))));
+        return Util.jsonSuccess(post(url, new BasicNameValuePair("vote", String.valueOf(vote.toString())), vote.getParameter()));
     }
 
     /**
@@ -356,13 +358,14 @@ public class DevRant {
 
     /**
      * Get a list with all the parameters, including default and auth parameters.
+     * This also filters out any parameters that are {@code null}.
      *
      * @param params The parameters to use.
      * @return A list containing the given parameters, the default parameters, and the auth parameters.
      */
     private List<NameValuePair> getParameters(NameValuePair... params) {
-        List<NameValuePair> paramList = new ArrayList<>(params.length + 5);
-        paramList.addAll(Arrays.asList(params));
+        List<NameValuePair> paramList = new ArrayList<>(params.length + 6);
+        paramList.addAll(Arrays.stream(params).filter(p -> p != null).collect(Collectors.toList()));
 
         // Add the parameters which always need to be present.
         paramList.add(new BasicNameValuePair("app", APP_ID));
