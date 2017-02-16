@@ -6,16 +6,18 @@ public abstract class RantContent extends DevRantHolder {
     private int upvotes;
     private int downvotes;
     private int score;
+    private VoteState voteState;
     private String content;
     private Image image;
 
-    protected RantContent(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String content, Image image) {
+    protected RantContent(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
         super(devRant);
         this.id = id;
         this.user = user;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.score = score;
+        this.voteState = VoteState.fromValue(voteState);
         this.content = content;
         this.image = image;
     }
@@ -63,6 +65,13 @@ public abstract class RantContent extends DevRantHolder {
      */
     public int getScore() {
         return score;
+    }
+
+    /**
+     * Get the vote state.
+     */
+    public VoteState getVoteState() {
+        return voteState;
     }
 
     /**

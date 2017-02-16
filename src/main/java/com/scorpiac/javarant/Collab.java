@@ -16,8 +16,8 @@ public class Collab extends Rant {
     private String teamSize;
     private String url;
 
-    protected Collab(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String projectType, String summary, int commentCount) {
-        super(devRant, id, user, upvotes, downvotes, score, summary, null, Collections.emptyList(), commentCount);
+    protected Collab(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String projectType, String summary, int commentCount) {
+        super(devRant, id, user, upvotes, downvotes, score, voteState, summary, null, Collections.emptyList(), commentCount);
         this.projectType = projectType;
     }
 
@@ -33,6 +33,7 @@ public class Collab extends Rant {
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
                 json.get("score").getAsInt(),
+                json.get("vote_state").getAsInt(),
                 json.get("c_type_long").getAsString(),
                 json.get("text").getAsString(),
                 json.get("num_comments").getAsInt()

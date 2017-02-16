@@ -12,8 +12,8 @@ public class Rant extends RantContent {
     private int commentCount;
     private List<Comment> comments;
 
-    protected Rant(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, String text, Image image, List<String> tags, int commentCount) {
-        super(devRant, id, user, upvotes, downvotes, score, text, image);
+    protected Rant(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String text, Image image, List<String> tags, int commentCount) {
+        super(devRant, id, user, upvotes, downvotes, score, voteState, text, image);
         this.tags = tags;
         this.commentCount = commentCount;
     }
@@ -26,6 +26,7 @@ public class Rant extends RantContent {
                 json.get("num_upvotes").getAsInt(),
                 json.get("num_downvotes").getAsInt(),
                 json.get("score").getAsInt(),
+                json.get("vote_state").getAsInt(),
                 json.get("text").getAsString(),
                 Image.fromJson(json.get("attached_image")),
                 Util.jsonToList(json.getAsJsonArray("tags"), JsonElement::getAsString),
