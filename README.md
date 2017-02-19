@@ -27,9 +27,10 @@ It can then be used to get rants and collabs from the feed or by searching.
 ```
 List<Rant> rants = devRant.getRants(Sort.ALGO, 10, 0);
 List<Rant> wtf = devRant.search("wtf");
-List<Rant> weekly = devRant.getWeekly();
+List<Rant> weekly = devRant.getWeekly(Sort.TOP(Range.ALL), 20, 0);
+List<Rant> stories = devRant.getStories(Sort.RECENT, 20, 0);
 
-List<Collab> collabs = devRant.getCollabs();
+List<Collab> collabs = devRant.getCollabs(10, 0);
 
 Rant random = devRant.getSurprise();
 ```
@@ -58,7 +59,7 @@ devRant.login("username", "password".toCharArray());
 Voting on rants and comments can be done by passing the `Rant` or `Comment` object to vote on, or by directly passing the id.
 
 ```
-devRant.vote(rant, Vote.DOWN);
+devRant.vote(rant, Vote.DOWN(Reason.NOT_FOR_ME));
 devRant.vote(comment, Vote.NONE);
 
 devRant.voteRant(429863, Vote.UP);
@@ -89,6 +90,7 @@ This is the base class for rants and comments, which have the following attribut
 - upvotes
 - downvotes
 - score
+- voteState
 - content
 - image
 
@@ -136,6 +138,14 @@ Alternatively you can fetch the data by calling `fetchData()`, or `fetchData(for
 These are the different sort options, which are used when getting rants from the feed.
 You can pick between `ALGO`, `RECENT` or `TOP`.
 
+### Range
+The range is used for the `TOP` sorting method.
+The ranges are `DAY`, `WEEK`, `MONTH`, and `ALL`.
+
 ### Vote
 These are the different vote options, which are used to vote on rants and comments.
 The vote options are `UP`, `NONE` and `DOWN`.
+
+### Reason
+These are the reasons for a downvote.
+The options are `NOT_FOR_ME`, `REPOST` and `OFFENSIVE_SPAM`.
