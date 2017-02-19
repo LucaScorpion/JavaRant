@@ -8,7 +8,7 @@ JavaRant is available on Maven, simply add this dependency to your `pom.xml` fil
 <dependency>
 	<groupId>com.scorpiac.javarant</groupId>
 	<artifactId>javarant</artifactId>
-	<version>1.2</version>
+	<version>1.3</version>
 </dependency>
 ```
 

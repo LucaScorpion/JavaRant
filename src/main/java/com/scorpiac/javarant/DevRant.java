@@ -9,6 +9,8 @@ import com.scorpiac.javarant.exceptions.NoSuchUserException;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class DevRant {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DevRant.class);
+
     static final String APP_ID = "3";
     static final String PLAT_ID = "3";
 
@@ -350,7 +354,7 @@ public class DevRant {
                 finalUrl.append('&').append(param.getName()).append('=').append(URLEncoder.encode(param.getValue(), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             // This never happens.
-            e.printStackTrace();
+            LOGGER.error("Unsupported encoding while trying to encode parameter value.", e);
         }
 
         return executeRequest(Request.Get(BASE_URL + finalUrl.toString()));
@@ -394,7 +398,7 @@ public class DevRant {
         try {
             stream = request.socketTimeout(timeout).connectTimeout(timeout).execute().returnContent().asStream();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.warn("Exception while processing request:\n" + request.toString() + '\n' + e.getMessage());
             return null;
         }
 
@@ -402,7 +406,7 @@ public class DevRant {
         try (JsonReader reader = new JsonReader(new InputStreamReader(stream))) {
             return new JsonParser().parse(reader).getAsJsonObject();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Exception while trying to create JsonReader.", e);
             return null;
         }
     }
