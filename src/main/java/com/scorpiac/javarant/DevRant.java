@@ -55,6 +55,7 @@ public class DevRant {
     private Auth auth;
     private int timeout = 15000;
     private boolean hideReposts = false;
+    private int numNotifs;
 
     /**
      * Log in to devRant.
@@ -403,12 +404,19 @@ public class DevRant {
         }
 
         // Parse the response as json.
+        JsonObject json;
         try (JsonReader reader = new JsonReader(new InputStreamReader(stream))) {
-            return new JsonParser().parse(reader).getAsJsonObject();
+            json = new JsonParser().parse(reader).getAsJsonObject();
         } catch (IOException e) {
             LOGGER.error("Exception while trying to create JsonReader.", e);
             return null;
         }
+
+        // Save the amount of notifs.
+        if (json.has("num_notifs"))
+            numNotifs = json.get("num_notifs").getAsInt();
+
+        return json;
     }
 
     /**
@@ -441,5 +449,12 @@ public class DevRant {
      */
     public boolean getHideReposts() {
         return hideReposts;
+    }
+
+    /**
+     * Get the amount of notifications the user has.
+     */
+    public int getNotifCount() {
+        return numNotifs;
     }
 }
