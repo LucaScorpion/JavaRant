@@ -57,6 +57,7 @@ public class DevRant {
     private boolean hideReposts = false;
     private int numNotifs;
     private News news;
+    private int weeklyRantNumber = -1;
 
     /**
      * Log in to devRant.
@@ -421,6 +422,10 @@ public class DevRant {
         if (json.has("news"))
             news = News.fromJson(json.get("news").getAsJsonObject());
 
+        // Save the weekly rant number.
+        if (json.has("wrw"))
+            weeklyRantNumber = json.get("wrw").getAsInt();
+
         return json;
     }
 
@@ -468,5 +473,12 @@ public class DevRant {
      */
     public News getNews() {
         return news;
+    }
+
+    /**
+     * Get the weekly rant number, or -1 if this has not yet been set.
+     */
+    public int getWeeklyRantNumber() {
+        return weeklyRantNumber;
     }
 }
