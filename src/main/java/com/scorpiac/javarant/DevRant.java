@@ -56,6 +56,7 @@ public class DevRant {
     private int timeout = 15000;
     private boolean hideReposts = false;
     private int numNotifs;
+    private News news;
 
     /**
      * Log in to devRant.
@@ -416,6 +417,10 @@ public class DevRant {
         if (json.has("num_notifs"))
             numNotifs = json.get("num_notifs").getAsInt();
 
+        // Save the news.
+        if (json.has("news"))
+            news = News.fromJson(json.get("news").getAsJsonObject());
+
         return json;
     }
 
@@ -456,5 +461,12 @@ public class DevRant {
      */
     public int getNotifCount() {
         return numNotifs;
+    }
+
+    /**
+     * Get the news.
+     */
+    public News getNews() {
+        return news;
     }
 }
