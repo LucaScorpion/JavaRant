@@ -1,5 +1,8 @@
 package com.scorpiac.javarant;
 
+import com.scorpiac.javarant.services.RequestHandler;
+
+import java.net.URI;
 import java.util.Collections;
 
 public class Collab extends Rant {
@@ -40,8 +43,8 @@ public class Collab extends Rant {
      * Get the link to the collab.
      */
     @Override
-    public String link() {
-        return DevRant.BASE_URL + DevRant.COLLAB_URL + '/' + getId();
+    public URI link() {
+        return RequestHandler.BASE_URI.resolve(DevRant.COLLAB_URL).resolve(String.valueOf(getId()));
     }
 
     /**

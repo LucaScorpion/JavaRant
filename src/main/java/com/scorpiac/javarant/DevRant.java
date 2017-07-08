@@ -6,9 +6,6 @@ import com.google.inject.Injector;
 public class DevRant {
     private static final Injector INJECTOR;
 
-    public static final String BASE_URL = "https://www.devrant.io";
-    public static final String AVATARS_URL = "https://avatars.devrant.io";
-
     static final String USER_URL = "/users";
     static final String RANT_URL = "/rants";
     static final String COLLAB_URL = "/collabs";

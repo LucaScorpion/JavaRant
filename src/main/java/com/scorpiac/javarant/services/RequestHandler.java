@@ -1,10 +1,15 @@
 package com.scorpiac.javarant.services;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 
 import javax.inject.Singleton;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,8 +20,32 @@ import java.util.stream.Collectors;
 public class RequestHandler {
     private static final Logger LOGGER = LogFactory.getLog();
 
+    public static final URI BASE_URI = URI.create("https://www.devrant.io");
+    public static final URI AVATARS_URI = URI.create("https://avatars.devrant.io");
+
     private static final String APP_ID = "3";
     private static final String PLAT_ID = "3";
+
+    public <T> T get(String uri, Class<T> resultClass) {
+        handleRequest(Request.Get(buildUri(uri)));
+        return null;
+    }
+
+    private URI buildUri(String uri, NameValuePair... params) {
+        try {
+            return new URIBuilder(BASE_URI.resolve(uri))
+                    .addParameters(getParameters(params))
+                    .build();
+        } catch (URISyntaxException e) {
+            // This never happens.
+            LOGGER.error("Could not build URI.", e);
+            return null;
+        }
+    }
+
+    private HttpResponse handleRequest(Request request) {
+        return null;
+    }
 
     /**
      * Get a list with all the parameters, including default and auth parameters.

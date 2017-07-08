@@ -1,7 +1,9 @@
 package com.scorpiac.javarant;
 
 import com.scorpiac.javarant.exceptions.NoSuchUserException;
+import com.scorpiac.javarant.services.RequestHandler;
 
+import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
@@ -69,16 +71,16 @@ public class User extends DevRantHolder {
     /**
      * Get the link to the user.
      */
-    public String userLink() {
-        return DevRant.BASE_URL + DevRant.USER_URL + '/' + username;
+    public URI userLink() {
+        return RequestHandler.BASE_URI.resolve(DevRant.USER_URL).resolve(username);
     }
 
     /**
      * Get the link to the user's avatar.
      */
-    public String avatarLink() {
+    public URI avatarLink() {
         fetchData();
-        return DevRant.AVATARS_URL + "/" + avatar;
+        return RequestHandler.AVATARS_URI.resolve(avatar);
     }
 
     @Override

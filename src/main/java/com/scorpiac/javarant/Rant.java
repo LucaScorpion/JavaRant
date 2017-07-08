@@ -1,5 +1,8 @@
 package com.scorpiac.javarant;
 
+import com.scorpiac.javarant.services.RequestHandler;
+
+import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,8 +49,8 @@ public class Rant extends RantContent {
     /**
      * Get the link to the rant.
      */
-    public String link() {
-        return DevRant.BASE_URL + DevRant.RANT_URL + '/' + getId();
+    public URI link() {
+        return RequestHandler.BASE_URI.resolve(DevRant.RANT_URL).resolve(String.valueOf(getId()));
     }
 
     @Override
