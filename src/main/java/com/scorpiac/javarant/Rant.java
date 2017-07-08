@@ -1,9 +1,5 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -16,37 +12,6 @@ public class Rant extends RantContent {
         super(devRant, id, user, upvotes, downvotes, score, voteState, text, image);
         this.tags = tags;
         this.commentCount = commentCount;
-    }
-
-    static Rant fromJson(DevRant devRant, JsonObject json) {
-        return new Rant(
-                devRant,
-                json.get("id").getAsInt(),
-                User.fromJson(devRant, json),
-                json.get("num_upvotes").getAsInt(),
-                json.get("num_downvotes").getAsInt(),
-                json.get("score").getAsInt(),
-                json.get("vote_state").getAsInt(),
-                json.get("text").getAsString(),
-                Image.fromJson(json.get("attached_image")),
-                Util.jsonToList(json.getAsJsonArray("tags"), JsonElement::getAsString),
-                json.get("num_comments").getAsInt()
-        );
-    }
-
-    static Rant fromJson(DevRant devRant, JsonObject rant, JsonArray comments) {
-        Rant result = fromJson(devRant, rant);
-        result.commentsFromJson(comments);
-        return result;
-    }
-
-    /**
-     * Set the comments from a JSON array.
-     *
-     * @param commentArray The JSON array to get the comments from.
-     */
-    protected void commentsFromJson(JsonArray commentArray) {
-        comments = Util.jsonToList(commentArray, elem -> Comment.fromJson(devRant, elem.getAsJsonObject()));
     }
 
     /**
@@ -75,16 +40,6 @@ public class Rant extends RantContent {
      * @return Whether the data was fetched successfully.
      */
     public boolean fetchComments(boolean force) {
-        // Check if we already fetched and force is false.
-        if (comments != null && !force)
-            return true;
-        
-        JsonObject json = devRant.get(DevRant.API_RANTS + '/' + getId());
-
-        if (!Util.jsonSuccess(json))
-            return false;
-
-        commentsFromJson(json.getAsJsonArray("comments"));
         return true;
     }
 

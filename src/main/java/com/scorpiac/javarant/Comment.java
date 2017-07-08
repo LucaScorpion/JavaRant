@@ -1,24 +1,8 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonObject;
-
 public class Comment extends RantContent {
     protected Comment(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
         super(devRant, id, user, upvotes, downvotes, score, voteState, content, image);
-    }
-
-    static Comment fromJson(DevRant devRant, JsonObject json) {
-        return new Comment(
-                devRant,
-                json.get("id").getAsInt(),
-                User.fromJson(devRant, json),
-                json.get("num_upvotes").getAsInt(),
-                json.get("num_downvotes").getAsInt(),
-                json.get("score").getAsInt(),
-                json.get("vote_state").getAsInt(),
-                json.get("body").getAsString(),
-                Image.fromJson(json.get("attached_image"))
-        );
     }
 
     @Override

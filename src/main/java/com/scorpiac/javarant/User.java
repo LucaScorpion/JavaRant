@@ -1,6 +1,5 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonObject;
 import com.scorpiac.javarant.exceptions.NoSuchUserException;
 
 import java.util.Collections;
@@ -42,23 +41,6 @@ public class User extends DevRantHolder {
     }
 
     /**
-     * Create a user from a JSON object.
-     *
-     * @param devRant The devRant client to use.
-     * @param json    The JSON object to create the user from.
-     * @return The created user.
-     */
-    static User fromJson(DevRant devRant, JsonObject json) {
-        User result = new User(devRant);
-
-        result.id = json.get("user_id").getAsInt();
-        result.username = json.get("user_username").getAsString();
-        result.score = json.get("user_score").getAsInt();
-
-        return result;
-    }
-
-    /**
      * Fetch the user data from the user profile. If the data is already fetched, it will not be fetched again.
      *
      * @return Whether the data was fetched successfully.
@@ -74,44 +56,6 @@ public class User extends DevRantHolder {
      * @return Whether the data was fetched successfully.
      */
     public boolean fetchData(boolean force) {
-        // Check if we already fetched and force is false.
-        if (fetched && !force)
-            return true;
-        
-        JsonObject json = devRant.get(DevRant.API_USERS + '/' + id);
-
-        // Check for success.
-        if (!Util.jsonSuccess(json))
-            return false;
-        fetched = true;
-
-        // JSON objects.
-        JsonObject profileJson = json.getAsJsonObject("profile");
-        JsonObject contentJson = profileJson.getAsJsonObject("content");
-        JsonObject subContentJson = contentJson.getAsJsonObject("content");
-        JsonObject countsJson = contentJson.getAsJsonObject("counts");
-        JsonObject avatarJson = profileJson.getAsJsonObject("avatar");
-
-        // Set all the fields.
-        username = profileJson.get("username").getAsString();
-        score = profileJson.get("score").getAsInt();
-        avatar = avatarJson.get("i").getAsString();
-
-        about = profileJson.get("about").getAsString();
-        location = profileJson.get("location").getAsString();
-        skills = profileJson.get("skills").getAsString();
-        github = profileJson.get("github").getAsString();
-
-        rantsCount = countsJson.get("rants").getAsInt();
-        upvotedCount = countsJson.get("upvoted").getAsInt();
-        commentsCount = countsJson.get("comments").getAsInt();
-        favoritesCount = countsJson.get("favorites").getAsInt();
-
-        rants = Util.jsonToList(subContentJson.get("rants").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject()));
-        upvoted = Util.jsonToList(subContentJson.get("upvoted").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject()));
-        comments = Util.jsonToList(subContentJson.get("comments").getAsJsonArray(), comment -> Comment.fromJson(devRant, comment.getAsJsonObject()));
-        favorites = Util.jsonToList(subContentJson.get("favorites").getAsJsonArray(), rant -> Rant.fromJson(devRant, rant.getAsJsonObject()));
-
         return true;
     }
 
@@ -139,7 +83,7 @@ public class User extends DevRantHolder {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof User && ((User) obj).getId() == id;
+        return obj instanceof User && ((User)obj).getId() == id;
     }
 
     @Override
