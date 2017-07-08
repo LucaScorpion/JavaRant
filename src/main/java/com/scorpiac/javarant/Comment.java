@@ -1,8 +1,8 @@
 package com.scorpiac.javarant;
 
 public class Comment extends RantContent {
-    protected Comment(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
-        super(devRant, id, user, upvotes, downvotes, score, voteState, content, image);
+    protected Comment(int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
+        super(id, user, upvotes, downvotes, score, voteState, content, image);
     }
 
     @Override

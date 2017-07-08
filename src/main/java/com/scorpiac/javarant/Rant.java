@@ -11,8 +11,8 @@ public class Rant extends RantContent {
     private int commentCount;
     private List<Comment> comments;
 
-    protected Rant(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String text, Image image, List<String> tags, int commentCount) {
-        super(devRant, id, user, upvotes, downvotes, score, voteState, text, image);
+    protected Rant(int id, User user, int upvotes, int downvotes, int score, int voteState, String text, Image image, List<String> tags, int commentCount) {
+        super(id, user, upvotes, downvotes, score, voteState, text, image);
         this.tags = tags;
         this.commentCount = commentCount;
     }

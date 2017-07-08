@@ -1,6 +1,6 @@
 package com.scorpiac.javarant;
 
-public abstract class RantContent extends DevRantHolder {
+public abstract class RantContent {
     private final int id;
     private final User user;
     private int upvotes;
@@ -10,8 +10,7 @@ public abstract class RantContent extends DevRantHolder {
     private String content;
     private Image image;
 
-    protected RantContent(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
-        super(devRant);
+    protected RantContent(int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
         this.id = id;
         this.user = user;
         this.upvotes = upvotes;
@@ -29,7 +28,7 @@ public abstract class RantContent extends DevRantHolder {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof RantContent && ((RantContent) obj).getId() == id;
+        return obj instanceof RantContent && ((RantContent)obj).getId() == id;
     }
 
     /**

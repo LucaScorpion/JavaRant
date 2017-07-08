@@ -7,7 +7,7 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
-public class User extends DevRantHolder {
+public class User {
     // Data that is always available.
     private int id;
     private String username;
@@ -29,12 +29,7 @@ public class User extends DevRantHolder {
     private int favoritesCount;
     private String avatar;
 
-    private User(DevRant devRant) {
-        super(devRant);
-    }
-
-    User(DevRant devRant, int id) {
-        super(devRant);
+    User(int id) {
         this.id = id;
 
         // Fetch the data, check if the user exists.
