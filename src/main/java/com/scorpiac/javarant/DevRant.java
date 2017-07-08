@@ -1,23 +1,13 @@
 package com.scorpiac.javarant;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class DevRant {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DevRant.class);
+    private static final Injector INJECTOR;
 
-    static final String APP_ID = "3";
-    static final String PLAT_ID = "3";
-
-    static final String BASE_URL = "https://www.devrant.io";
-    static final String AVATARS_URL = "https://avatars.devrant.io";
+    public static final String BASE_URL = "https://www.devrant.io";
+    public static final String AVATARS_URL = "https://avatars.devrant.io";
 
     static final String USER_URL = "/users";
     static final String RANT_URL = "/rants";
@@ -46,6 +36,14 @@ public class DevRant {
     private News news;
     private int weeklyRantNumber = -1;
 
+    static {
+        INJECTOR = Guice.createInjector(new InjectionModule());
+    }
+
+    public DevRant() {
+        INJECTOR.injectMembers(this);
+    }
+
     /**
      * Log out of devRant.
      */
@@ -60,32 +58,6 @@ public class DevRant {
      */
     public boolean isLoggedIn() {
         return auth != null;
-    }
-
-    /**
-     * Get a list with all the parameters, including default and auth parameters.
-     * This also filters out any parameters that are {@code null}.
-     *
-     * @param params The parameters to use.
-     * @return A list containing the given parameters, the default parameters, and the auth parameters.
-     */
-    private List<NameValuePair> getParameters(NameValuePair... params) {
-        List<NameValuePair> paramList = new ArrayList<>(params.length + 6);
-        paramList.addAll(Arrays.stream(params).filter(p -> p != null).collect(Collectors.toList()));
-
-        // Add the parameters which always need to be present.
-        paramList.add(new BasicNameValuePair("app", APP_ID));
-        paramList.add(new BasicNameValuePair("plat", PLAT_ID));
-        paramList.add(new BasicNameValuePair("hide_reposts", hideReposts ? "1" : "0"));
-
-        // Add the auth information.
-        if (isLoggedIn()) {
-            paramList.add(new BasicNameValuePair("token_id", auth.getId()));
-            paramList.add(new BasicNameValuePair("token_key", auth.getKey()));
-            paramList.add(new BasicNameValuePair("user_id", auth.getUserId()));
-        }
-
-        return paramList;
     }
 
     /**
