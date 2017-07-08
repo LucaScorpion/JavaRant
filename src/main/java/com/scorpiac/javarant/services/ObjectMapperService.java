@@ -8,6 +8,9 @@ import javax.inject.Singleton;
 public class ObjectMapperService {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    /**
+     * Get the object mapper.
+     */
     public ObjectMapper getMapper() {
         return MAPPER;
     }

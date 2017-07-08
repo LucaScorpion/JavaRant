@@ -1,13 +1,14 @@
 package com.scorpiac.javarant.services;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -26,11 +27,25 @@ public class RequestHandler {
     private static final String APP_ID = "3";
     private static final String PLAT_ID = "3";
 
-    public <T> T get(String uri, Class<T> resultClass) {
-        handleRequest(Request.Get(buildUri(uri)));
+    private final ObjectMapperResponseHandlerFactory responseHandlerFactory;
+
+    @Inject
+    public RequestHandler(ObjectMapperResponseHandlerFactory responseHandlerFactory) {
+        this.responseHandlerFactory = responseHandlerFactory;
+    }
+
+    public <T> T get(String uri, Class<T> clazz) {
+        handleRequest(Request.Get(buildUri(uri)), clazz);
         return null;
     }
 
+    /**
+     * Build a URI from the given relative URI and parameters.
+     *
+     * @param uri    The relative URI to use.
+     * @param params The parameters to use.
+     * @return A complete URI.
+     */
     private URI buildUri(String uri, NameValuePair... params) {
         try {
             return new URIBuilder(BASE_URI.resolve(uri))
@@ -39,11 +54,16 @@ public class RequestHandler {
         } catch (URISyntaxException e) {
             // This never happens.
             LOGGER.error("Could not build URI.", e);
-            return null;
         }
+        return null;
     }
 
-    private HttpResponse handleRequest(Request request) {
+    private <T> T handleRequest(Request request, Class<T> clazz) {
+        try {
+            request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz));
+        } catch (IOException e) {
+            LOGGER.error("Failed to execute request.", e);
+        }
         return null;
     }
 
