@@ -11,10 +11,7 @@ import javax.inject.Singleton;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -29,14 +26,19 @@ public class RequestHandler {
 
     private final ObjectMapperResponseHandlerFactory responseHandlerFactory;
 
+    private int timeout = 15000;
+
     @Inject
     public RequestHandler(ObjectMapperResponseHandlerFactory responseHandlerFactory) {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
-    public <T> T get(String uri, Class<T> clazz) {
-        handleRequest(Request.Get(buildUri(uri)), clazz);
-        return null;
+    public <T> Optional<T> get(String uri, Class<T> clazz) {
+        return buildUri(uri).flatMap(u -> handleRequest(Request.Get(u), clazz));
+    }
+
+    public <T> Optional<T> post(String uri, Class<T> clazz) {
+        return buildUri(uri).flatMap(u -> handleRequest(Request.Post(u), clazz));
     }
 
     /**
@@ -46,25 +48,29 @@ public class RequestHandler {
      * @param params The parameters to use.
      * @return A complete URI.
      */
-    private URI buildUri(String uri, NameValuePair... params) {
+    private Optional<URI> buildUri(String uri, NameValuePair... params) {
         try {
-            return new URIBuilder(BASE_URI.resolve(uri))
+            return Optional.of(new URIBuilder(BASE_URI.resolve(uri))
                     .addParameters(getParameters(params))
-                    .build();
+                    .build()
+            );
         } catch (URISyntaxException e) {
             // This never happens.
             LOGGER.error("Could not build URI.", e);
         }
-        return null;
+        return Optional.empty();
     }
 
-    private <T> T handleRequest(Request request, Class<T> clazz) {
+    private <T> Optional<T> handleRequest(Request request, Class<T> clazz) {
+        request.socketTimeout(timeout).connectTimeout(timeout);
+
+        // Execute the request and handle the response.
         try {
-            request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz));
+            return Optional.of(request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz)));
         } catch (IOException e) {
             LOGGER.error("Failed to execute request.", e);
         }
-        return null;
+        return Optional.empty();
     }
 
     /**
@@ -83,5 +89,21 @@ public class RequestHandler {
         paramList.add(new BasicNameValuePair("plat", PLAT_ID));
 
         return paramList;
+    }
+
+    /**
+     * Set the request timeout. This timeout will be used for the socket and connection timeout.
+     *
+     * @param timeout The timeout in milliseconds to set, or -1 to set no timeout.
+     */
+    public void setRequestTimeout(int timeout) {
+        this.timeout = timeout;
+    }
+
+    /**
+     * Get the current request timeout in milliseconds.
+     */
+    public int getRequestTimeout() {
+        return timeout;
     }
 }

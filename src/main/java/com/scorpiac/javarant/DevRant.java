@@ -27,7 +27,6 @@ public class DevRant {
     static final String API_NOTIFS = API_USERS + "/me/notif-feed";
 
     private Auth auth;
-    private int timeout = 15000;
     private boolean hideReposts = false;
     private int numNotifs;
     private News news;
@@ -55,22 +54,6 @@ public class DevRant {
      */
     public boolean isLoggedIn() {
         return auth != null;
-    }
-
-    /**
-     * Set the request timeout. This timeout will be used for the socket and connection timeout.
-     *
-     * @param timeout The timeout in milliseconds to set, or -1 to set no timeout.
-     */
-    public void setRequestTimeout(int timeout) {
-        this.timeout = timeout;
-    }
-
-    /**
-     * Get the current request timeout in milliseconds.
-     */
-    public int getRequestTimeout() {
-        return timeout;
     }
 
     /**
