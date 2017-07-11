@@ -3,7 +3,6 @@ package com.scorpiac.javarant;
 import com.scorpiac.javarant.services.RequestHandler;
 
 import java.net.URI;
-import java.util.Collections;
 
 public class Collab extends Rant {
     private String projectType;
@@ -14,11 +13,6 @@ public class Collab extends Rant {
     private String techStack;
     private String teamSize;
     private String url;
-
-    protected Collab(int id, User user, int upvotes, int downvotes, int score, int voteState, String projectType, String summary, int commentCount) {
-        super(id, user, upvotes, downvotes, score, voteState, summary, null, Collections.emptyList(), commentCount);
-        this.projectType = projectType;
-    }
 
     /**
      * Fetch the data for this collab. If the data is already fetched, it will not be fetched again.

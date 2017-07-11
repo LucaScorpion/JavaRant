@@ -11,12 +11,6 @@ public class Rant extends RantContent {
     private int commentCount;
     private List<Comment> comments;
 
-    protected Rant(int id, User user, int upvotes, int downvotes, int score, int voteState, String text, Image image, List<String> tags, int commentCount) {
-        super(id, user, upvotes, downvotes, score, voteState, text, image);
-        this.tags = tags;
-        this.commentCount = commentCount;
-    }
-
     /**
      * Get the comments on this rant. If they are not yet retrieved, this will also fetch them.
      *

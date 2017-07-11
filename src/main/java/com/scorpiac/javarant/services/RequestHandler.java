@@ -34,12 +34,12 @@ public class RequestHandler {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
-    public <T> Optional<T> get(String endpoint, Class<T> clazz) {
-        return handleRequest(buildRequest(endpoint, Request::Get), clazz);
+    public <T> Optional<T> get(String endpoint, Class<T> clazz, NameValuePair... params) {
+        return handleRequest(buildRequest(endpoint, Request::Get, params), clazz);
     }
 
-    public <T> Optional<T> post(String endpoint, Class<T> clazz) {
-        return handleRequest(buildRequest(endpoint, Request::Post), clazz);
+    public <T> Optional<T> post(String endpoint, Class<T> clazz, NameValuePair... params) {
+        return handleRequest(buildRequest(endpoint, Request::Post, params), clazz);
     }
 
     /**

@@ -1,25 +1,14 @@
 package com.scorpiac.javarant;
 
 public abstract class RantContent {
-    private final int id;
-    private final User user;
+    private int id;
+    private User user;
     private int upvotes;
     private int downvotes;
     private int score;
     private VoteState voteState;
-    private String content;
+    private String text;
     private Image image;
-
-    protected RantContent(int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
-        this.id = id;
-        this.user = user;
-        this.upvotes = upvotes;
-        this.downvotes = downvotes;
-        this.score = score;
-        this.voteState = VoteState.fromValue(voteState);
-        this.content = content;
-        this.image = image;
-    }
 
     @Override
     public int hashCode() {
@@ -74,10 +63,10 @@ public abstract class RantContent {
     }
 
     /**
-     * Get the content (text).
+     * Get the text.
      */
-    public String getContent() {
-        return content;
+    public String getText() {
+        return text;
     }
 
     /**
@@ -89,6 +78,6 @@ public abstract class RantContent {
 
     @Override
     public String toString() {
-        return content;
+        return text;
     }
 }

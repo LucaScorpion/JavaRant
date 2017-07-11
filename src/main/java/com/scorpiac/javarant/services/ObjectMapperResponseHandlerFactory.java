@@ -1,9 +1,11 @@
 package com.scorpiac.javarant.services;
 
 import org.apache.http.client.ResponseHandler;
+import sun.misc.IOUtils;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.io.InputStream;
 
 @Singleton
 public class ObjectMapperResponseHandlerFactory {
@@ -22,6 +24,10 @@ public class ObjectMapperResponseHandlerFactory {
      * @return A response handler.
      */
     public <T> ResponseHandler<T> getResponseHandler(Class<T> clazz) {
-        return response -> mapperService.getMapper().readValue(response.getEntity().getContent(), clazz);
+        return response -> {
+            InputStream stream = response.getEntity().getContent();
+            String content = new String(IOUtils.readFully(stream, -1, true));
+            return mapperService.getMapper().readValue(content, clazz);
+        };
     }
 }
