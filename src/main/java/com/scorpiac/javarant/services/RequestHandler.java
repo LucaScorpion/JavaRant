@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -33,37 +34,50 @@ public class RequestHandler {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
-    public <T> Optional<T> get(String uri, Class<T> clazz) {
-        return buildUri(uri).flatMap(u -> handleRequest(Request.Get(u), clazz));
+    public <T> Optional<T> get(String endpoint, Class<T> clazz) {
+        return handleRequest(buildRequest(endpoint, Request::Get), clazz);
     }
 
-    public <T> Optional<T> post(String uri, Class<T> clazz) {
-        return buildUri(uri).flatMap(u -> handleRequest(Request.Post(u), clazz));
+    public <T> Optional<T> post(String endpoint, Class<T> clazz) {
+        return handleRequest(buildRequest(endpoint, Request::Post), clazz);
     }
 
     /**
-     * Build a URI from the given relative URI and parameters.
+     * Build a request.
      *
-     * @param uri    The relative URI to use.
-     * @param params The parameters to use.
-     * @return A complete URI.
+     * @param endpoint        The endpoint to make the request to.
+     * @param requestFunction The function to create a new request from a URI.
+     * @param params          The request parameters.
+     * @return A request.
      */
-    private Optional<URI> buildUri(String uri, NameValuePair... params) {
+    private Request buildRequest(String endpoint, Function<URI, Request> requestFunction, NameValuePair... params) {
+        URI uri;
+
         try {
-            return Optional.of(new URIBuilder(BASE_URI.resolve(uri))
+            // Build the URI.
+            uri = new URIBuilder(BASE_URI.resolve(endpoint))
                     .addParameters(getParameters(params))
-                    .build()
-            );
+                    .build();
         } catch (URISyntaxException e) {
             // This never happens.
             LOGGER.error("Could not build URI.", e);
+            throw new IllegalArgumentException("Could not build URI.", e);
         }
-        return Optional.empty();
+
+        return requestFunction.apply(uri)
+                .connectTimeout(timeout)
+                .socketTimeout(timeout);
     }
 
+    /**
+     * Handle a request.
+     *
+     * @param request The request to handle.
+     * @param clazz   The class to map the response to.
+     * @param <T>     The type of the class to map the response to.
+     * @return The mapped response.
+     */
     private <T> Optional<T> handleRequest(Request request, Class<T> clazz) {
-        request.socketTimeout(timeout).connectTimeout(timeout);
-
         // Execute the request and handle the response.
         try {
             return Optional.of(request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz)));
