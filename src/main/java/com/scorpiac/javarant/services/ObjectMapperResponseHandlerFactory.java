@@ -1,11 +1,11 @@
 package com.scorpiac.javarant.services;
 
 import org.apache.http.client.ResponseHandler;
-import sun.misc.IOUtils;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.InputStream;
+import java.util.Scanner;
 
 @Singleton
 public class ObjectMapperResponseHandlerFactory {
@@ -26,8 +26,13 @@ public class ObjectMapperResponseHandlerFactory {
     public <T> ResponseHandler<T> getResponseHandler(Class<T> clazz) {
         return response -> {
             InputStream stream = response.getEntity().getContent();
-            String content = new String(IOUtils.readFully(stream, -1, true));
+            String content = streamToString(stream);
             return mapperService.getMapper().readValue(content, clazz);
         };
+    }
+
+    private static String streamToString(InputStream stream) {
+        java.util.Scanner s = new Scanner(stream).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
     }
 }

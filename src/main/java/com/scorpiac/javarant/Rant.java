@@ -1,5 +1,6 @@
 package com.scorpiac.javarant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.scorpiac.javarant.services.RequestHandler;
 
 import java.net.URI;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class Rant extends RantContent {
     private List<String> tags;
+    @JsonProperty("num_comments")
     private int commentCount;
     private List<Comment> comments;
 

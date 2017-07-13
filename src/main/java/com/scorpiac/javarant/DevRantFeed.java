@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class DevRantFeed {
-    private static final String API_RANTS = "/api/devrant/rants";
-
     private final RequestHandler requestHandler;
 
     @Inject
@@ -19,6 +17,6 @@ public class DevRantFeed {
     }
 
     public Optional<List<Rant>> getRants() {
-        return requestHandler.get(API_RANTS, RantsResponse.class).map(r -> Arrays.asList(r.getRants()));
+        return requestHandler.get(Endpoint.RANTS, RantsResponse.class).map(r -> Arrays.asList(r.getRants()));
     }
 }

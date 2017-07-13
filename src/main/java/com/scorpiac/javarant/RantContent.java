@@ -3,8 +3,6 @@ package com.scorpiac.javarant;
 public abstract class RantContent {
     private int id;
     private User user;
-    private int upvotes;
-    private int downvotes;
     private int score;
     private VoteState voteState;
     private String text;
@@ -32,20 +30,6 @@ public abstract class RantContent {
      */
     public User getUser() {
         return user;
-    }
-
-    /**
-     * Get the amount of upvotes.
-     */
-    public int getUpvotes() {
-        return upvotes;
-    }
-
-    /**
-     * Get the amount of downvotes.
-     */
-    public int getDownvotes() {
-        return downvotes;
     }
 
     /**

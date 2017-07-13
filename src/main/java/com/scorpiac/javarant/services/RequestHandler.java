@@ -1,5 +1,6 @@
 package com.scorpiac.javarant.services;
 
+import com.scorpiac.javarant.Endpoint;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
@@ -34,8 +35,16 @@ public class RequestHandler {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
+    public <T> Optional<T> get(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
+        return get(endpoint.toString(), clazz, params);
+    }
+
     public <T> Optional<T> get(String endpoint, Class<T> clazz, NameValuePair... params) {
         return handleRequest(buildRequest(endpoint, Request::Get, params), clazz);
+    }
+
+    public <T> Optional<T> post(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
+        return post(endpoint, clazz, params);
     }
 
     public <T> Optional<T> post(String endpoint, Class<T> clazz, NameValuePair... params) {
