@@ -7,51 +7,33 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
+
 public class Rant extends RantContent {
     private List<String> tags;
     @JsonProperty("num_comments")
     private int commentCount;
     private List<Comment> comments;
+    private String link;
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof Rant;
+    }
 
     /**
-     * Get the comments on this rant. If they are not yet retrieved, this will also fetch them.
+     * Get the comments on this rant.
      *
      * @return The comments.
      */
     public List<Comment> getComments() {
-        fetchComments();
         return Collections.unmodifiableList(comments);
-    }
-
-    /**
-     * Fetch the comments on this rant. If the comments are already fetched, they will not be fetched again.
-     *
-     * @return Whether the data was fetched successfully.
-     */
-    public boolean fetchComments() {
-        return fetchComments(false);
-    }
-
-    /**
-     * Fetch the comments on this rant.
-     *
-     * @param force Whether to fetch the comments even if it they are already fetched.
-     * @return Whether the data was fetched successfully.
-     */
-    public boolean fetchComments(boolean force) {
-        return true;
     }
 
     /**
      * Get the link to the rant.
      */
-    public URI link() {
-        return RequestHandler.BASE_URI.resolve(DevRant.RANT_URL).resolve(String.valueOf(getId()));
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj) && obj instanceof Rant;
+    public URI getLink() {
+        return RequestHandler.BASE_URI.resolve('/' + link);
     }
 
     /**

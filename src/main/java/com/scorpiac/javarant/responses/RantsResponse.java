@@ -2,13 +2,12 @@ package com.scorpiac.javarant.responses;
 
 import com.scorpiac.javarant.Rant;
 
+import java.util.List;
+
 public class RantsResponse extends Response {
-    private Rant[] rants;
+    private List<Rant> rants;
 
-    RantsResponse() {
-    }
-
-    public Rant[] getRants() {
+    public List<Rant> getRants() {
         return rants;
     }
 }

@@ -4,9 +4,6 @@ class Response {
     private boolean success;
     private String error;
 
-    Response() {
-    }
-
     public boolean isSuccess() {
         return success;
     }

@@ -35,19 +35,19 @@ public class DevRant {
     }
 
     public Optional<Rant> getRant(int id) {
-        // Execute the request.
         Optional<RantResponse> response = requestHandler.get(Endpoint.RANTS.toString() + '/' + id, RantResponse.class);
+
+        // Check if there is a response.
         if (!response.isPresent()) {
             return Optional.empty();
         }
 
-        // Check if the rant exists.
-        RantResponse rantResponse = response.get();
-        if (!rantResponse.isSuccess()) {
-            throw new NoSuchRantException(id, rantResponse.getError());
+        // Check for success.
+        if (!response.get().isSuccess()) {
+            throw new NoSuchRantException(id, response.get().getError());
         }
 
-        return Optional.of(rantResponse.getRant());
+        return Optional.of(response.get().getRant());
     }
 
     @Inject

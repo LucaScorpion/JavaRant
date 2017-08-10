@@ -5,15 +5,9 @@ public class Image {
     private int width;
     private int height;
 
-    private Image(String url, int width, int height) {
-        this.url = url;
-        this.width = width;
-        this.height = height;
-    }
-
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Image && ((Image)obj).getUrl().equals(url);
+        return obj instanceof Image && ((Image) obj).getLink().equals(url);
     }
 
     @Override
@@ -22,9 +16,9 @@ public class Image {
     }
 
     /**
-     * Get the image url.
+     * Get the image link.
      */
-    public String getUrl() {
+    public String getLink() {
         return url;
     }
 

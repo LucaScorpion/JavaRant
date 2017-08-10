@@ -4,8 +4,8 @@ public abstract class RantContent {
     private int id;
     private User user;
     private int score;
-    private VoteState voteState;
-    private String text;
+    private VoteState voteState = VoteState.NONE;
+    protected String text;
     private Image image;
 
     @Override
@@ -15,7 +15,7 @@ public abstract class RantContent {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof RantContent && ((RantContent)obj).getId() == id;
+        return obj instanceof RantContent && ((RantContent) obj).getId() == id;
     }
 
     /**
