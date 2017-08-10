@@ -13,6 +13,7 @@ public class ObjectMapperService {
     static {
         MAPPER.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
         MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        MAPPER.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
     }
 
     /**

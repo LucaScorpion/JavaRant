@@ -1,11 +1,14 @@
 package com.scorpiac.javarant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public abstract class RantContent {
     private int id;
     private User user;
     private int score;
     private VoteState voteState = VoteState.NONE;
     protected String text;
+    @JsonProperty("attached_image")
     private Image image;
 
     @Override

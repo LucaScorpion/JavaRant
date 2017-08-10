@@ -1,8 +1,13 @@
 package com.scorpiac.javarant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Image {
+    @JsonProperty("url")
     private String url;
+    @JsonProperty("width")
     private int width;
+    @JsonProperty("height")
     private int height;
 
     @Override
