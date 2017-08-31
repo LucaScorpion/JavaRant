@@ -9,6 +9,8 @@ public class Collab extends Rant {
 
     /**
      * Get the project type.
+     *
+     * @return The project type.
      */
     public String getProjectType() {
         return projectType;
@@ -16,6 +18,8 @@ public class Collab extends Rant {
 
     /**
      * Get the project description.
+     *
+     * @return The project description.
      */
     public String getDescription() {
         return description;
@@ -23,6 +27,8 @@ public class Collab extends Rant {
 
     /**
      * Get the project tech stack.
+     *
+     * @return The project tech stack.
      */
     public String getTechStack() {
         return techStack;
@@ -30,6 +36,8 @@ public class Collab extends Rant {
 
     /**
      * Get the team size.
+     *
+     * @return The team size.
      */
     public String getTeamSize() {
         return teamSize;
@@ -37,6 +45,8 @@ public class Collab extends Rant {
 
     /**
      * Get the project url.
+     *
+     * @return The project url.
      */
     public String getUrl() {
         return url;

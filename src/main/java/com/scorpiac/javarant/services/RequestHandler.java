@@ -124,7 +124,9 @@ public class RequestHandler {
     }
 
     /**
-     * Get the current request timeout in milliseconds.
+     * Get the current request timeout in milliseconds, or -1 if there is no timeout.
+     *
+     * @return The request timeout.
      */
     public int getRequestTimeout() {
         return timeout;

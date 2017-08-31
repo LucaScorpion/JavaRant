@@ -55,6 +55,10 @@ public class DevRant {
         return Optional.of(response.get().getRant());
     }
 
+    public Optional<User> getUser(int id) {
+        throw new IllegalStateException("This method is not yet implemented.");
+    }
+
     /**
      * Log out of devRant.
      */

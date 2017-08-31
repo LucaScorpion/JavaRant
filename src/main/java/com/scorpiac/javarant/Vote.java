@@ -1,17 +1,22 @@
 package com.scorpiac.javarant;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
+public enum Vote {
+    UP(1),
+    NONE(0),
+    DOWN(-1);
 
-public final class Vote extends Option {
-    public static final Vote UP = new Vote("1", null);
-    public static final Vote NONE = new Vote("0", null);
+    private final int number;
 
-    private Vote(String value, NameValuePair parameter) {
-        super(value, parameter);
+    Vote(int number) {
+        this.number = number;
     }
 
-    public static Vote DOWN(Reason reason) {
-        return new Vote("-1", new BasicNameValuePair("reason", reason.toString()));
+    /**
+     * Get the number value of this vote.
+     *
+     * @return The number value.
+     */
+    public int getNumber() {
+        return number;
     }
 }

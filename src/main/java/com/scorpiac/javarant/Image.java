@@ -22,20 +22,26 @@ public class Image {
 
     /**
      * Get the image link.
+     *
+     * @return The image link.
      */
     public String getLink() {
         return url;
     }
 
     /**
-     * Get the image width.
+     * Get the image width in pixels.
+     *
+     * @return The image width.
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * Get the image height.
+     * Get the image height in pixels.
+     *
+     * @return The image height.
      */
     public int getHeight() {
         return height;

@@ -7,6 +7,11 @@ class LogFactory {
     private LogFactory() {
     }
 
+    /**
+     * Get a logger for the calling class.
+     *
+     * @return A logger.
+     */
     public static Logger getLog() {
         return LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
     }

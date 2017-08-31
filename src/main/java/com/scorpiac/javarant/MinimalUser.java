@@ -57,9 +57,9 @@ public class MinimalUser {
     /**
      * Get the link to the user's profile.
      *
-     * @return A link to the user's profile.
+     * @return The link to the user's profile.
      */
-    public URI userLink() {
+    public URI getLink() {
         return RequestHandler.BASE_URI.resolve(DevRant.USER_URL).resolve(username);
     }
 }

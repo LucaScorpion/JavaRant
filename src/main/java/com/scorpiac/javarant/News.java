@@ -5,12 +5,6 @@ public class News {
     private String body;
     private String footer;
 
-    private News(String headline, String body, String footer) {
-        this.headline = headline;
-        this.body = body;
-        this.footer = footer;
-    }
-
     @Override
     public String toString() {
         return headline + '\n' + body + '\n' + footer;
@@ -18,6 +12,8 @@ public class News {
 
     /**
      * Get the headline.
+     *
+     * @return The headline.
      */
     public String getHeadline() {
         return headline;
@@ -25,6 +21,8 @@ public class News {
 
     /**
      * Get the body text.
+     *
+     * @return The body.
      */
     public String getBody() {
         return body;
@@ -32,6 +30,8 @@ public class News {
 
     /**
      * Get the footer.
+     *
+     * @return The footer.
      */
     public String getFooter() {
         return footer;

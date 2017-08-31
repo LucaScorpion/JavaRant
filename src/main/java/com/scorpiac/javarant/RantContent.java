@@ -39,6 +39,8 @@ public abstract class RantContent {
 
     /**
      * Get the user.
+     * Note that this user only contains the information which was returned with the rant.
+     * To get the complete {@link User}, use {@link DevRant#getUser}.
      *
      * @return The user.
      */

@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class User extends MinimalUser {
-    private boolean fetched = false;
     private String about;
     private String location;
     private String skills;
@@ -23,14 +22,9 @@ public class User extends MinimalUser {
     private String avatar;
 
     /**
-     * Get whether the user data is fetched.
-     */
-    public boolean isFetched() {
-        return fetched;
-    }
-
-    /**
      * Get the link to the user's avatar.
+     *
+     * @return A link to the avatar.
      */
     public URI avatarLink() {
         return RequestHandler.AVATARS_URI.resolve(avatar);
@@ -38,6 +32,8 @@ public class User extends MinimalUser {
 
     /**
      * Get information about the user.
+     *
+     * @return About the user.
      */
     public String getAbout() {
         return about;
@@ -45,6 +41,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the user's location.
+     *
+     * @return The location.
      */
     public String getLocation() {
         return location;
@@ -52,6 +50,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the user's skills.
+     *
+     * @return The skills.
      */
     public String getSkills() {
         return skills;
@@ -59,6 +59,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the user's GitHub username.
+     *
+     * @return The GitHub username.
      */
     public String getGithub() {
         return github;
@@ -66,6 +68,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the rants that this user posted.
+     *
+     * @return The posted rants.
      */
     public List<Rant> getRants() {
         return Collections.unmodifiableList(rants);
@@ -73,6 +77,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the rants that this user upvoted.
+     *
+     * @return The upvoted rants.
      */
     public List<Rant> getUpvoted() {
         return Collections.unmodifiableList(upvoted);
@@ -80,6 +86,8 @@ public class User extends MinimalUser {
 
     /**
      * Get this user's comments.
+     *
+     * @return The posted comments.
      */
     public List<Comment> getComments() {
         return Collections.unmodifiableList(comments);
@@ -87,6 +95,8 @@ public class User extends MinimalUser {
 
     /**
      * Get this user's favorites.
+     *
+     * @return The favorite rants.
      */
     public List<Rant> getFavorites() {
         return Collections.unmodifiableList(favorites);
@@ -94,6 +104,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the amount of rants that this user has posted.
+     *
+     * @return The amount of posted rants.
      */
     public int getRantsCount() {
         return rantsCount;
@@ -101,6 +113,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the amount of rants that this user has upvoted.
+     *
+     * @return The amount of upvoted rants.
      */
     public int getUpvotedCount() {
         return upvotedCount;
@@ -108,6 +122,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the amount of comments that this user has posted.
+     *
+     * @return The amount of posted comments.
      */
     public int getCommentsCount() {
         return commentsCount;
@@ -115,6 +131,8 @@ public class User extends MinimalUser {
 
     /**
      * Get the amount of rants that this user has favorited.
+     *
+     * @return The amount of favorite rants.
      */
     public int getFavoritesCount() {
         return favoritesCount;

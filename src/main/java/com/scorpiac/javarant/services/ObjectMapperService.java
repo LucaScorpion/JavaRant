@@ -18,6 +18,8 @@ public class ObjectMapperService {
 
     /**
      * Get the object mapper.
+     *
+     * @return The object mapper.
      */
     public ObjectMapper getMapper() {
         return MAPPER;

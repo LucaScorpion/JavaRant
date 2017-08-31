@@ -31,6 +31,8 @@ public class Rant extends RantContent {
 
     /**
      * Get the link to the rant.
+     *
+     * @return The link to the rant.
      */
     public URI getLink() {
         return RequestHandler.BASE_URI.resolve('/' + link);
@@ -38,6 +40,8 @@ public class Rant extends RantContent {
 
     /**
      * Get the tags.
+     *
+     * @return The tags.
      */
     public List<String> getTags() {
         return Collections.unmodifiableList(tags);
@@ -45,6 +49,8 @@ public class Rant extends RantContent {
 
     /**
      * Get the amount of comments.
+     *
+     * @return The amount of comments.
      */
     public int getCommentCount() {
         return commentCount;
