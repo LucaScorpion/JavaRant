@@ -58,7 +58,7 @@ public class DevRantITest {
     @Test
     public void testGetRant() throws IOException {
         server.stubFor(stubResponse(
-                get(Endpoint.RANTS.toString() + '/' + 686001 + "?app=3&plat=3"),
+                get(urlPathEqualTo(Endpoint.RANTS.toString() + '/' + 686001)),
                 "/rant-686001.json"
         ));
 
