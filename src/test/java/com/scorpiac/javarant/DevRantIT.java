@@ -37,8 +37,8 @@ public class DevRantIT {
         assertEquals(rant.getImage().getLink(), "https://img.devrant.io/devrant/rant/r_686001_VfN7X.jpg");
 
         // User.
-        /*assertEquals(rant.getUser().getId(), 102959);
+        assertEquals(rant.getUser().getId(), 102959);
         assertEquals(rant.getUser().getUsername(), "LucaScorpion");
-        assertEquals(rant.getUser().getScore(), 3831);*/
+        assertEquals(rant.getUser().getScore(), 3831);
     }
 }

@@ -1,19 +1,12 @@
 package com.scorpiac.javarant;
 
-import com.scorpiac.javarant.exceptions.NoSuchUserException;
 import com.scorpiac.javarant.services.RequestHandler;
 
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
-public class User {
-    // Data that is always available.
-    private int id;
-    private String username;
-    private int score;
-
-    // Data that need to be fetched from the user profile.
+public class User extends MinimalUser {
     private boolean fetched = false;
     private String about;
     private String location;
@@ -29,33 +22,6 @@ public class User {
     private int favoritesCount;
     private String avatar;
 
-    User(int id) {
-        this.id = id;
-
-        // Fetch the data, check if the user exists.
-        if (!fetchData())
-            throw new NoSuchUserException(id);
-    }
-
-    /**
-     * Fetch the user data from the user profile. If the data is already fetched, it will not be fetched again.
-     *
-     * @return Whether the data was fetched successfully.
-     */
-    public boolean fetchData() {
-        return fetchData(false);
-    }
-
-    /**
-     * Fetch the user data from the user profile.
-     *
-     * @param force Whether to fetch the data even if it was already fetched.
-     * @return Whether the data was fetched successfully.
-     */
-    public boolean fetchData(boolean force) {
-        return true;
-    }
-
     /**
      * Get whether the user data is fetched.
      */
@@ -64,56 +30,16 @@ public class User {
     }
 
     /**
-     * Get the link to the user.
-     */
-    public URI userLink() {
-        return RequestHandler.BASE_URI.resolve(DevRant.USER_URL).resolve(username);
-    }
-
-    /**
      * Get the link to the user's avatar.
      */
     public URI avatarLink() {
-        fetchData();
         return RequestHandler.AVATARS_URI.resolve(avatar);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof User && ((User)obj).getId() == id;
-    }
-
-    @Override
-    public int hashCode() {
-        return id;
-    }
-
-    /**
-     * Get the user id.
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Get the username.
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * Get the user's overall score.
-     */
-    public int getScore() {
-        return score;
     }
 
     /**
      * Get information about the user.
      */
     public String getAbout() {
-        fetchData();
         return about;
     }
 
@@ -121,7 +47,6 @@ public class User {
      * Get the user's location.
      */
     public String getLocation() {
-        fetchData();
         return location;
     }
 
@@ -129,7 +54,6 @@ public class User {
      * Get the user's skills.
      */
     public String getSkills() {
-        fetchData();
         return skills;
     }
 
@@ -137,7 +61,6 @@ public class User {
      * Get the user's GitHub username.
      */
     public String getGithub() {
-        fetchData();
         return github;
     }
 
@@ -145,7 +68,6 @@ public class User {
      * Get the rants that this user posted.
      */
     public List<Rant> getRants() {
-        fetchData();
         return Collections.unmodifiableList(rants);
     }
 
@@ -153,7 +75,6 @@ public class User {
      * Get the rants that this user upvoted.
      */
     public List<Rant> getUpvoted() {
-        fetchData();
         return Collections.unmodifiableList(upvoted);
     }
 
@@ -161,7 +82,6 @@ public class User {
      * Get this user's comments.
      */
     public List<Comment> getComments() {
-        fetchData();
         return Collections.unmodifiableList(comments);
     }
 
@@ -169,7 +89,6 @@ public class User {
      * Get this user's favorites.
      */
     public List<Rant> getFavorites() {
-        fetchData();
         return Collections.unmodifiableList(favorites);
     }
 
@@ -177,7 +96,6 @@ public class User {
      * Get the amount of rants that this user has posted.
      */
     public int getRantsCount() {
-        fetchData();
         return rantsCount;
     }
 
@@ -185,7 +103,6 @@ public class User {
      * Get the amount of rants that this user has upvoted.
      */
     public int getUpvotedCount() {
-        fetchData();
         return upvotedCount;
     }
 
@@ -193,7 +110,6 @@ public class User {
      * Get the amount of comments that this user has posted.
      */
     public int getCommentsCount() {
-        fetchData();
         return commentsCount;
     }
 
@@ -201,12 +117,6 @@ public class User {
      * Get the amount of rants that this user has favorited.
      */
     public int getFavoritesCount() {
-        fetchData();
         return favoritesCount;
-    }
-
-    @Override
-    public String toString() {
-        return username;
     }
 }
