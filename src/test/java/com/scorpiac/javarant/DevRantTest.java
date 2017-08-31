@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import static org.testng.Assert.assertEquals;
 
-public class DevRantIT {
+public class DevRantTest {
     private DevRant devRant;
 
     @BeforeClass

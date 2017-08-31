@@ -22,12 +22,17 @@ public class DevRant {
     private Auth auth;
 
     static {
-        INJECTOR = Guice.createInjector(new InjectionModule());
+        INJECTOR = Guice.createInjector();
     }
 
     public DevRant() {
         INJECTOR.injectMembers(this);
         feed = INJECTOR.getInstance(DevRantFeed.class);
+    }
+
+    @Inject
+    void setRequestHandler(RequestHandler requestHandler) {
+        this.requestHandler = requestHandler;
     }
 
     public DevRantFeed getFeed() {
@@ -50,11 +55,6 @@ public class DevRant {
         return Optional.of(response.get().getRant());
     }
 
-    @Inject
-    void setRequestHandler(RequestHandler requestHandler) {
-        this.requestHandler = requestHandler;
-    }
-
     /**
      * Log out of devRant.
      */
@@ -65,7 +65,7 @@ public class DevRant {
     /**
      * Check whether a user is logged in.
      *
-     * @return {@code true} if a user is logged in.
+     * @return {@code true} if a user is logged in, or {@code false} otherwise.
      */
     public boolean isLoggedIn() {
         return auth != null;
