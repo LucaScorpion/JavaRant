@@ -64,7 +64,7 @@ public class RequestHandler {
 
         try {
             // Build the URI.
-            uri = new URIBuilder(BASE_URI.resolve(endpoint))
+            uri = new URIBuilder(resolve(endpoint))
                     .addParameters(getParameters(params))
                     .build();
         } catch (URISyntaxException e) {
@@ -76,6 +76,10 @@ public class RequestHandler {
         return requestFunction.apply(uri)
                 .connectTimeout(timeout)
                 .socketTimeout(timeout);
+    }
+
+    URI resolve(String endpoint) {
+        return BASE_URI.resolve(endpoint);
     }
 
     /**
