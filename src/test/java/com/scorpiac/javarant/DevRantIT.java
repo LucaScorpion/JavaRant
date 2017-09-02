@@ -17,7 +17,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
-public class DevRantITest {
+public class DevRantIT {
     private DevRant devRant;
     private WireMockServer server;
 
