@@ -2,9 +2,11 @@ package com.scorpiac.javarant;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.scorpiac.javarant.exceptions.NoSuchRantException;
 import com.scorpiac.javarant.responses.RantResponse;
+import com.scorpiac.javarant.responses.UserIdResponse;
+import com.scorpiac.javarant.responses.UserResponse;
 import com.scorpiac.javarant.services.RequestHandler;
+import org.apache.http.message.BasicNameValuePair;
 
 import javax.inject.Inject;
 import java.util.Optional;
@@ -40,23 +42,23 @@ public class DevRant {
     }
 
     public Optional<Rant> getRant(int id) {
-        Optional<RantResponse> response = requestHandler.get(Endpoint.RANTS.toString() + '/' + id, RantResponse.class);
+        return requestHandler.get(Endpoint.RANTS.toString() + '/' + id, RantResponse.class)
+                .flatMap(RantResponse::getRant);
+    }
 
-        // Check if there is a response.
-        if (!response.isPresent()) {
-            return Optional.empty();
-        }
-
-        // Check for success.
-        if (!response.get().isSuccess()) {
-            throw new NoSuchRantException(id, response.get().getError());
-        }
-
-        return Optional.of(response.get().getRant());
+    public Optional<User> getUser(String username) {
+        return requestHandler.get(Endpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username))
+                .flatMap(u -> getUser(u.getId()));
     }
 
     public Optional<User> getUser(int id) {
-        throw new IllegalStateException("This method is not yet implemented.");
+        Optional<User> user = requestHandler.get(Endpoint.USERS.toString() + '/' + id, UserResponse.class)
+                .flatMap(UserResponse::getUser);
+
+        // Set the id, as that is not part of the response.
+        user.ifPresent(u -> u.setId(id));
+
+        return user;
     }
 
     /**

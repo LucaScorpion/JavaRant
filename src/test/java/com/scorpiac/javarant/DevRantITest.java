@@ -15,10 +15,10 @@ import java.util.Scanner;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
 public class DevRantITest {
     private DevRant devRant;
-
     private WireMockServer server;
 
     @BeforeClass
@@ -58,7 +58,7 @@ public class DevRantITest {
     @Test
     public void testGetRant() throws IOException {
         server.stubFor(stubResponse(
-                get(urlPathEqualTo(Endpoint.RANTS.toString() + '/' + 686001)),
+                get(urlPathEqualTo(Endpoint.RANTS.toString() + "/686001")),
                 "/rant-686001.json"
         ));
 
@@ -84,5 +84,46 @@ public class DevRantITest {
         assertEquals(rant.getUser().getId(), 102959);
         assertEquals(rant.getUser().getUsername(), "LucaScorpion");
         assertEquals(rant.getUser().getScore(), 3831);
+    }
+
+    @Test
+    public void testGetInvalidRant() throws IOException {
+        server.stubFor(stubResponse(
+                get(urlPathEqualTo(Endpoint.RANTS.toString() + "/0")),
+                "/rant-invalid.json"
+        ));
+
+        assertFalse(devRant.getRant(0).isPresent());
+    }
+
+    @Test
+    public void testGetUserByUsername() throws IOException {
+        server.stubFor(stubResponse(
+                get(urlPathEqualTo(Endpoint.USER_ID.toString()))
+                        .withQueryParam("username", equalTo("LucaScorpion")),
+                "/user-id-LucaScorpion.json"
+        ));
+        server.stubFor(stubResponse(
+                get(urlPathEqualTo(Endpoint.USERS.toString() + "/102959")),
+                "/user-102959.json"
+        ));
+
+        User user = devRant.getUser("LucaScorpion").get();
+
+        assertEquals(user.getId(), 102959);
+        assertEquals(user.getUsername(), "LucaScorpion");
+        assertEquals(user.getScore(), 3831);
+        assertEquals(user.getAbout(), "Software developer, fanatic programmer, hardcore gamer, Linux lover.");
+        assertEquals(user.getLocation(), "Netherlands");
+        assertEquals(user.getSkills(), "C#, Java, PHP, Javascript, HTML, CSS, SQL, C++ (Arduino), Bash");
+        assertEquals(user.getGithub(), "LucaScorpion");
+        assertEquals(user.getWebsite(), "https://scorpiac.com");
+
+        // Counts.
+        assertEquals(user.getRantsCount(), 60);
+        assertEquals(user.getUpvotedCount(), 5103);
+        assertEquals(user.getCommentsCount(), 800);
+        assertEquals(user.getFavoritesCount(), 36);
+        assertEquals(user.getCollabsCount(), 0);
     }
 }

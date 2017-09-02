@@ -1,0 +1,181 @@
+{
+    "success": true,
+    "profile": {
+        "username": "LucaScorpion",
+        "score": 3831,
+        "about": "Software developer, fanatic programmer, hardcore gamer, Linux lover.",
+        "location": "Netherlands",
+        "created_time": 1468222507,
+        "skills": "C#, Java, PHP, Javascript, HTML, CSS, SQL, C++ (Arduino), Bash",
+        "github": "LucaScorpion",
+        "website": "https://scorpiac.com",
+        "content": {
+            "content": {
+                "rants": [
+                    {
+                        "id": 734149,
+                        "text": "Learning something new every day! This is pretty cool.",
+                        "score": 27,
+                        "created_time": 1500923505,
+                        "attached_image": {
+                            "url": "https://img.devrant.io/devrant/rant/r_734149_V8bT3.gif",
+                            "width": 600,
+                            "height": 400,
+                            "frame": "https://img.devrant.io/devrant/rant/frame_r_734149_V8bT3.jpg"
+                        },
+                        "num_comments": 13,
+                        "tags": [
+                            "bash",
+                            "linux"
+                        ],
+                        "vote_state": 0,
+                        "edited": false,
+                        "user_id": 102959,
+                        "user_username": "LucaScorpion",
+                        "user_score": 3831,
+                        "user_avatar": {
+                            "b": "7bc8a4",
+                            "i": "v-17_c-3_b-1_g-m_9-1_1-2_16-15_3-3_8-3_7-3_5-3_12-2_6-36_10-9_2-36_15-20_18-4_4-3_19-3_20-6_21-2.jpg"
+                        },
+                        "user_dpp": 1
+                    },
+                    {
+                        "id": 731665,
+                        "text": "I'm such a fucking idiot.",
+                        "score": 83,
+                        "created_time": 1500824167,
+                        "attached_image": {
+                            "url": "https://img.devrant.io/devrant/rant/r_731665_BoGHq.jpg",
+                            "width": 505,
+                            "height": 476
+                        },
+                        "num_comments": 22,
+                        "tags": [
+                            "rm -rf",
+                            "linux",
+                            "fuck"
+                        ],
+                        "vote_state": 0,
+                        "edited": false,
+                        "user_id": 102959,
+                        "user_username": "LucaScorpion",
+                        "user_score": 3831,
+                        "user_avatar": {
+                            "b": "7bc8a4",
+                            "i": "v-17_c-3_b-1_g-m_9-1_1-2_16-15_3-3_8-3_7-3_5-3_12-2_6-36_10-9_2-36_15-20_18-4_4-3_19-3_20-6_21-2.jpg"
+                        },
+                        "user_dpp": 1
+                    }
+                ],
+                "upvoted": [
+                    {
+                        "id": 814409,
+                        "text": "Tomorrow I will be on a long train trip again so here goes!\n\nMy last train project is http://jsrant.com and people seem to enjoy it. Every time I am mentioned in a rant related to it people also mention the idea of a similar application but for in the terminal. So I intend to build that tomorrow.\n\nTo build the best thing for you I want to ask you some questions:\n\n- What operating system are you running?\n\n- Why (or how) would you like to use a devrant terminal reader?\n\n- Why would you NOT want to use a devrant terminal reader?\n\n- Would your use-case required obfuscated output? (Hiding it from someone)\n\n- If so, what formats do you use on a daily basis or are you most comfortable with?\n\n- Anything else you would like to mention or for me to consider?\n\nI will be developing the larger part of this tomorrow, but the sources will be made available to the public.",
+                        "score": 4,
+                        "created_time": 1504331967,
+                        "attached_image": "",
+                        "num_comments": 3,
+                        "tags": [
+                            "coverrant",
+                            "rantfuscator",
+                            "rantvelop",
+                            "rantinator",
+                            "names are hard"
+                        ],
+                        "vote_state": 0,
+                        "edited": false,
+                        "links": [
+                            {
+                                "type": "url",
+                                "url": "http://jsrant.com",
+                                "short_url": "http://jsrant.com",
+                                "title": "http://jsrant.com",
+                                "start": 86,
+                                "end": 103,
+                                "special": 1
+                            }
+                        ],
+                        "special": true,
+                        "user_id": 99671,
+                        "user_username": "ChappIO",
+                        "user_score": 4177,
+                        "user_avatar": {
+                            "b": "2a8b9d",
+                            "i": "v-17_c-3_b-4_g-m_9-1_1-1_16-3_3-1_8-4_7-4_5-3_12-1_6-4_2-92_15-16_18-4_4-3_19-3_20-7_21-2.jpg"
+                        },
+                        "user_dpp": 1
+                    },
+                    {
+                        "id": 805044,
+                        "text": "There was this project where a bunch a scripts had been running for three weeks analysing a bunch of fileshares. The project was in overrun and the analysis wasn't  anywhere near done. \n\nI was given complete isolation and a team of people who were instructed to do anything I needed. I had them replicate the data to as many machines as possible and I started scripting the analysis with some sample data. After half a day of collecting laptops, desktops and severs I transfered my scripts to those machines and ran the analysis in 5 hours. \n\nI felt like I saved the project.",
+                        "score": 10,
+                        "created_time": 1503929002,
+                        "attached_image": "",
+                        "num_comments": 0,
+                        "tags": [
+                            "late to the party",
+                            "wk65"
+                        ],
+                        "vote_state": 0,
+                        "edited": false,
+                        "user_id": 99671,
+                        "user_username": "ChappIO",
+                        "user_score": 4177,
+                        "user_avatar": {
+                            "b": "2a8b9d",
+                            "i": "v-17_c-3_b-4_g-m_9-1_1-1_16-3_3-1_8-4_7-4_5-3_12-1_6-4_2-92_15-16_18-4_4-3_19-3_20-7_21-2.jpg"
+                        },
+                        "user_dpp": 1
+                    }
+                ],
+                "comments": [
+                    {
+                        "id": 769281,
+                        "rant_id": 768728,
+                        "body": "Another option is put comments a field that won't be deserialized. But either way it's not a good idea.",
+                        "score": 0,
+                        "created_time": 1502451860,
+                        "vote_state": 0,
+                        "user_id": 102959,
+                        "user_username": "LucaScorpion",
+                        "user_score": 3831,
+                        "user_avatar": {
+                            "b": "7bc8a4",
+                            "i": "v-17_c-3_b-1_g-m_9-1_1-2_16-15_3-3_8-3_7-3_5-3_12-2_6-36_10-9_2-36_15-20_18-4_4-3_19-3_20-6_21-2.jpg"
+                        },
+                        "user_dpp": 1
+                    },
+                    {
+                        "id": 769277,
+                        "rant_id": 769071,
+                        "body": "Code as if your application is going to be used  for years.",
+                        "score": 7,
+                        "created_time": 1502451709,
+                        "vote_state": 0,
+                        "user_id": 102959,
+                        "user_username": "LucaScorpion",
+                        "user_score": 3831,
+                        "user_avatar": {
+                            "b": "7bc8a4",
+                            "i": "v-17_c-3_b-1_g-m_9-1_1-2_16-15_3-3_8-3_7-3_5-3_12-2_6-36_10-9_2-36_15-20_18-4_4-3_19-3_20-6_21-2.jpg"
+                        },
+                        "user_dpp": 1
+                    }
+                ],
+                "favorites": []
+            },
+            "counts": {
+                "rants": 60,
+                "upvoted": 5103,
+                "comments": 800,
+                "favorites": 36,
+                "collabs": 0
+            }
+        },
+        "avatar": {
+            "b": "7bc8a4",
+            "i": "v-17_c-1_b-1_g-m_9-1_1-2_16-15_3-3_8-3_7-3_5-3_12-2_6-36_10-9_2-36_15-20_18-4_4-3_19-3_20-6_21-2.png"
+        },
+        "dpp": 1
+    }
+}

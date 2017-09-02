@@ -6,13 +6,19 @@ import com.scorpiac.javarant.Rant;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Optional;
 
 public class RantResponse extends Response {
+    @JsonProperty
     private Rant rant;
-    @JsonProperty("comments")
+    @JsonProperty
     private List<Comment> comments;
 
-    public Rant getRant() {
+    public Optional<Rant> getRant() {
+        if (!isSuccess()) {
+            return Optional.empty();
+        }
+
         // Get the comments field.
         Field commentsField;
         try {
@@ -29,6 +35,6 @@ public class RantResponse extends Response {
             throw new IllegalStateException(e); // TODO
         }
 
-        return rant;
+        return Optional.of(rant);
     }
 }

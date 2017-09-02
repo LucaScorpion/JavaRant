@@ -3,7 +3,10 @@ package com.scorpiac.javarant;
 public enum Endpoint {
     API("/api"),
     API_DEVRANT(API, "devrant"),
-    RANTS(API_DEVRANT, "rants");
+    USER_ID(API, "get-user-id"),
+    USERS(API, "users"),
+    RANTS(API_DEVRANT, "rants")
+    ;
 
     private final String endpoint;
 

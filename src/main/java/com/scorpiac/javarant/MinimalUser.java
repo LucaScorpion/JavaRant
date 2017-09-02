@@ -1,12 +1,16 @@
 package com.scorpiac.javarant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.scorpiac.javarant.services.RequestHandler;
 
 import java.net.URI;
 
 public class MinimalUser {
+    @JsonProperty
     private int id;
+    @JsonProperty
     private String username;
+    @JsonProperty
     private int score;
 
     static MinimalUser create(int id, String username, int score) {
@@ -15,6 +19,10 @@ public class MinimalUser {
         user.username = username;
         user.score = score;
         return user;
+    }
+
+    void setId(int id) {
+        this.id = id;
     }
 
     @Override

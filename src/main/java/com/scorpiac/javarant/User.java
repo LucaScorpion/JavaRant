@@ -1,34 +1,23 @@
 package com.scorpiac.javarant;
 
-import com.scorpiac.javarant.services.RequestHandler;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 
 public class User extends MinimalUser {
+    @JsonProperty
     private String about;
+    @JsonProperty
     private String location;
+    @JsonProperty
     private String skills;
+    @JsonProperty
     private String github;
-    private List<Rant> rants;
-    private List<Rant> upvoted;
-    private List<Comment> comments;
-    private List<Rant> favorites;
-    private int rantsCount;
-    private int upvotedCount;
-    private int commentsCount;
-    private int favoritesCount;
-    private String avatar;
-
-    /**
-     * Get the link to the user's avatar.
-     *
-     * @return A link to the avatar.
-     */
-    public URI avatarLink() {
-        return RequestHandler.AVATARS_URI.resolve(avatar);
-    }
+    @JsonProperty
+    private String website;
+    @JsonProperty
+    private UserContent content;
 
     /**
      * Get information about the user.
@@ -67,12 +56,21 @@ public class User extends MinimalUser {
     }
 
     /**
+     * Get the user's website.
+     *
+     * @return The website.
+     */
+    public String getWebsite() {
+        return website;
+    }
+
+    /**
      * Get the rants that this user posted.
      *
      * @return The posted rants.
      */
     public List<Rant> getRants() {
-        return Collections.unmodifiableList(rants);
+        return Collections.unmodifiableList(content.content.rants);
     }
 
     /**
@@ -81,7 +79,7 @@ public class User extends MinimalUser {
      * @return The upvoted rants.
      */
     public List<Rant> getUpvoted() {
-        return Collections.unmodifiableList(upvoted);
+        return Collections.unmodifiableList(content.content.upvoted);
     }
 
     /**
@@ -90,7 +88,7 @@ public class User extends MinimalUser {
      * @return The posted comments.
      */
     public List<Comment> getComments() {
-        return Collections.unmodifiableList(comments);
+        return Collections.unmodifiableList(content.content.comments);
     }
 
     /**
@@ -99,7 +97,7 @@ public class User extends MinimalUser {
      * @return The favorite rants.
      */
     public List<Rant> getFavorites() {
-        return Collections.unmodifiableList(favorites);
+        return Collections.unmodifiableList(content.content.favorites);
     }
 
     /**
@@ -108,7 +106,7 @@ public class User extends MinimalUser {
      * @return The amount of posted rants.
      */
     public int getRantsCount() {
-        return rantsCount;
+        return content.counts.rants;
     }
 
     /**
@@ -117,7 +115,7 @@ public class User extends MinimalUser {
      * @return The amount of upvoted rants.
      */
     public int getUpvotedCount() {
-        return upvotedCount;
+        return content.counts.upvoted;
     }
 
     /**
@@ -126,7 +124,7 @@ public class User extends MinimalUser {
      * @return The amount of posted comments.
      */
     public int getCommentsCount() {
-        return commentsCount;
+        return content.counts.comments;
     }
 
     /**
@@ -135,6 +133,46 @@ public class User extends MinimalUser {
      * @return The amount of favorite rants.
      */
     public int getFavoritesCount() {
-        return favoritesCount;
+        return content.counts.favorites;
+    }
+
+    /**
+     * Get the amount of collabs that this user has posted.
+     *
+     * @return The amount of posted collabs.
+     */
+    public int getCollabsCount() {
+        return content.counts.collabs;
+    }
+
+    private static class UserContent {
+        @JsonProperty
+        private Content content;
+        @JsonProperty
+        private Counts counts;
+    }
+
+    private static class Content {
+        @JsonProperty
+        private List<Rant> rants;
+        @JsonProperty
+        private List<Rant> upvoted;
+        @JsonProperty
+        private List<Comment> comments;
+        @JsonProperty
+        private List<Rant> favorites;
+    }
+
+    private static class Counts {
+        @JsonProperty
+        private int rants;
+        @JsonProperty
+        private int upvoted;
+        @JsonProperty
+        private int comments;
+        @JsonProperty
+        private int favorites;
+        @JsonProperty
+        private int collabs;
     }
 }

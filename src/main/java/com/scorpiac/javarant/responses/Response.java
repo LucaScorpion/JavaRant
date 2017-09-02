@@ -1,7 +1,11 @@
 package com.scorpiac.javarant.responses;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 class Response {
+    @JsonProperty
     private boolean success;
+    @JsonProperty
     private String error;
 
     public boolean isSuccess() {
