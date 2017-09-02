@@ -3,5 +3,10 @@ package com.scorpiac.javarant;
 public enum Sort {
     ALGO,
     RECENT,
-    TOP
+    TOP;
+
+    @Override
+    public String toString() {
+        return name().toLowerCase();
+    }
 }
