@@ -3,7 +3,6 @@ package com.scorpiac.javarant;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.assertEquals;
@@ -19,26 +18,21 @@ public class DevRantIT extends ITHelper {
 
         Rant rant = devRant.getRant(686001).get();
 
-        assertEquals(rant.getId(), 686001);
-        assertEquals(rant.getText(), "I only just noticed this is on the git man page :P");
-        assertEquals(rant.getScore(), 84);
-        assertEquals(rant.getTags(), Arrays.asList("terminal", "manual", "git"));
-        assertEquals(rant.getVoteState(), VoteState.NONE);
+        validateRant(
+                rant,
+                686001,
+                "I only just noticed this is on the git man page :P",
+                84,
+                5,
+                "terminal", "manual", "git"
+        );
 
-        // Comments.
         assertEquals(rant.getCommentCount(), 5);
         assertEquals(rant.getComments().size(), 5);
         assertEquals(rant.getComments().get(0).getId(), 686175);
 
-        // Image.
-        assertEquals(rant.getImage().getWidth(), 530);
-        assertEquals(rant.getImage().getHeight(), 134);
-        assertEquals(rant.getImage().getLink(), "https://img.devrant.io/devrant/rant/r_686001_VfN7X.jpg");
-
-        // User.
-        assertEquals(rant.getUser().getId(), 102959);
-        assertEquals(rant.getUser().getUsername(), "LucaScorpion");
-        assertEquals(rant.getUser().getScore(), 3831);
+        validateImage(rant.getImage(), "https://img.devrant.io/devrant/rant/r_686001_VfN7X.jpg", 530, 134);
+        validateMinimalUser(rant.getUser(), 102959, "LucaScorpion", 3831);
     }
 
     @Test
@@ -65,20 +59,20 @@ public class DevRantIT extends ITHelper {
 
         User user = devRant.getUser("LucaScorpion").get();
 
-        assertEquals(user.getId(), 102959);
-        assertEquals(user.getUsername(), "LucaScorpion");
-        assertEquals(user.getScore(), 3831);
-        assertEquals(user.getAbout(), "Software developer, fanatic programmer, hardcore gamer, Linux lover.");
-        assertEquals(user.getLocation(), "Netherlands");
-        assertEquals(user.getSkills(), "C#, Java, PHP, Javascript, HTML, CSS, SQL, C++ (Arduino), Bash");
-        assertEquals(user.getGithub(), "LucaScorpion");
-        assertEquals(user.getWebsite(), "https://scorpiac.com");
-
-        // Counts.
-        assertEquals(user.getRantsCount(), 60);
-        assertEquals(user.getUpvotedCount(), 5103);
-        assertEquals(user.getCommentsCount(), 800);
-        assertEquals(user.getFavoritesCount(), 36);
-        assertEquals(user.getCollabsCount(), 0);
+        validateUser(user,
+                102959,
+                "LucaScorpion",
+                3831,
+                "Software developer, fanatic programmer, hardcore gamer, Linux lover.",
+                "Netherlands",
+                "C#, Java, PHP, Javascript, HTML, CSS, SQL, C++ (Arduino), Bash",
+                "LucaScorpion",
+                "https://scorpiac.com",
+                60,
+                5103,
+                800,
+                36,
+                0
+        );
     }
 }

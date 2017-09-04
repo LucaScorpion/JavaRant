@@ -3,9 +3,13 @@ package com.scorpiac.javarant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public abstract class RantContent {
+    @JsonProperty
     private int id;
+    @JsonProperty
     private int score;
+    @JsonProperty
     private VoteState voteState = VoteState.NONE;
+    @JsonProperty
     protected String text;
     @JsonProperty("attached_image")
     private Image image;

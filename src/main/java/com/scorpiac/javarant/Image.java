@@ -2,9 +2,11 @@ package com.scorpiac.javarant;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.net.URI;
+
 public class Image {
     @JsonProperty("url")
-    private String url;
+    private URI link;
     @JsonProperty("width")
     private int width;
     @JsonProperty("height")
@@ -12,12 +14,12 @@ public class Image {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Image && ((Image) obj).getLink().equals(url);
+        return obj instanceof Image && ((Image) obj).getLink().equals(link);
     }
 
     @Override
     public int hashCode() {
-        return url.hashCode();
+        return link.hashCode();
     }
 
     /**
@@ -25,8 +27,8 @@ public class Image {
      *
      * @return The image link.
      */
-    public String getLink() {
-        return url;
+    public URI getLink() {
+        return link;
     }
 
     /**

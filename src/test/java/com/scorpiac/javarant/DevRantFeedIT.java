@@ -1,5 +1,6 @@
 package com.scorpiac.javarant;
 
+import com.scorpiac.javarant.services.MockRequestHandler;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -11,6 +12,8 @@ import static org.testng.Assert.assertEquals;
 public class DevRantFeedIT extends ITHelper {
     @Test
     public void testGetRants() throws IOException {
+        devRant.setRequestHandler(new MockRequestHandler(server.port()));
+        
         server.stubFor(stubResponse(
                 get(urlPathEqualTo(Endpoint.RANTS.toString()))
                         .withQueryParam("limit", equalTo("4"))
@@ -19,7 +22,15 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-rants.json"
         ));
 
-        List<Rant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1).get();
+        List<MinimalRant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1).get();
         assertEquals(rants.size(), 4);
+
+        validateRant(rants.get(0),
+                814524,
+                "Too real...",
+                1,
+                3,
+                "tag one", "tag 2"
+        );
     }
 }

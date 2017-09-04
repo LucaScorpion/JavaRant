@@ -11,8 +11,8 @@
                 "width": 799,
                 "height": 336
             },
-            "num_comments": 0,
-            "tags": [],
+            "num_comments": 3,
+            "tags": ["tag one", "tag 2"],
             "vote_state": 0,
             "edited": false,
             "user_id": 759598,

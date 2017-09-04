@@ -14,7 +14,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 
-public class ITHelper {
+public abstract class ITHelper extends TestHelper {
     protected WireMockServer server;
     protected DevRant devRant;
 

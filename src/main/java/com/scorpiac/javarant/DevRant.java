@@ -28,13 +28,14 @@ public class DevRant {
     }
 
     public DevRant() {
+        feed = new DevRantFeed();
         INJECTOR.injectMembers(this);
-        feed = INJECTOR.getInstance(DevRantFeed.class);
     }
 
     @Inject
     void setRequestHandler(RequestHandler requestHandler) {
         this.requestHandler = requestHandler;
+        feed.setRequestHandler(requestHandler);
     }
 
     public DevRantFeed getFeed() {

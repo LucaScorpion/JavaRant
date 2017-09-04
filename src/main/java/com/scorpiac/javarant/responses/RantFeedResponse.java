@@ -1,18 +1,18 @@
 package com.scorpiac.javarant.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.scorpiac.javarant.MinimalRant;
 import com.scorpiac.javarant.News;
-import com.scorpiac.javarant.Rant;
 
 import java.util.List;
 
-public class RantsResponse extends Response {
+public class RantFeedResponse extends Response {
     @JsonProperty
-    private List<Rant> rants;
+    private List<MinimalRant> rants;
     @JsonProperty
     private News news;
 
-    public List<Rant> getRants() {
+    public List<MinimalRant> getRants() {
         return rants;
     }
 }
