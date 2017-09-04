@@ -41,16 +41,34 @@ public class DevRant {
         return feed;
     }
 
+    /**
+     * Get a rant.
+     *
+     * @param id The id of the rant.
+     * @return The rant.
+     */
     public Optional<Rant> getRant(int id) {
         return requestHandler.get(Endpoint.RANTS.toString() + '/' + id, RantResponse.class)
                 .flatMap(RantResponse::getRant);
     }
 
+    /**
+     * Get a user by username.
+     *
+     * @param username The username of the user.
+     * @return The user.
+     */
     public Optional<User> getUser(String username) {
         return requestHandler.get(Endpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username))
                 .flatMap(u -> getUser(u.getId()));
     }
 
+    /**
+     * Get a user.
+     *
+     * @param id The id of the user.
+     * @return The user.
+     */
     public Optional<User> getUser(int id) {
         Optional<User> user = requestHandler.get(Endpoint.USERS.toString() + '/' + id, UserResponse.class)
                 .flatMap(UserResponse::getUser);
@@ -75,5 +93,23 @@ public class DevRant {
      */
     public boolean isLoggedIn() {
         return auth != null;
+    }
+
+    /**
+     * Set the request timeout in milliseconds, -1 meaning no timeout.
+     *
+     * @param timeout The timeout to use.
+     */
+    public void setRequestTimeout(int timeout) {
+        requestHandler.setRequestTimeout(timeout);
+    }
+
+    /**
+     * Get the request timeout in milliseconds.
+     *
+     * @return The timeout.
+     */
+    public int getRequestTimeout() {
+        return requestHandler.getRequestTimeout();
     }
 }
