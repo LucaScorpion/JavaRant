@@ -12,7 +12,7 @@ JavaRant is available on [Maven](http://mvnrepository.com/artifact/com.scorpiac.
 <dependency>
 	<groupId>com.scorpiac.javarant</groupId>
 	<artifactId>javarant</artifactId>
-	<version>1.3</version>
+	<version>2.0.0</version>
 </dependency>
 ```
 
