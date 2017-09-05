@@ -12,6 +12,11 @@ pipeline {
                 mvn 'install'
             }
         }
+        stage('Results') {
+            steps {
+                junit '**/target/*-reports/TEST-*.xml'
+            }
+        }
     }
 }
 
