@@ -51,7 +51,7 @@ public class DevRant {
      */
     public Optional<CommentedRant> getRant(int id) {
         return requestHandler.get(Endpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class)
-                .flatMap(CommentedRantResponse::getRant);
+                .map(CommentedRantResponse::getRant);
     }
 
     /**
@@ -73,7 +73,7 @@ public class DevRant {
      */
     public Optional<User> getUser(int id) {
         Optional<User> user = requestHandler.get(Endpoint.USERS.toString() + '/' + id, UserResponse.class)
-                .flatMap(UserResponse::getUser);
+                .map(UserResponse::getUser);
 
         // Set the id, as that is not part of the response.
         user.ifPresent(u -> u.setId(id));
@@ -88,7 +88,7 @@ public class DevRant {
      */
     public Optional<Rant> getSurprise() {
         return requestHandler.get(Endpoint.SURPRISE, RantResponse.class)
-                .flatMap(RantResponse::getRant);
+                .map(RantResponse::getRant);
     }
 
     /**

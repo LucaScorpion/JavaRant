@@ -77,6 +77,17 @@ public class DevRantIT extends ITHelper {
     }
 
     @Test
+    public void testGetUserByUsernameInvalid() throws IOException {
+        server.stubFor(stubResponse(
+                get(urlPathEqualTo(Endpoint.USER_ID.toString()))
+                        .withQueryParam("username", equalTo("invalid")),
+                "/user-id-invalid.json"
+        ));
+
+        assertFalse(devRant.getUser("invalid").isPresent());
+    }
+
+    @Test
     public void testGetSurprise() throws IOException {
         server.stubFor(stubResponse(
                 get(urlPathEqualTo(Endpoint.SURPRISE.toString())),

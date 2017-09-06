@@ -2,7 +2,7 @@ package com.scorpiac.javarant.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class Response {
+public class Response {
     @JsonProperty
     private boolean success;
     @JsonProperty

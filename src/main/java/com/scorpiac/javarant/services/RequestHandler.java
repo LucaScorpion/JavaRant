@@ -1,6 +1,7 @@
 package com.scorpiac.javarant.services;
 
 import com.scorpiac.javarant.Endpoint;
+import com.scorpiac.javarant.responses.Response;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
@@ -35,19 +36,19 @@ public class RequestHandler {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
-    public <T> Optional<T> get(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T extends Response> Optional<T> get(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
         return get(endpoint.toString(), clazz, params);
     }
 
-    public <T> Optional<T> get(String endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T extends Response> Optional<T> get(String endpoint, Class<T> clazz, NameValuePair... params) {
         return handleRequest(buildRequest(endpoint, Request::Get, params), clazz);
     }
 
-    public <T> Optional<T> post(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T extends Response> Optional<T> post(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
         return post(endpoint, clazz, params);
     }
 
-    public <T> Optional<T> post(String endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T extends Response> Optional<T> post(String endpoint, Class<T> clazz, NameValuePair... params) {
         return handleRequest(buildRequest(endpoint, Request::Post, params), clazz);
     }
 
@@ -90,14 +91,21 @@ public class RequestHandler {
      * @param <T>     The type of the class to map the response to.
      * @return The mapped response.
      */
-    private <T> Optional<T> handleRequest(Request request, Class<T> clazz) {
-        // Execute the request and handle the response.
+    private <T extends Response> Optional<T> handleRequest(Request request, Class<T> clazz) {
+        T response;
         try {
-            return Optional.of(request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz)));
+            response = request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz));
         } catch (IOException e) {
             LOGGER.error("Failed to execute request.", e);
+            return Optional.empty();
         }
-        return Optional.empty();
+
+        // Check if there was an error.
+        if (response.getError() != null) {
+            LOGGER.error("A devRant API error occurred: " + response.getError());
+        }
+
+        return response.isSuccess() ? Optional.of(response) : Optional.empty();
     }
 
     /**
