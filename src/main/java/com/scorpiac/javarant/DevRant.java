@@ -2,6 +2,7 @@ package com.scorpiac.javarant;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.scorpiac.javarant.responses.CommentedRantResponse;
 import com.scorpiac.javarant.responses.RantResponse;
 import com.scorpiac.javarant.responses.UserIdResponse;
 import com.scorpiac.javarant.responses.UserResponse;
@@ -49,8 +50,8 @@ public class DevRant {
      * @return The rant.
      */
     public Optional<CommentedRant> getRant(int id) {
-        return requestHandler.get(Endpoint.RANTS.toString() + '/' + id, RantResponse.class)
-                .flatMap(RantResponse::getRant);
+        return requestHandler.get(Endpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class)
+                .flatMap(CommentedRantResponse::getRant);
     }
 
     /**
@@ -78,6 +79,16 @@ public class DevRant {
         user.ifPresent(u -> u.setId(id));
 
         return user;
+    }
+
+    /**
+     * Get a random rant.
+     *
+     * @return A random rant.
+     */
+    public Optional<Rant> getSurprise() {
+        return requestHandler.get(Endpoint.SURPRISE, RantResponse.class)
+                .flatMap(RantResponse::getRant);
     }
 
     /**

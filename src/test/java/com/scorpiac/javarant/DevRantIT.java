@@ -75,4 +75,33 @@ public class DevRantIT extends ITHelper {
                 0
         );
     }
+
+    @Test
+    public void testGetSurprise() throws IOException {
+        server.stubFor(stubResponse(
+                get(urlPathEqualTo(Endpoint.SURPRISE.toString())),
+                "/rant-surprise.json"
+        ));
+
+        Rant rant = devRant.getSurprise().get();
+
+        validateRant(rant,
+                26356,
+                "Life of a software engineer.",
+                91,
+                1
+        );
+
+        validateMinimalUser(rant.getUser(),
+                18401,
+                "nhpace",
+                218
+        );
+
+        validateImage(rant.getImage(),
+                "https://img.devrant.io/devrant/rant/r_26356_N2S4f.jpg",
+                504,
+                381
+        );
+    }
 }
