@@ -48,7 +48,7 @@ public class DevRant {
      * @param id The id of the rant.
      * @return The rant.
      */
-    public Optional<Rant> getRant(int id) {
+    public Optional<CommentedRant> getRant(int id) {
         return requestHandler.get(Endpoint.RANTS.toString() + '/' + id, RantResponse.class)
                 .flatMap(RantResponse::getRant);
     }

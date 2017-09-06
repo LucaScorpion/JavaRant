@@ -69,7 +69,7 @@ public class User extends MinimalUser {
      *
      * @return The posted rants.
      */
-    public List<Rant> getRants() {
+    public List<CommentedRant> getRants() {
         return Collections.unmodifiableList(content.content.rants);
     }
 
@@ -78,7 +78,7 @@ public class User extends MinimalUser {
      *
      * @return The upvoted rants.
      */
-    public List<Rant> getUpvoted() {
+    public List<CommentedRant> getUpvoted() {
         return Collections.unmodifiableList(content.content.upvoted);
     }
 
@@ -96,7 +96,7 @@ public class User extends MinimalUser {
      *
      * @return The favorite rants.
      */
-    public List<Rant> getFavorites() {
+    public List<CommentedRant> getFavorites() {
         return Collections.unmodifiableList(content.content.favorites);
     }
 
@@ -154,13 +154,13 @@ public class User extends MinimalUser {
 
     private static class Content {
         @JsonProperty
-        private List<Rant> rants;
+        private List<CommentedRant> rants;
         @JsonProperty
-        private List<Rant> upvoted;
+        private List<CommentedRant> upvoted;
         @JsonProperty
         private List<Comment> comments;
         @JsonProperty
-        private List<Rant> favorites;
+        private List<CommentedRant> favorites;
     }
 
     private static class Counts {

@@ -2,7 +2,7 @@ package com.scorpiac.javarant.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.scorpiac.javarant.Comment;
-import com.scorpiac.javarant.Rant;
+import com.scorpiac.javarant.CommentedRant;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -10,11 +10,11 @@ import java.util.Optional;
 
 public class RantResponse extends Response {
     @JsonProperty
-    private Rant rant;
+    private CommentedRant rant;
     @JsonProperty
     private List<Comment> comments;
 
-    public Optional<Rant> getRant() {
+    public Optional<CommentedRant> getRant() {
         if (!isSuccess()) {
             return Optional.empty();
         }

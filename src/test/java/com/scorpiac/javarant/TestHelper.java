@@ -12,7 +12,7 @@ public abstract class TestHelper {
         assertEquals(rant.getScore(), score);
     }
 
-    public void validateRant(MinimalRant rant, int id, String text, int score, int commentCount, String... tags) {
+    public void validateRant(Rant rant, int id, String text, int score, int commentCount, String... tags) {
         validateRantContent(rant, id, text, score);
 
         assertEquals(rant.getCommentCount(), commentCount);

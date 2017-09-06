@@ -1,6 +1,6 @@
 package com.scorpiac.javarant;
 
-public class Collab extends Rant {
+public class Collab extends CommentedRant {
     private String projectType;
     private String description;
     private String techStack;

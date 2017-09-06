@@ -16,7 +16,7 @@ public class DevRantFeed {
         this.requestHandler = requestHandler;
     }
 
-    public Optional<List<MinimalRant>> getRants(Sort sort, int limit, int skip) {
+    public Optional<List<Rant>> getRants(Sort sort, int limit, int skip) {
         return requestHandler.get(Endpoint.RANTS, RantFeedResponse.class,
                 new BasicNameValuePair("sort", sort.toString()),
                 new BasicNameValuePair("limit", String.valueOf(limit)),

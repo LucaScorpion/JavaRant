@@ -16,7 +16,7 @@ public class DevRantIT extends ITHelper {
                 "/rant-686001.json"
         ));
 
-        Rant rant = devRant.getRant(686001).get();
+        CommentedRant rant = devRant.getRant(686001).get();
 
         validateRant(
                 rant,

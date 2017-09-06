@@ -22,7 +22,7 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-rants.json"
         ));
 
-        List<MinimalRant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1).get();
+        List<Rant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1).get();
         assertEquals(rants.size(), 4);
 
         validateRant(rants.get(0),
