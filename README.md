@@ -34,5 +34,5 @@ Optional<CommentedRant> rant = devRant.getRant(686001);
 Optional<User> me = devRant.getUser("LucaScorpion");
 
 // Get the 10 newest rants.
-List<Rant> recent = devRant.getFeed().getRants(Sort.RECENT);
+Optional<List<Rant>> recent = devRant.getFeed().getRants(Sort.RECENT);
 ```

@@ -5,8 +5,8 @@ public enum Endpoint {
     API_DEVRANT(API, "devrant"),
     USER_ID(API, "get-user-id"),
     USERS(API, "users"),
-    RANTS(API_DEVRANT, "rants")
-    ;
+    RANTS(API_DEVRANT, "rants"),
+    SEARCH(API_DEVRANT, "search");
 
     private final String endpoint;
 
