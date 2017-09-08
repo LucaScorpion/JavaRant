@@ -14,10 +14,13 @@ public class DevRantFeed {
         this.devRant = devRant;
     }
 
-    public Optional<List<Rant>> getRants(Sort sort) {
-        return getRants(sort, 20, 0);
-    }
-
+    /**
+     * Get rants from the feed.
+     *
+     * @param sort  How to sort the feed.
+     * @param limit How many rants to get.
+     * @return Rants from the feed.
+     */
     public Optional<List<Rant>> getRants(Sort sort, int limit) {
         return getRants(sort, limit, 0);
     }

@@ -1,15 +1,14 @@
 package com.scorpiac.javarant;
 
-class Auth {
-    private String id;
-    private String key;
-    private String userId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    Auth(String id, String key, String userId) {
-        this.id = id;
-        this.key = key;
-        this.userId = userId;
-    }
+public class Auth {
+    @JsonProperty
+    private String id;
+    @JsonProperty
+    private String key;
+    @JsonProperty("user_id")
+    private String userId;
 
     String getId() {
         return id;

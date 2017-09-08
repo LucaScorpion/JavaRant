@@ -3,11 +3,14 @@ package com.scorpiac.javarant;
 public enum Endpoint {
     API("/api"),
     API_DEVRANT(API, "devrant"),
-    USER_ID(API, "get-user-id"),
-    USERS(API, "users"),
+    // Rants.
     RANTS(API_DEVRANT, "rants"),
     SEARCH(API_DEVRANT, "search"),
-    SURPRISE(RANTS, "surprise");
+    SURPRISE(RANTS, "surprise"),
+    // Users.
+    USER_ID(API, "get-user-id"),
+    USERS(API, "users"),
+    AUTH_TOKEN(USERS, "auth-token");
 
     private final String endpoint;
 

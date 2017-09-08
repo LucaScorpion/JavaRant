@@ -2,10 +2,8 @@ package com.scorpiac.javarant;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.scorpiac.javarant.responses.CommentedRantResponse;
-import com.scorpiac.javarant.responses.RantResponse;
-import com.scorpiac.javarant.responses.UserIdResponse;
-import com.scorpiac.javarant.responses.UserResponse;
+import com.scorpiac.javarant.exceptions.AuthenticationException;
+import com.scorpiac.javarant.responses.*;
 import com.scorpiac.javarant.services.RequestHandler;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -92,6 +90,34 @@ public class DevRant {
     public Optional<Rant> getSurprise() {
         return requestHandler.get(Endpoint.SURPRISE, RantResponse.class)
                 .map(RantResponse::getRant);
+    }
+
+    /**
+     * Log in to devRant.
+     * Note that this method will clear the characters from the password array.
+     *
+     * @param username The username.
+     * @param password The password.
+     * @throws AuthenticationException If the credentials are invalid.
+     */
+    public void login(String username, char[] password) throws AuthenticationException {
+        Optional<AuthResponse> response = requestHandler.post(Endpoint.AUTH_TOKEN, AuthResponse.class,
+                new BasicNameValuePair("username", username),
+                new BasicNameValuePair("password", String.valueOf(password))
+        );
+
+        // Clear the password.
+        for (int i = 0; i < password.length; i++) {
+            password[i] = 0;
+        }
+
+        // Check for success.
+        AuthResponse authResponse = response.orElseThrow(AuthenticationException::new);
+        if (!authResponse.isSuccess()) {
+            throw new AuthenticationException();
+        }
+
+        auth = authResponse.getAuth();
     }
 
     /**
