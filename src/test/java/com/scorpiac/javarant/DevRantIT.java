@@ -36,13 +36,23 @@ public class DevRantIT extends ITHelper {
     }
 
     @Test
-    public void testGetInvalidRant() throws IOException {
+    public void testGetRantInvalid() throws IOException {
         server.stubFor(stubResponse(
                 get(urlPathEqualTo(Endpoint.RANTS.toString() + "/0")),
                 "/rant-invalid.json"
         ));
 
         assertFalse(devRant.getRant(0).isPresent());
+    }
+
+    @Test
+    public void testGetRantServerError() throws IOException {
+        server.stubFor(
+                get(urlPathEqualTo(Endpoint.RANTS.toString() + "/123456"))
+                        .willReturn(serverError().withBody("An unknown error occurred."))
+        );
+
+        assertFalse(devRant.getRant(123456).isPresent());
     }
 
     @Test
