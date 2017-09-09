@@ -2,7 +2,6 @@ package com.scorpiac.javarant;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.scorpiac.javarant.exceptions.AuthenticationException;
 import com.scorpiac.javarant.responses.*;
 import com.scorpiac.javarant.services.RequestHandler;
 import org.apache.http.message.BasicNameValuePair;
@@ -17,7 +16,8 @@ public class DevRant {
     static final String RANT_URL = "/rants";
     static final String COLLAB_URL = "/collabs";
 
-    private final DevRantFeed feed;
+    private final DevRantFeed devRantFeed;
+    private final DevRantAuth devRantAuth;
 
     private RequestHandler requestHandler;
     private Auth auth;
@@ -28,7 +28,8 @@ public class DevRant {
 
     public DevRant() {
         INJECTOR.injectMembers(this);
-        feed = new DevRantFeed(this);
+        devRantFeed = new DevRantFeed(this);
+        devRantAuth = new DevRantAuth(this);
     }
 
     @Inject
@@ -40,8 +41,28 @@ public class DevRant {
         return requestHandler;
     }
 
+    /**
+     * Access the devRant feed.
+     *
+     * @return A devRant feed class.
+     */
     public DevRantFeed getFeed() {
-        return feed;
+        return devRantFeed;
+    }
+
+    /**
+     * Access the user's authenticated devRant.
+     * Trying to access this when the user is not logged in will throw an {@link IllegalStateException}.
+     *
+     * @return An authenticated devRant class.
+     */
+    public DevRantAuth getAuth() {
+        // Check if the user is logged in.
+        if (!isLoggedIn()) {
+            throw new IllegalStateException("The user must be logged in to access the DevRantAuth.");
+        }
+
+        return devRantAuth;
     }
 
     /**
@@ -93,14 +114,16 @@ public class DevRant {
     }
 
     /**
-     * Log in to devRant.
+     * Log in to devRant. When a user is already logged in, they will be logged out first.
      * Note that this method will clear the characters from the password array.
      *
      * @param username The username.
      * @param password The password.
-     * @throws AuthenticationException If the credentials are invalid.
+     * @return {@code true} if the user was successfully logged in, or {@code false} otherwise.
      */
-    public void login(String username, char[] password) throws AuthenticationException {
+    public boolean login(String username, char[] password) {
+        logout();
+
         Optional<AuthResponse> response = requestHandler.post(Endpoint.AUTH_TOKEN, AuthResponse.class,
                 new BasicNameValuePair("username", username),
                 new BasicNameValuePair("password", String.valueOf(password))
@@ -111,13 +134,8 @@ public class DevRant {
             password[i] = 0;
         }
 
-        // Check for success.
-        AuthResponse authResponse = response.orElseThrow(AuthenticationException::new);
-        if (!authResponse.isSuccess()) {
-            throw new AuthenticationException();
-        }
-
-        auth = authResponse.getAuth();
+        response.ifPresent(r -> auth = r.getAuth());
+        return isLoggedIn();
     }
 
     /**

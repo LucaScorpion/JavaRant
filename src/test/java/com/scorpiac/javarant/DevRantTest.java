@@ -14,4 +14,9 @@ public class DevRantTest {
         assertFalse(devRant.isLoggedIn());
         devRant.logout();
     }
+
+    @Test(expectedExceptions = IllegalStateException.class)
+    public void testGetAuthNotLoggedIn() {
+        new DevRant().getAuth();
+    }
 }
