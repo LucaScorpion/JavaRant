@@ -32,7 +32,7 @@ public class RequestHandler {
     private int timeout = 15000;
 
     @Inject
-    public RequestHandler(ObjectMapperResponseHandlerFactory responseHandlerFactory) {
+    RequestHandler(ObjectMapperResponseHandlerFactory responseHandlerFactory) {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 

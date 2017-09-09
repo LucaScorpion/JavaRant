@@ -8,11 +8,11 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 @Singleton
-public class ObjectMapperResponseHandlerFactory {
+class ObjectMapperResponseHandlerFactory {
     private final ObjectMapperService mapperService;
 
     @Inject
-    public ObjectMapperResponseHandlerFactory(ObjectMapperService mapperService) {
+    ObjectMapperResponseHandlerFactory(ObjectMapperService mapperService) {
         this.mapperService = mapperService;
     }
 
@@ -23,7 +23,7 @@ public class ObjectMapperResponseHandlerFactory {
      * @param <T>   The type of the class to map the response to.
      * @return A response handler.
      */
-    public <T> ResponseHandler<T> getResponseHandler(Class<T> clazz) {
+    <T> ResponseHandler<T> getResponseHandler(Class<T> clazz) {
         return response -> {
             InputStream stream = response.getEntity().getContent();
             String content = streamToString(stream);

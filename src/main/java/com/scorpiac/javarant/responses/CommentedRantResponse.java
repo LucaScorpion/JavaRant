@@ -19,7 +19,8 @@ public class CommentedRantResponse extends Response {
         try {
             commentsField = rant.getClass().getDeclaredField("comments");
         } catch (NoSuchFieldException e) {
-            throw new IllegalStateException(e); // TODO
+            // This never happens.
+            throw new IllegalStateException("Could not get comments field from rant.", e);
         }
 
         // Set the comments field.
@@ -27,7 +28,8 @@ public class CommentedRantResponse extends Response {
         try {
             commentsField.set(rant, comments);
         } catch (IllegalAccessException e) {
-            throw new IllegalStateException(e); // TODO
+            // This never happens.
+            throw new IllegalStateException("Could not set comments field on rant.", e);
         }
 
         return rant;

@@ -12,7 +12,7 @@ class LogFactory {
      *
      * @return A logger.
      */
-    public static Logger getLog() {
+    static Logger getLog() {
         return LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
     }
 }

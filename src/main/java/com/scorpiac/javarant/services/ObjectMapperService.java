@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.inject.Singleton;
 
 @Singleton
-public class ObjectMapperService {
+class ObjectMapperService {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     static {
@@ -21,7 +21,7 @@ public class ObjectMapperService {
      *
      * @return The object mapper.
      */
-    public ObjectMapper getMapper() {
+    ObjectMapper getMapper() {
         return MAPPER;
     }
 }
