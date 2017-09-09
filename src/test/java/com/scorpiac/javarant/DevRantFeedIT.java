@@ -12,7 +12,7 @@ public class DevRantFeedIT extends ITHelper {
     @Test
     public void testGetRants() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(Endpoint.RANTS.toString()))
+                get(urlPathEqualTo(ApiEndpoint.RANTS.toString()))
                         .withQueryParam("limit", equalTo("4"))
                         .withQueryParam("skip", equalTo("1"))
                         .withQueryParam("sort", equalTo("recent")),
@@ -34,7 +34,7 @@ public class DevRantFeedIT extends ITHelper {
     @Test
     public void testSearch() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(Endpoint.SEARCH.toString()))
+                get(urlPathEqualTo(ApiEndpoint.SEARCH.toString()))
                         .withQueryParam("term", equalTo("wtf")),
                 "/search-wtf.json"
         ));

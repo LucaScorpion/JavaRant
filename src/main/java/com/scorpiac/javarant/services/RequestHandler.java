@@ -1,6 +1,6 @@
 package com.scorpiac.javarant.services;
 
-import com.scorpiac.javarant.Endpoint;
+import com.scorpiac.javarant.ApiEndpoint;
 import com.scorpiac.javarant.responses.Response;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
@@ -36,7 +36,7 @@ public class RequestHandler {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
-    public <T extends Response> Optional<T> get(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T extends Response> Optional<T> get(ApiEndpoint endpoint, Class<T> clazz, NameValuePair... params) {
         return get(endpoint.toString(), clazz, params);
     }
 
@@ -47,7 +47,7 @@ public class RequestHandler {
         );
     }
 
-    public <T extends Response> Optional<T> post(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T extends Response> Optional<T> post(ApiEndpoint endpoint, Class<T> clazz, NameValuePair... params) {
         return post(endpoint.toString(), clazz, params);
     }
 

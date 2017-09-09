@@ -1,6 +1,6 @@
 package com.scorpiac.javarant;
 
-public enum Endpoint {
+public enum ApiEndpoint {
     API("/api"),
     API_DEVRANT(API, "devrant"),
     // Rants.
@@ -14,11 +14,11 @@ public enum Endpoint {
 
     private final String endpoint;
 
-    Endpoint(String endpoint) {
+    ApiEndpoint(String endpoint) {
         this.endpoint = endpoint;
     }
 
-    Endpoint(Endpoint base, String endpoint) {
+    ApiEndpoint(ApiEndpoint base, String endpoint) {
         this(base.toString() + '/' + endpoint);
     }
 

@@ -34,7 +34,7 @@ public class DevRantFeed {
      * @return Rants from the feed.
      */
     public Optional<List<Rant>> getRants(Sort sort, int limit, int skip) {
-        return devRant.getRequestHandler().get(Endpoint.RANTS, RantFeedResponse.class,
+        return devRant.getRequestHandler().get(ApiEndpoint.RANTS, RantFeedResponse.class,
                 new BasicNameValuePair("sort", sort.toString()),
                 new BasicNameValuePair("limit", String.valueOf(limit)),
                 new BasicNameValuePair("skip", String.valueOf(skip))
@@ -49,7 +49,7 @@ public class DevRantFeed {
      * @return The search results.
      */
     public Optional<List<Rant>> search(String term) {
-        return devRant.getRequestHandler().get(Endpoint.SEARCH, ResultsFeedResponse.class,
+        return devRant.getRequestHandler().get(ApiEndpoint.SEARCH, ResultsFeedResponse.class,
                 new BasicNameValuePair("term", term)
         )
                 .map(ResultsFeedResponse::getResults);

@@ -12,10 +12,6 @@ import java.util.Optional;
 public class DevRant {
     private static final Injector INJECTOR;
 
-    static final String USER_URL = "/users";
-    static final String RANT_URL = "/rants";
-    static final String COLLAB_URL = "/collabs";
-
     private final DevRantFeed devRantFeed;
     private final DevRantAuth devRantAuth;
 
@@ -72,7 +68,7 @@ public class DevRant {
      * @return The rant.
      */
     public Optional<CommentedRant> getRant(int id) {
-        return requestHandler.get(Endpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class)
+        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class)
                 .map(CommentedRantResponse::getRant);
     }
 
@@ -83,7 +79,7 @@ public class DevRant {
      * @return The user.
      */
     public Optional<User> getUser(String username) {
-        return requestHandler.get(Endpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username))
+        return requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username))
                 .flatMap(u -> getUser(u.getId()));
     }
 
@@ -94,7 +90,7 @@ public class DevRant {
      * @return The user.
      */
     public Optional<User> getUser(int id) {
-        Optional<User> user = requestHandler.get(Endpoint.USERS.toString() + '/' + id, UserResponse.class)
+        Optional<User> user = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class)
                 .map(UserResponse::getUser);
 
         // Set the id, as that is not part of the response.
@@ -109,7 +105,7 @@ public class DevRant {
      * @return A random rant.
      */
     public Optional<Rant> getSurprise() {
-        return requestHandler.get(Endpoint.SURPRISE, RantResponse.class)
+        return requestHandler.get(ApiEndpoint.SURPRISE, RantResponse.class)
                 .map(RantResponse::getRant);
     }
 
@@ -124,7 +120,7 @@ public class DevRant {
     public boolean login(String username, char[] password) {
         logout();
 
-        Optional<AuthResponse> response = requestHandler.post(Endpoint.AUTH_TOKEN, AuthResponse.class,
+        Optional<AuthResponse> response = requestHandler.post(ApiEndpoint.AUTH_TOKEN, AuthResponse.class,
                 new BasicNameValuePair("username", username),
                 new BasicNameValuePair("password", String.valueOf(password))
         );
