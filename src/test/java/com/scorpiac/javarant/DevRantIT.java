@@ -5,13 +5,12 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.*;
 
 public class DevRantIT extends ITHelper {
     @Test
     public void testGetRant() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.RANTS.toString() + "/686001")),
                 "/rant-686001.json"
         ));
@@ -37,7 +36,7 @@ public class DevRantIT extends ITHelper {
 
     @Test
     public void testGetRantInvalid() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.RANTS.toString() + "/0")),
                 "/rant-invalid.json"
         ));
@@ -57,12 +56,12 @@ public class DevRantIT extends ITHelper {
 
     @Test
     public void testGetUserByUsername() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.USER_ID.toString()))
                         .withQueryParam("username", equalTo("LucaScorpion")),
                 "/user-id-LucaScorpion.json"
         ));
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.USERS.toString() + "/102959")),
                 "/user-102959.json"
         ));
@@ -88,7 +87,7 @@ public class DevRantIT extends ITHelper {
 
     @Test
     public void testGetUserByUsernameInvalid() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.USER_ID.toString()))
                         .withQueryParam("username", equalTo("invalid")),
                 "/user-id-invalid.json"
@@ -99,7 +98,7 @@ public class DevRantIT extends ITHelper {
 
     @Test
     public void testGetUserInvalid() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.USERS.toString() + "/123")),
                 "/user-id-invalid.json"
         ));
@@ -109,7 +108,7 @@ public class DevRantIT extends ITHelper {
 
     @Test
     public void testGetSurprise() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.SURPRISE.toString())),
                 "/rant-surprise.json"
         ));
@@ -134,5 +133,23 @@ public class DevRantIT extends ITHelper {
                 504,
                 381
         );
+    }
+
+    @Test
+    public void testLogin() throws IOException {
+        server.stubFor(stubPost(
+                post(urlPathEqualTo(Endpoint.AUTH_TOKEN.toString()))
+                        .withRequestBody(equalTo("username=LucaScorpion&password=5up3r53cr3tp455w0rd&app=3&plat=3")),
+                "/auth-token.json"
+        ));
+
+        char[] password = "5up3r53cr3tp455w0rd".toCharArray();
+        assertTrue(devRant.login("LucaScorpion", password));
+        assertNotNull(devRant.getAuth());
+
+        // Ensure the password array is cleared.
+        for (char c : password) {
+            assertEquals(c, 0);
+        }
     }
 }

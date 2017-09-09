@@ -41,15 +41,21 @@ public class RequestHandler {
     }
 
     public <T extends Response> Optional<T> get(String endpoint, Class<T> clazz, NameValuePair... params) {
-        return handleRequest(buildRequest(endpoint, Request::Get, params), clazz);
+        return handleRequest(
+                buildRequest(endpoint, Request::Get, getParameters(params)),
+                clazz
+        );
     }
 
     public <T extends Response> Optional<T> post(Endpoint endpoint, Class<T> clazz, NameValuePair... params) {
-        return post(endpoint, clazz, params);
+        return post(endpoint.toString(), clazz, params);
     }
 
     public <T extends Response> Optional<T> post(String endpoint, Class<T> clazz, NameValuePair... params) {
-        return handleRequest(buildRequest(endpoint, Request::Post, params), clazz);
+        return handleRequest(
+                buildRequest(endpoint, Request::Post, Collections.emptyList()).bodyForm(getParameters(params)),
+                clazz
+        );
     }
 
     /**
@@ -60,17 +66,16 @@ public class RequestHandler {
      * @param params          The request parameters.
      * @return A request.
      */
-    private Request buildRequest(String endpoint, Function<URI, Request> requestFunction, NameValuePair... params) {
+    private Request buildRequest(String endpoint, Function<URI, Request> requestFunction, List<NameValuePair> params) {
         URI uri;
 
         try {
             // Build the URI.
             uri = new URIBuilder(resolve(endpoint))
-                    .addParameters(getParameters(params))
+                    .addParameters(params)
                     .build();
         } catch (URISyntaxException e) {
             // This never happens.
-            LOGGER.error("Could not build URI.", e);
             throw new IllegalArgumentException("Could not build URI.", e);
         }
 
@@ -116,8 +121,14 @@ public class RequestHandler {
      * @return A list containing the given parameters, and the default parameters.
      */
     private List<NameValuePair> getParameters(NameValuePair... params) {
-        List<NameValuePair> paramList = new ArrayList<>(params.length + 6);
-        paramList.addAll(Arrays.stream(params).filter(Objects::nonNull).collect(Collectors.toList()));
+        List<NameValuePair> paramList = new ArrayList<>();
+
+        // Add all non-null parameters.
+        paramList.addAll(
+                Arrays.stream(params)
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toList())
+        );
 
         // Add the parameters which always need to be present.
         paramList.add(new BasicNameValuePair("app", APP_ID));

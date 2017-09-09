@@ -40,15 +40,18 @@ public abstract class ITHelper extends TestHelper {
         server.resetAll();
     }
 
-    protected MappingBuilder stubResponse(MappingBuilder stub, String resource) throws IOException {
+    protected MappingBuilder stubGet(MappingBuilder stub, String resource) throws IOException {
+        return stubPost(stub, resource)
+                .withQueryParam("app", equalTo("3"))
+                .withQueryParam("plat", equalTo("3"));
+    }
+
+    protected MappingBuilder stubPost(MappingBuilder stub, String resource) throws IOException {
         String responseString;
         try (Scanner scanner = new Scanner(getClass().getResourceAsStream(resource))) {
             responseString = scanner.useDelimiter("\\A").next();
         }
 
-        return stub
-                .withQueryParam("app", equalTo("3"))
-                .withQueryParam("plat", equalTo("3"))
-                .willReturn(aResponse().withBody(responseString));
+        return stub.willReturn(aResponse().withBody(responseString));
     }
 }

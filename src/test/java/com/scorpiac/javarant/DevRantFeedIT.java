@@ -11,7 +11,7 @@ import static org.testng.Assert.assertEquals;
 public class DevRantFeedIT extends ITHelper {
     @Test
     public void testGetRants() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.RANTS.toString()))
                         .withQueryParam("limit", equalTo("4"))
                         .withQueryParam("skip", equalTo("1"))
@@ -33,7 +33,7 @@ public class DevRantFeedIT extends ITHelper {
 
     @Test
     public void testSearch() throws IOException {
-        server.stubFor(stubResponse(
+        server.stubFor(stubGet(
                 get(urlPathEqualTo(Endpoint.SEARCH.toString()))
                         .withQueryParam("term", equalTo("wtf")),
                 "/search-wtf.json"
