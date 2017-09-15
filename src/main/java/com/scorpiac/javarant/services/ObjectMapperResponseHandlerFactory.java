@@ -32,7 +32,8 @@ class ObjectMapperResponseHandlerFactory {
     }
 
     private static String streamToString(InputStream stream) {
-        Scanner s = new Scanner(stream).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
+        try (Scanner s = new Scanner(stream).useDelimiter("\\A")) {
+            return s.hasNext() ? s.next() : "";
+        }
     }
 }
