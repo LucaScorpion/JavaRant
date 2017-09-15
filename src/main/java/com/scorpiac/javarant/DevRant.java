@@ -21,6 +21,10 @@ public class DevRant {
         INJECTOR = Guice.createInjector();
     }
 
+    /**
+     * Create a new DevRant instance.
+     * Each DevRant instance has their own authenticated user.
+     */
     public DevRant() {
         INJECTOR.injectMembers(this);
         devRantFeed = new DevRantFeed(this);
@@ -82,7 +86,7 @@ public class DevRant {
         // Check the result.
         if (id.getError().isPresent() || !id.getValue().isPresent()) {
             // When the username is invalid, no error message is returned by the API.
-            return new Result<>(id.getError().isPresent() ? id.getError().get() : "Invalid username specified.");
+            return new Result<>("Invalid username specified.");
         }
 
         return getUser(id.getValue().get());
@@ -100,7 +104,7 @@ public class DevRant {
         // Check the result.
         if (result.getError().isPresent() || !result.getValue().isPresent()) {
             // When the user id is invalid, no error message is returned by the API.
-            return new Result<>(result.getError().isPresent() ? result.getError().get() : "Invalid user id specified.");
+            return new Result<>("Invalid user id specified.");
         }
 
         // Set the id, as that is not part of the response.

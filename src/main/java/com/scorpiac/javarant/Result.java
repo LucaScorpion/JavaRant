@@ -5,8 +5,8 @@ import com.scorpiac.javarant.responses.Response;
 import java.util.Optional;
 
 public class Result<T> {
-    private final T value;
-    private final String error;
+    private T value;
+    private String error;
 
     public Result(String error) {
         this.error = error;
@@ -14,15 +14,8 @@ public class Result<T> {
     }
 
     public Result(Response<T> response) {
-        if (!response.isSuccess() || (response.getError() != null && !response.getError().isEmpty())) {
-            // An error occurred.
-            error = response.getError();
-            value = null;
-        } else {
-            // Success.
-            error = null;
-            value = response.getValue();
-        }
+        error = response.getError();
+        value = response.getValue();
     }
 
     public Optional<T> getValue() {

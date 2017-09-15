@@ -31,6 +31,12 @@ class ObjectMapperResponseHandlerFactory {
         };
     }
 
+    /**
+     * Read a stream into a string.
+     *
+     * @param stream The stream to read.
+     * @return The contents of the stream as a string.
+     */
     private static String streamToString(InputStream stream) {
         try (Scanner s = new Scanner(stream).useDelimiter("\\A")) {
             return s.hasNext() ? s.next() : "";

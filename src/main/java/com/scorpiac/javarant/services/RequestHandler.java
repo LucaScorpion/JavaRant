@@ -85,6 +85,13 @@ public class RequestHandler {
                 .socketTimeout(timeout);
     }
 
+    /**
+     * Resolve an endpoint to a URI.
+     * This method's main purpose is to be overridden for the tests.
+     *
+     * @param endpoint The endpoint to resolve.
+     * @return A complete URI.
+     */
     URI resolve(String endpoint) {
         return BASE_URI.resolve(endpoint);
     }
@@ -117,7 +124,7 @@ public class RequestHandler {
      * This also filters out any parameters that are {@code null}.
      *
      * @param params The parameters to use.
-     * @return A list containing the given parameters, and the default parameters.
+     * @return A list containing the given and default parameters.
      */
     private List<NameValuePair> getParameters(NameValuePair... params) {
         List<NameValuePair> paramList = new ArrayList<>();
@@ -137,7 +144,8 @@ public class RequestHandler {
     }
 
     /**
-     * Set the request timeout. This timeout will be used for the socket and connection timeout.
+     * Set the request timeout.
+     * This timeout will be used for the socket and connection timeout.
      *
      * @param timeout The timeout in milliseconds to set, or -1 to set no timeout.
      */

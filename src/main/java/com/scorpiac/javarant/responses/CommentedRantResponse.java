@@ -15,6 +15,10 @@ public class CommentedRantResponse extends Response<CommentedRant> {
 
     @Override
     public CommentedRant getValue() {
+        if (rant == null) {
+            return null;
+        }
+
         // Get the comments field.
         Field commentsField;
         try {
