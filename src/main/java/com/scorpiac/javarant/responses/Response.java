@@ -2,11 +2,13 @@ package com.scorpiac.javarant.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Response {
+public abstract class Response<T> {
     @JsonProperty
     private boolean success;
     @JsonProperty
     private String error;
+
+    T value;
 
     public boolean isSuccess() {
         return success;
@@ -14,5 +16,9 @@ public class Response {
 
     public String getError() {
         return error;
+    }
+
+    public T getValue() {
+        return value;
     }
 }

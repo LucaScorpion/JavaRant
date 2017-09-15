@@ -1,18 +1,17 @@
 package com.scorpiac.javarant.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.scorpiac.javarant.Rant;
 import com.scorpiac.javarant.News;
+import com.scorpiac.javarant.Rant;
 
 import java.util.List;
 
-public class RantFeedResponse extends Response {
+public class RantFeedResponse extends Response<List<Rant>> {
     @JsonProperty
-    private List<Rant> rants;
-    @JsonProperty
-    private News news;
+    private News news; // TODO: use this.
 
-    public List<Rant> getRants() {
-        return rants;
+    @JsonProperty
+    void setRants(List<Rant> rants) {
+        value = rants;
     }
 }

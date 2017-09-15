@@ -15,7 +15,7 @@ public class DevRantIT extends ITHelper {
                 "/rant-686001.json"
         ));
 
-        CommentedRant rant = devRant.getRant(686001).get();
+        CommentedRant rant = devRant.getRant(686001).getValue().get();
 
         validateRant(
                 rant,
@@ -41,7 +41,7 @@ public class DevRantIT extends ITHelper {
                 "/rant-invalid.json"
         ));
 
-        assertFalse(devRant.getRant(0).isPresent());
+        assertFalse(devRant.getRant(0).getValue().isPresent());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class DevRantIT extends ITHelper {
                         .willReturn(serverError().withBody("An unknown error occurred."))
         );
 
-        assertFalse(devRant.getRant(123456).isPresent());
+        assertFalse(devRant.getRant(123456).getValue().isPresent());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class DevRantIT extends ITHelper {
                 "/user-102959.json"
         ));
 
-        User user = devRant.getUser("LucaScorpion").get();
+        User user = devRant.getUser("LucaScorpion").getValue().get();
 
         validateUser(user,
                 102959,
@@ -93,7 +93,9 @@ public class DevRantIT extends ITHelper {
                 "/user-id-invalid.json"
         ));
 
-        assertFalse(devRant.getUser("invalid").isPresent());
+        Result<User> user = devRant.getUser("invalid");
+        assertFalse(user.getValue().isPresent());
+        assertTrue(user.getError().isPresent());
     }
 
     @Test
@@ -103,7 +105,7 @@ public class DevRantIT extends ITHelper {
                 "/user-id-invalid.json"
         ));
 
-        assertFalse(devRant.getUser(123).isPresent());
+        assertFalse(devRant.getUser(123).getValue().isPresent());
     }
 
     @Test
@@ -113,7 +115,7 @@ public class DevRantIT extends ITHelper {
                 "/rant-surprise.json"
         ));
 
-        Rant rant = devRant.getSurprise().get();
+        Rant rant = devRant.getSurprise().getValue().get();
 
         validateRant(rant,
                 26356,

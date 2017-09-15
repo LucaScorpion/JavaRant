@@ -7,7 +7,6 @@ import com.scorpiac.javarant.services.RequestHandler;
 import org.apache.http.message.BasicNameValuePair;
 
 import javax.inject.Inject;
-import java.util.Optional;
 
 public class DevRant {
     private static final Injector INJECTOR;
@@ -67,9 +66,8 @@ public class DevRant {
      * @param id The id of the rant.
      * @return The rant.
      */
-    public Optional<CommentedRant> getRant(int id) {
-        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class)
-                .map(CommentedRantResponse::getRant);
+    public Result<CommentedRant> getRant(int id) {
+        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class);
     }
 
     /**
@@ -78,9 +76,16 @@ public class DevRant {
      * @param username The username of the user.
      * @return The user.
      */
-    public Optional<User> getUser(String username) {
-        return requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username))
-                .flatMap(u -> getUser(u.getId()));
+    public Result<User> getUser(String username) {
+        Result<Integer> id = requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username));
+
+        // Check the result.
+        if (id.getError().isPresent() || !id.getValue().isPresent()) {
+            // When the username is invalid, no error message is returned by the API.
+            return new Result<>(id.getError().isPresent() ? id.getError().get() : "Invalid username specified.");
+        }
+
+        return getUser(id.getValue().get());
     }
 
     /**
@@ -89,14 +94,13 @@ public class DevRant {
      * @param id The id of the user.
      * @return The user.
      */
-    public Optional<User> getUser(int id) {
-        Optional<User> user = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class)
-                .map(UserResponse::getUser);
+    public Result<User> getUser(int id) {
+        Result<User> result = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class);
 
         // Set the id, as that is not part of the response.
-        user.ifPresent(u -> u.setId(id));
+        result.getValue().ifPresent(u -> u.setId(id));
 
-        return user;
+        return result;
     }
 
     /**
@@ -104,9 +108,8 @@ public class DevRant {
      *
      * @return A random rant.
      */
-    public Optional<Rant> getSurprise() {
-        return requestHandler.get(ApiEndpoint.SURPRISE, RantResponse.class)
-                .map(RantResponse::getRant);
+    public Result<Rant> getSurprise() {
+        return requestHandler.get(ApiEndpoint.SURPRISE, RantResponse.class);
     }
 
     /**
@@ -120,7 +123,7 @@ public class DevRant {
     public boolean login(String username, char[] password) {
         logout();
 
-        Optional<AuthResponse> response = requestHandler.post(ApiEndpoint.AUTH_TOKEN, AuthResponse.class,
+        Result<Auth> response = requestHandler.post(ApiEndpoint.AUTH_TOKEN, AuthResponse.class,
                 new BasicNameValuePair("username", username),
                 new BasicNameValuePair("password", String.valueOf(password))
         );
@@ -130,7 +133,7 @@ public class DevRant {
             password[i] = 0;
         }
 
-        response.ifPresent(r -> auth = r.getAuth());
+        response.getValue().ifPresent(r -> auth = r);
         return isLoggedIn();
     }
 

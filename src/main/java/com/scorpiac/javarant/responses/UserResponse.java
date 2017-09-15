@@ -5,9 +5,7 @@ import com.scorpiac.javarant.User;
 
 public class UserResponse extends Response {
     @JsonProperty
-    private User profile;
-
-    public User getUser() {
-        return profile;
+    void setProfile(User profile) {
+        value = profile;
     }
 }

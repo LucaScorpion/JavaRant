@@ -1,6 +1,7 @@
 package com.scorpiac.javarant.services;
 
 import com.scorpiac.javarant.ApiEndpoint;
+import com.scorpiac.javarant.Result;
 import com.scorpiac.javarant.responses.Response;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
@@ -36,22 +37,22 @@ public class RequestHandler {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
-    public <T extends Response> Optional<T> get(ApiEndpoint endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T, R extends Response> Result<T> get(ApiEndpoint endpoint, Class<R> clazz, NameValuePair... params) {
         return get(endpoint.toString(), clazz, params);
     }
 
-    public <T extends Response> Optional<T> get(String endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T, R extends Response> Result<T> get(String endpoint, Class<R> clazz, NameValuePair... params) {
         return handleRequest(
                 buildRequest(endpoint, Request::Get, getParameters(params)),
                 clazz
         );
     }
 
-    public <T extends Response> Optional<T> post(ApiEndpoint endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T, R extends Response> Result<T> post(ApiEndpoint endpoint, Class<R> clazz, NameValuePair... params) {
         return post(endpoint.toString(), clazz, params);
     }
 
-    public <T extends Response> Optional<T> post(String endpoint, Class<T> clazz, NameValuePair... params) {
+    public <T, R extends Response> Result<T> post(String endpoint, Class<R> clazz, NameValuePair... params) {
         return handleRequest(
                 buildRequest(endpoint, Request::Post, Collections.emptyList()).bodyForm(getParameters(params)),
                 clazz
@@ -93,24 +94,22 @@ public class RequestHandler {
      *
      * @param request The request to handle.
      * @param clazz   The class to map the response to.
-     * @param <T>     The type of the class to map the response to.
+     * @param <T>     The type of the class to use in the result.
+     * @param <R>     The type of the class to map the internal response to.
      * @return The mapped response.
      */
-    private <T extends Response> Optional<T> handleRequest(Request request, Class<T> clazz) {
-        T response;
+    // This is because of the last line, which cannot be checked. Just make sure it is tested properly.
+    @SuppressWarnings("unchecked")
+    private <T, R extends Response> Result<T> handleRequest(Request request, Class<R> clazz) {
+        R response;
         try {
             response = request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz));
         } catch (IOException e) {
             LOGGER.error("Failed to execute request.", e);
-            return Optional.empty();
+            return new Result<>(e.getMessage());
         }
 
-        // Check if there was an error.
-        if (response.getError() != null) {
-            LOGGER.error("A devRant API error occurred: " + response.getError());
-        }
-
-        return response.isSuccess() ? Optional.of(response) : Optional.empty();
+        return new Result<T>(response);
     }
 
     /**

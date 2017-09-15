@@ -19,7 +19,7 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-rants.json"
         ));
 
-        List<Rant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1).get();
+        List<Rant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1).getValue().get();
         assertEquals(rants.size(), 4);
 
         validateRant(rants.get(0),
@@ -39,7 +39,7 @@ public class DevRantFeedIT extends ITHelper {
                 "/search-wtf.json"
         ));
 
-        List<Rant> rants = devRant.getFeed().search("wtf").get();
+        List<Rant> rants = devRant.getFeed().search("wtf").getValue().get();
 
         validateRant(rants.get(1),
                 542296,

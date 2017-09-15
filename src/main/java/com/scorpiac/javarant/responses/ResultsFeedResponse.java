@@ -5,11 +5,9 @@ import com.scorpiac.javarant.Rant;
 
 import java.util.List;
 
-public class ResultsFeedResponse extends Response {
+public class ResultsFeedResponse extends Response<List<Rant>> {
     @JsonProperty
-    private List<Rant> results;
-
-    public List<Rant> getResults() {
-        return results;
+    void setResults(List<Rant> results) {
+        value = results;
     }
 }

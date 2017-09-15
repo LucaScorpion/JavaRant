@@ -7,13 +7,14 @@ import com.scorpiac.javarant.CommentedRant;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class CommentedRantResponse extends Response {
+public class CommentedRantResponse extends Response<CommentedRant> {
     @JsonProperty
     private CommentedRant rant;
     @JsonProperty
     private List<Comment> comments;
 
-    public CommentedRant getRant() {
+    @Override
+    public CommentedRant getValue() {
         // Get the comments field.
         Field commentsField;
         try {
