@@ -97,8 +97,14 @@ public class DevRant {
     public Result<User> getUser(int id) {
         Result<User> result = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class);
 
+        // Check the result.
+        if (result.getError().isPresent() || !result.getValue().isPresent()) {
+            // When the user id is invalid, no error message is returned by the API.
+            return new Result<>(result.getError().isPresent() ? result.getError().get() : "Invalid user id specified.");
+        }
+
         // Set the id, as that is not part of the response.
-        result.getValue().ifPresent(u -> u.setId(id));
+        result.getValue().get().setId(id);
 
         return result;
     }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
 public class DevRantFeedIT extends ITHelper {
     @Test
@@ -19,7 +20,9 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-rants.json"
         ));
 
-        List<Rant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1).getValue().get();
+        Result<List<Rant>> result = devRant.getFeed().getRants(Sort.RECENT, 4, 1);
+        assertFalse(result.getError().isPresent());
+        List<Rant> rants = result.getValue().get();
         assertEquals(rants.size(), 4);
 
         validateRant(rants.get(0),
@@ -39,9 +42,10 @@ public class DevRantFeedIT extends ITHelper {
                 "/search-wtf.json"
         ));
 
-        List<Rant> rants = devRant.getFeed().search("wtf").getValue().get();
+        Result<List<Rant>> result = devRant.getFeed().search("wtf");
+        assertFalse(result.getError().isPresent());
 
-        validateRant(rants.get(1),
+        validateRant(result.getValue().get().get(1),
                 542296,
                 "Stages of learning angular js \n1. Wtf \n2. I think I get it. \n3. Wtf",
                 327,

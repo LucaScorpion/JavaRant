@@ -15,7 +15,9 @@ public class DevRantIT extends ITHelper {
                 "/rant-686001.json"
         ));
 
-        CommentedRant rant = devRant.getRant(686001).getValue().get();
+        Result<CommentedRant> result = devRant.getRant(686001);
+        assertFalse(result.getError().isPresent());
+        CommentedRant rant = result.getValue().get();
 
         validateRant(
                 rant,
@@ -41,7 +43,9 @@ public class DevRantIT extends ITHelper {
                 "/rant-invalid.json"
         ));
 
-        assertFalse(devRant.getRant(0).getValue().isPresent());
+        Result<CommentedRant> result = devRant.getRant(0);
+        assertFalse(result.getValue().isPresent());
+        assertTrue(result.getError().isPresent());
     }
 
     @Test
@@ -51,7 +55,9 @@ public class DevRantIT extends ITHelper {
                         .willReturn(serverError().withBody("An unknown error occurred."))
         );
 
-        assertFalse(devRant.getRant(123456).getValue().isPresent());
+        Result<CommentedRant> result = devRant.getRant(123456);
+        assertFalse(result.getValue().isPresent());
+        assertTrue(result.getError().isPresent());
     }
 
     @Test
@@ -66,9 +72,10 @@ public class DevRantIT extends ITHelper {
                 "/user-102959.json"
         ));
 
-        User user = devRant.getUser("LucaScorpion").getValue().get();
+        Result<User> result = devRant.getUser("LucaScorpion");
+        assertFalse(result.getError().isPresent());
 
-        validateUser(user,
+        validateUser(result.getValue().get(),
                 102959,
                 "LucaScorpion",
                 3831,
@@ -105,7 +112,9 @@ public class DevRantIT extends ITHelper {
                 "/user-id-invalid.json"
         ));
 
-        assertFalse(devRant.getUser(123).getValue().isPresent());
+        Result<User> result = devRant.getUser(123);
+        assertFalse(result.getValue().isPresent());
+        assertTrue(result.getError().isPresent());
     }
 
     @Test
@@ -115,7 +124,8 @@ public class DevRantIT extends ITHelper {
                 "/rant-surprise.json"
         ));
 
-        Rant rant = devRant.getSurprise().getValue().get();
+        Result<Rant> result = devRant.getSurprise();
+        Rant rant = result.getValue().get();
 
         validateRant(rant,
                 26356,
