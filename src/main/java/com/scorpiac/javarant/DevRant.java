@@ -123,6 +123,16 @@ public class DevRant {
     }
 
     /**
+     * Get a collab.
+     *
+     * @param id The id of the collab.
+     * @return The collab.
+     */
+    public Result<Collab> getCollab(int id) {
+        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CollabResponse.class);
+    }
+
+    /**
      * Log in to devRant. When a user is already logged in, they will be logged out first.
      * Note that this method will clear the characters from the password array.
      *

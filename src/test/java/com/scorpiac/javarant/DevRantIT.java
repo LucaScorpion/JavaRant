@@ -19,8 +19,7 @@ public class DevRantIT extends ITHelper {
         assertFalse(result.getError().isPresent());
         CommentedRant rant = result.getValue().get();
 
-        validateRant(
-                rant,
+        validateRant(rant,
                 686001,
                 "I only just noticed this is on the git man page :P",
                 84,
@@ -28,7 +27,6 @@ public class DevRantIT extends ITHelper {
                 "terminal", "manual", "git"
         );
 
-        assertEquals(rant.getCommentCount(), 5);
         assertEquals(rant.getComments().size(), 5);
         assertEquals(rant.getComments().get(0).getId(), 686175);
 
@@ -145,6 +143,37 @@ public class DevRantIT extends ITHelper {
                 504,
                 381
         );
+    }
+
+    @Test
+    public void testGetCollab() throws IOException {
+        server.stubFor(stubGet(
+                get(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/785714")),
+                "/collab-785714.json"
+        ));
+
+        Result<Collab> result = devRant.getCollab(785714);
+        assertFalse(result.getError().isPresent());
+        Collab collab = result.getValue().get();
+
+        validateCollab(collab,
+                785714,
+                "Desktop Client to Teach Programming",
+                54,
+                50,
+                "Existing project",
+                "<Insert collab description here>",
+                "Java",
+                "6",
+                "github.com/some/project",
+                "terminal", "manual", "git"
+        );
+
+        assertEquals(collab.getComments().size(), 50);
+        assertEquals(collab.getComments().get(0).getId(), 785847);
+        assertNull(collab.getImage());
+
+        validateMinimalUser(collab.getUser(), 217820, "RuntimeError", 1038);
     }
 
     @Test

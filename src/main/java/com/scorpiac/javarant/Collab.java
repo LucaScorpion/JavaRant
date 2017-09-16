@@ -1,11 +1,18 @@
 package com.scorpiac.javarant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Collab extends CommentedRant {
+    @JsonProperty("c_type_long")
     private String projectType;
-    private String description;
+    @JsonProperty("c_tech_stack")
     private String techStack;
+    @JsonProperty("c_team_size")
     private String teamSize;
+    @JsonProperty("c_url")
     private String url;
+    @JsonProperty("c_description")
+    private String description;
 
     /**
      * Get the project type.

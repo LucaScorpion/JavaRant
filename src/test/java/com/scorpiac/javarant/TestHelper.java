@@ -20,6 +20,16 @@ public abstract class TestHelper {
         assertEquals(rant.getTags(), Arrays.asList(tags));
     }
 
+    public void validateCollab(Collab collab, int id, String text, int score, int commentCount, String projectType, String description, String techStack, String teamSize, String url, String... tags) {
+        validateRant(collab, id, text, score, commentCount);
+
+        assertEquals(collab.getProjectType(), projectType);
+        assertEquals(collab.getTechStack(), techStack);
+        assertEquals(collab.getDescription(), description);
+        assertEquals(collab.getTeamSize(), teamSize);
+        assertEquals(collab.getUrl(), url);
+    }
+
     public void validateImage(Image image, String link, int width, int height) {
         assertEquals(image.getLink(), URI.create(link));
         assertEquals(image.getWidth(), width);
