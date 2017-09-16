@@ -75,4 +75,26 @@ public class DevRantFeedIT extends ITHelper {
                 "wk69"
         );
     }
+
+    @Test
+    public void testGetStories() throws IOException {
+        server.stubFor(stubGet(
+                get(urlPathEqualTo(ApiEndpoint.STORIES.toString()))
+                        .withQueryParam("skip", equalTo("4"))
+                        .withQueryParam("sort", equalTo("top")),
+                "/feed-stories.json"
+        ));
+
+        Result<List<Rant>> result = devRant.getFeed().getStories(Sort.TOP, 4);
+        assertFalse(result.getError().isPresent());
+        List<Rant> rants = result.getValue().get();
+
+        validateRant(rants.get(0),
+                830647,
+                "<Insert story rant here>",
+                134,
+                10,
+                "mother", "web", "atom", "dreamweaver"
+        );
+    }
 }

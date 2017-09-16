@@ -1,0 +1,472 @@
+{
+    "success": true,
+    "rants": [
+        {
+            "id": 830647,
+            "text": "<Insert story rant here>",
+            "score": 134,
+            "created_time": 1505020638,
+            "attached_image": "",
+            "num_comments": 10,
+            "tags": [
+                "mother",
+                "web",
+                "atom",
+                "dreamweaver"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 732476,
+            "user_username": "awnz",
+            "user_score": 412,
+            "user_avatar": {
+                "b": "ecd276",
+                "i": "v-17_c-3_b-7_g-m_9-1_1-11_16-4_3-3_8-1_7-1_5-1_12-11_6-2_2-10_4-1.jpg"
+            }
+        },
+        {
+            "id": 836856,
+            "text": "Fuck. I'm trying hard not to react to Apple related rants, but I can't fucking refrain from it. Apple are pissing me off to no fucking end with their greed, lies and pseudo-artistic edge, still pretending to be 'innovative', 'hip' and offering top notch technology. What a stinking, steaming, fucking pile of bullshit.\n\nSuck my knob, Apple! I hope you crash into the ground at top speed and make place for something truly good and innovative that can hopefully feast on your rotting remains without getting tainted by your greed, arrogance and lies.",
+            "score": 134,
+            "created_time": 1505293496,
+            "attached_image": "",
+            "num_comments": 48,
+            "tags": [
+                "suck.my knob",
+                "i wish they'd finally go bankrupt",
+                "tainted apple"
+            ],
+            "vote_state": 0,
+            "edited": true,
+            "rt": 1,
+            "user_id": 141078,
+            "user_username": "AlexDeLarge",
+            "user_score": 43844,
+            "user_avatar": {
+                "b": "a973a2",
+                "i": "v-17_c-3_b-2_g-m_9-1_1-9_16-6_3-11_8-2_7-2_5-2_12-9_6-54_2-50_15-27_11-4_18-4_4-2_19-3_20-14_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 841073,
+            "text": "Hired a new backend Dev. He writes a script and sends it for testing...\nTester: \"It's not working...\"\nBackend Dev: Goes to Mongo and deletes the tester's whole profile...\n\nI cant control my laughter every time I remember this incident...He claimed it was a mistake, I don't think that it was a mistake...the tester had it coming...\n\"It's not working\" that's all he says every time...I mean at least give me something to start with...!",
+            "score": 129,
+            "created_time": 1505449498,
+            "attached_image": "",
+            "num_comments": 4,
+            "tags": [
+                "mongodb",
+                "nodejs",
+                "backend"
+            ],
+            "vote_state": 0,
+            "edited": true,
+            "rt": 1,
+            "user_id": 92701,
+            "user_username": "5hirish",
+            "user_score": 201,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-2_16-10_3-1_8-1_7-1_5-1_12-2_6-2_10-1_2-10_15-37_4-1.jpg"
+            }
+        },
+        {
+            "id": 832046,
+            "text": "Ok Santa, for Christmas I'd like some free time to finish :\n-My Android 2D pixel game\n-My Android app\n-My Winux (Windows+Linux) adventure game.\n-My own Brainfuck compiler.\n-My C code generator.\n-My C++ code generator.\n-My \"\"\"AI\"\"\" that plays Super Hexagon and Rocket League for me.\n-My own programming language.\n-My Android app for people who look for internships.\n-My C++ e-mail client.\n-My Telegram bot.\n-My CLI chat client.\n-My C/C++ automatic code obfuscator.\n\nI guess that's it...",
+            "score": 111,
+            "created_time": 1505103035,
+            "attached_image": "",
+            "num_comments": 8,
+            "tags": [
+                "procrastination",
+                "wk69"
+            ],
+            "vote_state": 0,
+            "edited": true,
+            "rt": 1,
+            "user_id": 214220,
+            "user_username": "Lahsen2016",
+            "user_score": 1830,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-10_16-11_3-4_8-2_7-2_5-2_12-10_6-10_10-5_2-49_11-4_18-2_4-2_19-3_20-1.jpg"
+            }
+        },
+        {
+            "id": 841401,
+            "text": "I fucking hate CNET already. I mean who likes a website which autoplays a video everytime you visit them, with 200% volume.\n\nBut this time, I am just so fucking annoyed. Here is the title of an article: \n\n\"iPhone 8, X's wireless charging is a game changer for Android\"\n\nAnd the subtitle:\n\n\"When it comes to Apple, plenty of Android phone makers are monkey see, monkey do.\"\n\nFUck you motherfucker. \"Monkey see, monkey do\". Are you fucking kidding me you cunt?\n\nRemeber your 3D touch bullshit? Your fucking wireless charging will be bullshit too.\n\n\"the rest of the phone users make do with messy cables.\"\n\nMaybe you're a fucking imbecile who doesn't know how to manage simple cables and ends up with broken wires.\n\nYou know who looks like a monkey? Some apple users who uses that shitty looking wireless earphone, which looks like monkey's dick you asshole.\n\nFuck off!",
+            "score": 101,
+            "created_time": 1505462382,
+            "attached_image": "",
+            "num_comments": 15,
+            "tags": [
+                "apple",
+                "android",
+                "cnet"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 42079,
+            "user_username": "tahnik",
+            "user_score": 35034,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-2_1-4_16-15_3-2_8-4_7-4_5-3_12-4_6-10_10-9_2-39_15-18_11-4_18-4_4-3_19-1_20-14_21-1.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 841966,
+            "text": "So I've got a Linux related job (or, starting at monday). When people ask me what my new position is called, I'll of course tell! Well, I stutter sometimes in my native language. Especially with the letter L. \n\n\"so what's your new position?\" \n\"Lllllll-lllll-llllllllllllllllllll\"\n*mother of god* \n\"lllllllllllllllllllllll-llllllllllllll* \n*OH FFS* \n\"Llllllllllll-llllllllllllllllllll-lllllllinux support engineer!\"\n*FUCKING FINALLY!* \n\n\"Hey man, you got a new job I heard, what's your new position?\"\n*please work* \n\"Lllllllllll-lllllllllllllllll-llllllllllllllllllllll* \n*MOTHERFUCKER* \n\"Lllllllll-lllllllllllllllllllinux support engineer!\" \n\n\"ey dude, what's your new position? Heard you got a new job!\" \n*alright let's do this better* \n\"gonna do stuff with servers and customer service!\" \n\"Ah cool! What system do they run on their servers?\"\n\nNo. 😡",
+            "score": 94,
+            "created_time": 1505480918,
+            "attached_image": "",
+            "num_comments": 39,
+            "tags": [
+                "fucking stuttering",
+                "linux",
+                "ffs",
+                "linuxxx"
+            ],
+            "vote_state": 0,
+            "edited": true,
+            "rt": 1,
+            "user_id": 22941,
+            "user_username": "linuxxx",
+            "user_score": 35032,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-3_3-3_8-3_7-3_5-4_12-2_6-7_10-9_2-48_15-11_18-4_4-4_19-3_20-14.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 842340,
+            "text": "Senior IT engineer enters the room and quietly talks to a coworker about a job related issue. \n\nAnother coworker decided to troll the sysadmin. \n\nCW: *yells* \"Open a ticket!\" (That's the sysadmin's regular reply)\nIT: *ignores*\nCW: *trying to get his attention* \"Open a ticket first! Then come back\"\nIT: *gives him the stare of death*\nCW: \"Go away and open a ticket!\"\nIT: *silently leaves the room*\n\nAfter no more than a minute CW gets a reject from all networks outside the company's VPN.\n\nIT comes back into the room, get's intimately close to CW's ear and says \"Now open a ticket\".\n\n👋\n\n🎤",
+            "score": 85,
+            "created_time": 1505491005,
+            "attached_image": "",
+            "num_comments": 8,
+            "tags": [
+                "don't fuck with the sysadmin",
+                "burn",
+                "troll"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 503297,
+            "user_username": "Noob",
+            "user_score": 3054,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-3_16-8_3-1_8-2_7-2_5-2_12-3_6-7_10-9_2-40_15-15_11-2_18-4_4-2_19-3_20-8_21-2.jpg"
+            }
+        },
+        {
+            "id": 840178,
+            "text": "We have this stupid library at work. Its called Randomness, and its basically just a wrapper over the standard .NET System.Random class to help our devs generate random data for unit tests easier.\n\nDebate about random data in unit tests aside.\n\nI came across a bug in randomness. Theres a PickFrom function which gets passed an array, and returns a random element from the array. Problem is, it uses Random.Next to do this, and the max value was set to the array length, minus one.\n\nRandom.Next generates values inclusive of the min value, and exclusive of the max value. Arr.Length-1 as a max value, is wrong, the last element in the array would never be selected. \n\nSo i fixed it.\n\nAnd proceeded to break dozens upon dozens of unit tests that were now testing from their full sets of data, and had actually been faulty for god knows how long.",
+            "score": 81,
+            "created_time": 1505408692,
+            "attached_image": "",
+            "num_comments": 9,
+            "tags": [
+                "random",
+                "off by 1",
+                "sweep these things under the carpet"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 798905,
+            "user_username": "illusion466",
+            "user_score": 349,
+            "user_avatar": {
+                "b": "7bc8a4",
+                "i": "v-17_c-3_b-1_g-f_9-1_1-1_16-1_3-1_8-1_7-1_5-1_12-1_6-31_2-1_4-1.jpg"
+            }
+        },
+        {
+            "id": 832679,
+            "text": "Acceptable places to leave your bag when you get in, in the morning:\n\n- Under your desk\r\n- On your desk\r\n- Infront of your locker\r\n- On the back of your chair\r\n- etc.\n\nUnacceptable, is to throw your bag behind you and to the right, so it ends up in the middle of the floor and behind my chair.\n\nConsistent use of this space, and me tripping over it will result in 2 things:\n\n1. I will intentionally run over your bag, back and forth until I am satisfied everything is broken.\n\n2. I will then pickup said bag and throw it, with force, at your head.",
+            "score": 77,
+            "created_time": 1505130070,
+            "attached_image": "",
+            "num_comments": 5,
+            "tags": [
+                "tripping",
+                "in my way",
+                "upside your head",
+                "bad",
+                "rude"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 190725,
+            "user_username": "practiseSafeHex",
+            "user_score": 5101,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-1_16-6_3-1_8-3_7-3_5-3_12-1_6-2_10-1_2-47_18-3_4-3_19-3_20-8.jpg"
+            }
+        },
+        {
+            "id": 838743,
+            "text": "Thank you dear mr. boss for fucking up our master branch by adding local changes to a 2 months outdated master branch (250 FUCKING COMMITS BEHIND), pull the remote and then just push without resolving any conflicts!!!1!!!\n\nBut thank you so much for sending me an email at 10pm asking me to resolve the conflicts.\n\nIt is 3 in the morning and it took 1 hour to get it clean.\n\nSometimes I want to break some necks...",
+            "score": 77,
+            "created_time": 1505351707,
+            "attached_image": "",
+            "num_comments": 10,
+            "tags": [
+                "boss",
+                "git push -f",
+                "merge conflicts",
+                "unresolved problems"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 552400,
+            "user_username": "PonySlaystation",
+            "user_score": 4961,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-1_16-8_3-13_8-2_7-2_5-4_12-1_6-3_10-9_2-81_15-11_11-4_18-4_4-4_19-3_20-5_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 835994,
+            "text": "To people who don't know how to use Linux: Just because I use nano instead of gedit or any other GUI text editor does not mean I'm showing off. Why can't you understand that ssh-ing into a server and opening a file in the terminal itself to edit three lines of configuration is much easier than opening FileZilla, connecting, downloading the file, making the changes and uploading it again. It's fine if you want to do it that way. But please don't judge me for doing it my way.\n\nTo people who are good with Linux: Can you please stop suggesting me to use vim instead, EVERY FUCKING TIME? I know it's more powerful, but I haven't been using Linux enough to have surpassed it's learning curve. Plus I google up how to use it and do use it when I have the need. Please let me be?\n\nTo people who tell me to use Windows for everything: Go suck a fat dick, you uncultured morons.",
+            "score": 73,
+            "created_time": 1505252317,
+            "attached_image": "",
+            "num_comments": 10,
+            "tags": [],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 145378,
+            "user_username": "alcatraz627",
+            "user_score": 5805,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-11_16-13_3-4_8-4_7-4_5-2_12-11_17-1_6-15_10-9_2-59_15-11_11-1_18-4_4-2_19-3_20-8_21-1.jpg"
+            }
+        },
+        {
+            "id": 835049,
+            "text": "This is a follow up on my previous rant https://devrant.io/rants/815062\n\nI confronted her again. \n\nI was told that I am useless and worth noting to this world, worth more dead than alive.\n\nI was told that I will never get anywhere in life, and that the time I have spent watching Elon Musk interviews (amongst other ones, I do this for fun) is fucking useless, as I will never get anywhere ini life. Only low-life pieces of shit such as myself deserve nothing apparently.\n\nI had to organise a place to stay with my family, but I couldn't for a week. I slept on the floor outside my workplace, and bathed at friends.\n\nI have moved out, had to go get my own place. I have nothing, but I have my motivation back. I have my coding behind me, I have my motivation, I have my mind clear, and I have plans for the future.\n\nI plan to fucking make a name for myself, and fuck everyone who has a fucking issue with it.\n\nWill distribute the app sometime.\n\nFuck people who fuck you around.",
+            "score": 68,
+            "created_time": 1505222666,
+            "attached_image": "",
+            "num_comments": 28,
+            "tags": [
+                "backonfeet"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "links": [
+                {
+                    "type": "url",
+                    "url": "https://devrant.io/rants/815062",
+                    "short_url": "https://devrant.io/rants/815062",
+                    "title": "https://devrant.io/rants/815062",
+                    "start": 40,
+                    "end": 71,
+                    "special": 1
+                }
+            ],
+            "special": true,
+            "user_id": 369518,
+            "user_username": "ragnarr023",
+            "user_score": 3091,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-1_16-2_3-9_8-2_7-2_5-2_12-1_6-83_10-7_2-48_15-11_18-2_4-2_19-2_20-7.jpg"
+            }
+        },
+        {
+            "id": 842343,
+            "text": "I have this one major pet peeve - getting interrupted on any messenger by \"hey\".\n\nQ: Hey\nA: Hey, what's up?\n\n-minutes pass, I try to resume work-\n\nQ: Do you have a second?\nA: Sure, what's up?\n\n-minutes pass, I try to resume work... Again-\n\nQ: Do you know anything about #feature#?\nA: Yeah, I wrote most of it, what do you need?\n\n-minutes pass, I try to resume work... AGAIN-\n\n(goes on same pattern, takes half an hour for a 10 second question/answer)\n\nLike... Come on!!! Don't do this to me\n\nI get it, I like to be cordial and friendly - but there is absolutely nothing stopping you from getting your message across without making me have to go back and forth (interrupting my work).",
+            "score": 67,
+            "created_time": 1505491203,
+            "attached_image": "",
+            "num_comments": 9,
+            "tags": [],
+            "vote_state": 0,
+            "edited": true,
+            "rt": 1,
+            "user_id": 396296,
+            "user_username": "Neotelos",
+            "user_score": 1409,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-3_16-2_3-2_8-2_7-2_5-1_12-3_6-2_10-8_2-38_15-18_4-1_19-2.jpg"
+            }
+        },
+        {
+            "id": 830568,
+            "text": "So I just had an interview a couple weeks ago at one of the largest employers of software engineers in the country. After multiple stages of group interviews it came to the 2 on 1 individual interview with some project leads (picture devs using a MacBook with Github stickers - lads). Among the questions they asked me we both had a laugh at 2 of them:\n\nQ: Explain how deadlocks work?\nA: Hire me and I will explain how they work.\n\nQ: Where do you see yourself in 5 years?\nA: Celebrating 22s 22m 22h 22/12/2022.\n\nStrangely enough they hired me 😎",
+            "score": 67,
+            "created_time": 1505011544,
+            "attached_image": "",
+            "num_comments": 0,
+            "tags": [
+                "interview"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 566882,
+            "user_username": "scottydevil",
+            "user_score": 251,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-1_3-3_8-1_7-1_5-1_12-2_6-2_10-1_2-31_11-2_4-1.jpg"
+            }
+        },
+        {
+            "id": 839205,
+            "text": "!rant\n\n*in slack*\nMe: Team's gonna watch IT. Wanna come?\nFriend from other team: Yeah, sure!\n\n*in cinema*\nFriend: WTF! Why is this I.T? This is scary as fuck!\nMe: I-T? It's \"it\". HAHAHAHA It's a remake of the It 1990 movie.\nFriend: I don't know anything about that. I'm scared as hell! I thought this would be some tech stuff and crying in the server room or something!",
+            "score": 63,
+            "created_time": 1505374453,
+            "attached_image": "",
+            "num_comments": 7,
+            "tags": [
+                "it"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 111587,
+            "user_username": "switchstep",
+            "user_score": 1543,
+            "user_avatar": {
+                "b": "7bc8a4",
+                "i": "v-17_c-3_b-1_g-f_9-1_1-2_16-6_3-1_8-1_7-1_5-1_12-2_6-6_10-1_2-18_18-2_4-1_19-2.jpg"
+            }
+        },
+        {
+            "id": 831031,
+            "text": "!rant\n\nDamn, I'm totally immerged in WebGL right now. Oh, the possibilities! And it's so much faster than I thought it would be, that's fucking amazing. I'm currently experimenting with three.js and babylon.js and it's so much fun. I love particle effects and 3D animations. Even 2D rendering is damn cool!\n\nI also just learned you can import models from Blender. I never liked Blender's UI, because it seems so bloated and complicated to me. But then again, Blender is amazingly powerful and free, so there is no real reason to complain. I guess I have to learn it know, in order to use WebGL for most of the things I'm envisioning right now.\n\nJust thinking about the amazing possibilities makes my head spin in excitement: interactive 3D infographics, futuristic UIs, games, movies and galleries, … so. fucking. cool. Why the fuck didn't I try out WebGL earlier?",
+            "score": 57,
+            "created_time": 1505048499,
+            "attached_image": "",
+            "num_comments": 15,
+            "tags": [
+                "babylon.js",
+                "three.js",
+                "webgl",
+                "3d",
+                "canvas"
+            ],
+            "vote_state": 0,
+            "edited": true,
+            "rt": 1,
+            "user_id": 141078,
+            "user_username": "AlexDeLarge",
+            "user_score": 43844,
+            "user_avatar": {
+                "b": "a973a2",
+                "i": "v-17_c-3_b-2_g-m_9-1_1-9_16-6_3-11_8-2_7-2_5-2_12-9_6-54_2-50_15-27_11-4_18-4_4-2_19-3_20-14_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 833015,
+            "text": "So...\nI'm penetrationtesting a network and the servers on said network\nThe network administrator and IT security officer knows this, because they hired me..\n\nTL;DR a scan caused the network to crash. \n\nToday I received a very angry email going \"Stop scanning NOW!\" from one of the IT departments.\n\nApparently I crashed their login server and thus their entire network...\nIt happened d the first time I scanned the network from the outside and they had spend an entire day figuring out how and repairing the service they thought was the problem, but then it crashed again, when I scanned from within the network.\n\nNow they want to send me a list of IP's that I'm not allowed to scan and want to know exactly what and when I'm scanning...\n\nHow crap can they be at their job, if they weren't able to spot a scan... The only reason they found out it was me was because the NA had whitelistet my IP, so that I could scan in peace...",
+            "score": 56,
+            "created_time": 1505141878,
+            "attached_image": "",
+            "num_comments": 5,
+            "tags": [
+                "bad design",
+                "scanning",
+                "security",
+                "crash",
+                "networking"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 38990,
+            "user_username": "Folkmann",
+            "user_score": 976,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-10_3-5_8-1_7-1_5-1_12-2_6-33_10-5_2-56_15-9_11-2_18-2_4-1_19-2.jpg"
+            }
+        },
+        {
+            "id": 840694,
+            "text": "I found a cool project on GitHub. I forked it and added a simple dev server with the intent of making it more accessible which could lead to more activity = improved project. I created a PR with small concise commits with very informative messages.\n\nThe guy who owns the project comments and says \"I don't want your dev server, I have an apache instance locally on my computer\". I tell him \"Ok sure, but wouldn't it be nice if everyone else also had a nice dev server which can be started with a single command?\", and other people join the PR and agree with me that we should make it available for everyone.\n\nBut the fucking idiot doesn't care, \"No, I prefer to use my apache server\". YOU FUCKING ASS WIPE, why do you even put it up on GitHub if you don't want contributions to make your project better and more available? I saw other open PRs where he basically did the same thing, left a snarky comment without merging it. What a fucking tool. Worst spent time ever.\n\nFUCK YOU",
+            "score": 56,
+            "created_time": 1505425570,
+            "attached_image": "",
+            "num_comments": 6,
+            "tags": [
+                "open source idiot",
+                "open source"
+            ],
+            "vote_state": 0,
+            "edited": true,
+            "rt": 1,
+            "user_id": 5063,
+            "user_username": "zshh",
+            "user_score": 3455,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-1_16-7_3-2_8-4_7-4_5-3_12-1_6-8_10-6_2-40_18-4_4-3_19-3_20-12.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 841779,
+            "text": "HOW THE FUCK DID PDF JUST BECOME THE DEFAULT FOR DOCUMENTS ANYWAY? ARE YOU FUCKING KIDDING ME?!\n\nWHY IS IT WO FYCKING DIFFICULT TO OPEN A PDF, PLACE A FUCKING HAND DRAWN SUGNATURE ON A DOTTED LINE AND EMAIL IT BACK TO SOMEONE?\n\nWHY DO I NEES TO PAY SOME COMPANY FOR A THIRD OARTY PDF APP JUST TO FUCKING PLACE 128 PIXELS ON A DOCUMENT?\n\nAND WHY DO I HAVE TO KEEP PAYING THEM EVERY MONYH?\n\nHIW IS IT THAT AFTER ANDEOID BEING AROUND FOR PROBABLY MORE THAN 10 YEARS NOW, THAT AUTOCORRECT ON EVERY KEYWORD IS ACTUALLY WORSE?!\n\nWHY ARE DOCTORS SO SHIT? WHAT IS WRONG WITH THIS WORLD?!\n\nFYCK! DUCK!\n\nFUCK!!!",
+            "score": 56,
+            "created_time": 1505475001,
+            "attached_image": "",
+            "num_comments": 26,
+            "tags": [],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 722396,
+            "user_username": "GodHatesMe",
+            "user_score": 5524,
+            "user_avatar": {
+                "b": "ecd276",
+                "i": "v-17_c-3_b-7_g-m_9-1_1-2_16-15_3-2_8-1_7-1_5-3_12-2_6-98_2-8_4-3_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 838826,
+            "text": "There are things that i wish i didn't see.\n\nYesterday, i went to a coffee shop to relax and reviewing my works. And suddenly a college friend of mine approach me and we started talking about work. \n\nMe: So, What do you do at work? What's your stack?\r\nHim: Not much of a new. Still working with wordpress, html,css and jquery.\n\nSo he started talking about how cool wordpress is and how he generates money doing sites.\n\nMe: Can i see your sample works? \r\nHim: Sure, *opens his shitty windows laptop with Web Tech stickers*. and handover his laptop to me.\r\nMe: Woah. the design is so neat (I'm lying). But it's freaking slow man(REALLY FVCKING SLOW).\n\n* I decided to open the devTools and inspected the source code. And I can't believe what i saw.\n\n- 20+ images with 2~4mb file size\r\n- 13 unminified javascript files with variable declarations that looks like minified.\r\n- CDN's of bootstrap, foundation and semantic UI\r\n- LOTS OF FVCKING PLUGINS\n\n* I didn't told him what i saw. I just turn over the laptop to him and finish my coffee. \n\nHim: My sites are cool right? I have a lot of pending projects right now. Easy money Bruh!\r\nMe: Wow. *sips* coffee. and say goodbye to him and walkout.\n\nI FEEL BAD FOR HIS CLIENTS!",
+            "score": 54,
+            "created_time": 1505356730,
+            "attached_image": "",
+            "num_comments": 4,
+            "tags": [
+                "friend",
+                "scumbag"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "rt": 1,
+            "user_id": 672442,
+            "user_username": "bepoXY",
+            "user_score": 757,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-7_3-1_8-1_7-1_5-1_12-2_17-2_6-2_10-5_2-73_15-52_11-3_18-2_4-1_19-1.jpg"
+            }
+        }
+    ]
+}

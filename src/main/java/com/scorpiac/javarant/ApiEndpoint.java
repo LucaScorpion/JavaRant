@@ -5,9 +5,10 @@ public enum ApiEndpoint {
     API_DEVRANT(API, "devrant"),
     // Rants.
     RANTS(API_DEVRANT, "rants"),
-    SEARCH(API_DEVRANT, "search"),
     SURPRISE(RANTS, "surprise"),
+    SEARCH(API_DEVRANT, "search"),
     WEEKLY(API_DEVRANT, "weekly-rants"),
+    STORIES(API_DEVRANT, "story-rants"),
     // Users.
     USER_ID(API, "get-user-id"),
     USERS(API, "users"),

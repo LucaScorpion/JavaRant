@@ -54,4 +54,18 @@ public class DevRantFeed {
                 new BasicNameValuePair("skip", String.valueOf(skip))
         );
     }
+
+    /**
+     * Get stories from the feed.
+     *
+     * @param sort How to sort the feed.
+     * @param skip How many rants to skip.
+     * @return Stories from the feed.
+     */
+    public Result<List<Rant>> getStories(Sort sort, int skip) {
+        return devRant.getRequestHandler().get(ApiEndpoint.STORIES, RantsFeedResponse.class,
+                new BasicNameValuePair("sort", sort.toString()),
+                new BasicNameValuePair("skip", String.valueOf(skip))
+        );
+    }
 }
