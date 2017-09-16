@@ -68,4 +68,16 @@ public class DevRantFeed {
                 new BasicNameValuePair("skip", String.valueOf(skip))
         );
     }
+
+    /**
+     * Get collabs from the feed.
+     *
+     * @param limit How many rants to get.
+     * @return Collabs from the feed.
+     */
+    public Result<List<Rant>> getCollabs(int limit) {
+        return devRant.getRequestHandler().get(ApiEndpoint.COLLABS, RantsFeedResponse.class,
+                new BasicNameValuePair("limit", String.valueOf(limit))
+        );
+    }
 }

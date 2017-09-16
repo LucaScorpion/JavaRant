@@ -9,6 +9,7 @@ public enum ApiEndpoint {
     SEARCH(API_DEVRANT, "search"),
     WEEKLY(API_DEVRANT, "weekly-rants"),
     STORIES(API_DEVRANT, "story-rants"),
+    COLLABS(API_DEVRANT, "collabs"),
     // Users.
     USER_ID(API, "get-user-id"),
     USERS(API, "users"),

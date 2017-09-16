@@ -97,4 +97,24 @@ public class DevRantFeedIT extends ITHelper {
                 "mother", "web", "atom", "dreamweaver"
         );
     }
+
+    @Test
+    public void testGetCollabs() throws IOException {
+        server.stubFor(stubGet(
+                get(urlPathEqualTo(ApiEndpoint.COLLABS.toString()))
+                        .withQueryParam("limit", equalTo("2")),
+                "/feed-collabs.json"
+        ));
+
+        Result<List<Rant>> result = devRant.getFeed().getCollabs(2);
+        assertFalse(result.getError().isPresent());
+        List<Rant> rants = result.getValue().get();
+
+        validateRant(rants.get(0),
+                838945,
+                "Partnerships Matching App [more details]",
+                12,
+                6
+        );
+    }
 }
