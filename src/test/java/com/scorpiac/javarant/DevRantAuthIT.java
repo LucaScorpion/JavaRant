@@ -43,4 +43,17 @@ public class DevRantAuthIT extends ITHelper {
         assertFalse(result.getError().isPresent());
         assertEquals(result.getValue().get().getVoteState(), VoteState.DOWN);
     }
+
+    @Test
+    public void testNonevoteComment() throws IOException {
+        server.stubFor(stubPost(
+                post(urlPathEqualTo("/api/comments/843736/vote"))
+                        .withRequestBody(equalTo("vote=0&" + authBody + "&app=3&plat=3")),
+                "/vote-comment-none-843736.json"
+        ));
+
+        Result<Comment> result = devRant.getAuth().voteComment(843736, Vote.NONE);
+        assertFalse(result.getError().isPresent());
+        assertEquals(result.getValue().get().getVoteState(), VoteState.NONE);
+    }
 }

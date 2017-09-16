@@ -1,5 +1,6 @@
 package com.scorpiac.javarant;
 
+import com.scorpiac.javarant.responses.CommentResponse;
 import com.scorpiac.javarant.responses.RantResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -17,6 +18,14 @@ public class DevRantAuth {
         return devRant.getRequestHandler().post(
                 ApiEndpoint.RANTS.toString() + '/' + id + '/' + ApiEndpoint.VOTE.toString(),
                 RantResponse.class,
+                getParameters(vote.getOptions())
+        );
+    }
+
+    public Result<Comment> voteComment(int id, Vote vote) {
+        return devRant.getRequestHandler().post(
+                ApiEndpoint.COMMENTS.toString() + '/' + id + '/' + ApiEndpoint.VOTE.toString(),
+                CommentResponse.class,
                 getParameters(vote.getOptions())
         );
     }
