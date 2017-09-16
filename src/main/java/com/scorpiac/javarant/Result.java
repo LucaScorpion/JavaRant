@@ -18,11 +18,23 @@ public class Result<T> {
         value = response.getValue();
     }
 
+    /**
+     * Get the result value.
+     * If an error occurred, this will be empty and the error will be set.
+     *
+     * @return The value.
+     */
     public Optional<T> getValue() {
         return Optional.ofNullable(value);
     }
 
-    public Optional<String> getError() {
-        return Optional.ofNullable(error);
+    /**
+     * Get the error message.
+     * If there was no error, this returns {@code null}.
+     *
+     * @return The error, or {@code null} if there was none.
+     */
+    public String getError() {
+        return error;
     }
 }

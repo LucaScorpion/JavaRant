@@ -16,7 +16,7 @@ public class DevRantIT extends ITHelper {
         ));
 
         Result<CommentedRant> result = devRant.getRant(686001);
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         CommentedRant rant = result.getValue().get();
 
         validateRant(rant,
@@ -43,7 +43,7 @@ public class DevRantIT extends ITHelper {
 
         Result<CommentedRant> result = devRant.getRant(0);
         assertFalse(result.getValue().isPresent());
-        assertTrue(result.getError().isPresent());
+        assertNotNull(result.getError());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class DevRantIT extends ITHelper {
 
         Result<CommentedRant> result = devRant.getRant(123456);
         assertFalse(result.getValue().isPresent());
-        assertTrue(result.getError().isPresent());
+        assertNotNull(result.getError());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class DevRantIT extends ITHelper {
         ));
 
         Result<User> result = devRant.getUser("LucaScorpion");
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
 
         validateUser(result.getValue().get(),
                 102959,
@@ -98,9 +98,9 @@ public class DevRantIT extends ITHelper {
                 "/user-id-invalid.json"
         ));
 
-        Result<User> user = devRant.getUser("invalid");
-        assertFalse(user.getValue().isPresent());
-        assertTrue(user.getError().isPresent());
+        Result<User> result = devRant.getUser("invalid");
+        assertFalse(result.getValue().isPresent());
+        assertNotNull(result.getError());
     }
 
     @Test
@@ -112,7 +112,7 @@ public class DevRantIT extends ITHelper {
 
         Result<User> result = devRant.getUser(123);
         assertFalse(result.getValue().isPresent());
-        assertTrue(result.getError().isPresent());
+        assertNotNull(result.getError());
     }
 
     @Test
@@ -153,7 +153,7 @@ public class DevRantIT extends ITHelper {
         ));
 
         Result<Collab> result = devRant.getCollab(785714);
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         Collab collab = result.getValue().get();
 
         validateCollab(collab,

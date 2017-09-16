@@ -75,7 +75,7 @@ public class DevRantFeed {
      * @param limit How many rants to get.
      * @return Collabs from the feed.
      */
-    public Result<List<Rant>> getCollabs(int limit) {
+    public Result<List<Collab>> getCollabs(int limit) {
         return devRant.getRequestHandler().get(ApiEndpoint.COLLABS, RantsFeedResponse.class,
                 new BasicNameValuePair("limit", String.valueOf(limit))
         );

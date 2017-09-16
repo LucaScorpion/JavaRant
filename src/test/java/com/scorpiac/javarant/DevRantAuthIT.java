@@ -8,6 +8,7 @@ import java.io.IOException;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
 
 public class DevRantAuthIT extends ITHelper {
     private String authBody;
@@ -27,7 +28,7 @@ public class DevRantAuthIT extends ITHelper {
         ));
 
         Result<Rant> result = devRant.getAuth().voteRant(843654, Vote.UP);
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         assertEquals(result.getValue().get().getVoteState(), VoteState.UP);
     }
 
@@ -40,7 +41,7 @@ public class DevRantAuthIT extends ITHelper {
         ));
 
         Result<Rant> result = devRant.getAuth().voteRant(843654, Vote.DOWN(Reason.NOT_FOR_ME));
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         assertEquals(result.getValue().get().getVoteState(), VoteState.DOWN);
     }
 
@@ -53,7 +54,7 @@ public class DevRantAuthIT extends ITHelper {
         ));
 
         Result<Comment> result = devRant.getAuth().voteComment(843736, Vote.NONE);
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         assertEquals(result.getValue().get().getVoteState(), VoteState.NONE);
     }
 }

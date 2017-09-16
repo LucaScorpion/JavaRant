@@ -7,7 +7,7 @@ import java.util.List;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
 
 public class DevRantFeedIT extends ITHelper {
     @Test
@@ -21,7 +21,7 @@ public class DevRantFeedIT extends ITHelper {
         ));
 
         Result<List<Rant>> result = devRant.getFeed().getRants(Sort.RECENT, 4, 1);
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         List<Rant> rants = result.getValue().get();
         assertEquals(rants.size(), 4);
 
@@ -43,7 +43,7 @@ public class DevRantFeedIT extends ITHelper {
         ));
 
         Result<List<Rant>> result = devRant.getFeed().search("wtf");
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
 
         validateRant(result.getValue().get().get(1),
                 542296,
@@ -64,7 +64,7 @@ public class DevRantFeedIT extends ITHelper {
         ));
 
         Result<List<Rant>> result = devRant.getFeed().getWeekly(Sort.ALGO, 2);
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         List<Rant> rants = result.getValue().get();
 
         validateRant(rants.get(0),
@@ -86,7 +86,7 @@ public class DevRantFeedIT extends ITHelper {
         ));
 
         Result<List<Rant>> result = devRant.getFeed().getStories(Sort.TOP, 4);
-        assertFalse(result.getError().isPresent());
+        assertNull(result.getError());
         List<Rant> rants = result.getValue().get();
 
         validateRant(rants.get(0),
@@ -106,9 +106,9 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-collabs.json"
         ));
 
-        Result<List<Rant>> result = devRant.getFeed().getCollabs(2);
-        assertFalse(result.getError().isPresent());
-        List<Rant> rants = result.getValue().get();
+        Result<List<Collab>> result = devRant.getFeed().getCollabs(2);
+        assertNull(result.getError());
+        List<Collab> rants = result.getValue().get();
 
         validateRant(rants.get(0),
                 838945,

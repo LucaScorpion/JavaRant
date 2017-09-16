@@ -81,15 +81,15 @@ public class DevRant {
      * @return The user.
      */
     public Result<User> getUser(String username) {
-        Result<Integer> id = requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username));
+        Result<Integer> result = requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username));
 
         // Check the result.
-        if (id.getError().isPresent() || !id.getValue().isPresent()) {
+        if (!result.getValue().isPresent()) {
             // When the username is invalid, no error message is returned by the API.
             return new Result<>("Invalid username specified.");
         }
 
-        return getUser(id.getValue().get());
+        return getUser(result.getValue().get());
     }
 
     /**
@@ -102,7 +102,7 @@ public class DevRant {
         Result<User> result = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class);
 
         // Check the result.
-        if (result.getError().isPresent() || !result.getValue().isPresent()) {
+        if (!result.getValue().isPresent()) {
             // When the user id is invalid, no error message is returned by the API.
             return new Result<>("Invalid user id specified.");
         }
