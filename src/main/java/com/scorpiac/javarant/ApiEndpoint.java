@@ -3,6 +3,7 @@ package com.scorpiac.javarant;
 public enum ApiEndpoint {
     API("/api"),
     API_DEVRANT(API, "devrant"),
+    VOTE("vote"),
     // Rants.
     RANTS(API_DEVRANT, "rants"),
     SURPRISE(RANTS, "surprise"),

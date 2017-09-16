@@ -23,12 +23,6 @@ public enum VoteState {
      * @return The {@link VoteState} belonging to the value.
      */
     public static VoteState fromValue(int value) {
-        // Clamp the value between -1 and 1.
-        if (value > 1)
-            value = 1;
-        if (value < -1)
-            value = -1;
-
         return states.get(value);
     }
 }

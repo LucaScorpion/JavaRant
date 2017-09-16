@@ -1,0 +1,30 @@
+{
+    "success": true,
+    "rant": {
+        "id": 843654,
+        "text": "I guess that Devuan LXDE install was kind of a fail 😂",
+        "score": 1,
+        "created_time": 1505551627,
+        "attached_image": {
+            "url": "https://img.devrant.io/devrant/rant/r_843654_FYnEy.jpg",
+            "width": 799,
+            "height": 449
+        },
+        "num_comments": 1,
+        "tags": [
+            "linux",
+            "devuan",
+            "lxde"
+        ],
+        "vote_state": 1,
+        "edited": false,
+        "rt": 1,
+        "user_id": 749677,
+        "user_username": "kenogo",
+        "user_score": 699,
+        "user_avatar": {
+            "b": "f99a66",
+            "i": "v-17_c-3_b-3_g-m_9-1_1-9_16-3_3-3_8-1_7-1_5-1_12-9_6-29_10-7_2-76_18-2_4-1_19-1.jpg"
+        }
+    }
+}

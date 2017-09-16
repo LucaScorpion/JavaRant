@@ -7,8 +7,8 @@ public abstract class RantContent {
     private int id;
     @JsonProperty
     private int score;
-    @JsonProperty
-    private VoteState voteState = VoteState.NONE;
+    @JsonProperty("vote_state")
+    private int voteState;
     @JsonProperty
     protected String text;
     @JsonProperty("attached_image")
@@ -68,7 +68,7 @@ public abstract class RantContent {
      * @return The vote state.
      */
     public VoteState getVoteState() {
-        return voteState;
+        return VoteState.fromValue(voteState);
     }
 
     /**
