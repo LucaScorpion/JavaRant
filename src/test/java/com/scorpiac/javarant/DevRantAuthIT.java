@@ -30,4 +30,17 @@ public class DevRantAuthIT extends ITHelper {
         assertFalse(result.getError().isPresent());
         assertEquals(result.getValue().get().getVoteState(), VoteState.UP);
     }
+
+    @Test
+    public void testDownvoteRant() throws IOException {
+        server.stubFor(stubPost(
+                post(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/843654/" + ApiEndpoint.VOTE.toString()))
+                        .withRequestBody(equalTo("vote=-1&reason=0&" + authBody + "&app=3&plat=3")),
+                "/vote-rant-down-843654.json"
+        ));
+
+        Result<Rant> result = devRant.getAuth().voteRant(843654, Vote.DOWN(Reason.NOT_FOR_ME));
+        assertFalse(result.getError().isPresent());
+        assertEquals(result.getValue().get().getVoteState(), VoteState.DOWN);
+    }
 }
