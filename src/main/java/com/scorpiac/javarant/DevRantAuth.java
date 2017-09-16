@@ -14,6 +14,13 @@ public class DevRantAuth {
         this.devRant = devRant;
     }
 
+    /**
+     * Vote on a rant.
+     *
+     * @param id   The rant to vote on.
+     * @param vote The vote to cast.
+     * @return The rant.
+     */
     public Result<Rant> voteRant(int id, Vote vote) {
         return devRant.getRequestHandler().post(
                 ApiEndpoint.RANTS.toString() + '/' + id + '/' + ApiEndpoint.VOTE.toString(),
@@ -22,6 +29,13 @@ public class DevRantAuth {
         );
     }
 
+    /**
+     * Vote on a comment.
+     *
+     * @param id   The comment to vote on.
+     * @param vote The vote to cast.
+     * @return The comment.
+     */
     public Result<Comment> voteComment(int id, Vote vote) {
         return devRant.getRequestHandler().post(
                 ApiEndpoint.COMMENTS.toString() + '/' + id + '/' + ApiEndpoint.VOTE.toString(),
