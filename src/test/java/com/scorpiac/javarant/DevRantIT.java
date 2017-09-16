@@ -11,7 +11,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetRant() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/686001")),
+                get(urlPathEqualTo("/api/devrant/rants/686001")),
                 "/rant-686001.json"
         ));
 
@@ -37,7 +37,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetRantInvalid() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/0")),
+                get(urlPathEqualTo("/api/devrant/rants/0")),
                 "/rant-invalid.json"
         ));
 
@@ -49,7 +49,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetRantServerError() throws IOException {
         server.stubFor(
-                get(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/123456"))
+                get(urlPathEqualTo("/api/devrant/rants/123456"))
                         .willReturn(serverError().withBody("An unknown error occurred."))
         );
 
@@ -61,7 +61,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetUserByUsername() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.USER_ID.toString()))
+                get(urlPathEqualTo("/api/get-user-id"))
                         .withQueryParam("username", equalTo("LucaScorpion")),
                 "/user-id-LucaScorpion.json"
         ));
@@ -93,7 +93,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetUserByUsernameInvalid() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.USER_ID.toString()))
+                get(urlPathEqualTo("/api/get-user-id"))
                         .withQueryParam("username", equalTo("invalid")),
                 "/user-id-invalid.json"
         ));
@@ -106,7 +106,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetUserInvalid() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.USERS.toString() + "/123")),
+                get(urlPathEqualTo("/api/users/123")),
                 "/user-id-invalid.json"
         ));
 
@@ -118,7 +118,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetSurprise() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.SURPRISE.toString())),
+                get(urlPathEqualTo("/api/devrant/rants/surprise")),
                 "/rant-surprise.json"
         ));
 
@@ -148,7 +148,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testGetCollab() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/785714")),
+                get(urlPathEqualTo("/api/devrant/rants/785714")),
                 "/collab-785714.json"
         ));
 
@@ -179,7 +179,7 @@ public class DevRantIT extends ITHelper {
     @Test
     public void testLogin() throws IOException {
         server.stubFor(stubPost(
-                post(urlPathEqualTo(ApiEndpoint.AUTH_TOKEN.toString()))
+                post(urlPathEqualTo("/api/users/auth-token"))
                         .withRequestBody(equalTo("username=LucaScorpion&password=5up3r53cr3tp455w0rd&app=3&plat=3")),
                 "/auth-token.json"
         ));

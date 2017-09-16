@@ -13,7 +13,7 @@ public class DevRantFeedIT extends ITHelper {
     @Test
     public void testGetRants() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.RANTS.toString()))
+                get(urlPathEqualTo("/api/devrant/rants"))
                         .withQueryParam("limit", equalTo("4"))
                         .withQueryParam("skip", equalTo("1"))
                         .withQueryParam("sort", equalTo("recent")),
@@ -57,7 +57,7 @@ public class DevRantFeedIT extends ITHelper {
     @Test
     public void testGetWeekly() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.WEEKLY.toString()))
+                get(urlPathEqualTo("/api/devrant/weekly-rants"))
                         .withQueryParam("skip", equalTo("2"))
                         .withQueryParam("sort", equalTo("algo")),
                 "/feed-weekly.json"
@@ -79,7 +79,7 @@ public class DevRantFeedIT extends ITHelper {
     @Test
     public void testGetStories() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.STORIES.toString()))
+                get(urlPathEqualTo("/api/devrant/story-rants"))
                         .withQueryParam("skip", equalTo("4"))
                         .withQueryParam("sort", equalTo("top")),
                 "/feed-stories.json"
@@ -101,7 +101,7 @@ public class DevRantFeedIT extends ITHelper {
     @Test
     public void testGetCollabs() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo(ApiEndpoint.COLLABS.toString()))
+                get(urlPathEqualTo("/api/devrant/collabs"))
                         .withQueryParam("limit", equalTo("2")),
                 "/feed-collabs.json"
         ));

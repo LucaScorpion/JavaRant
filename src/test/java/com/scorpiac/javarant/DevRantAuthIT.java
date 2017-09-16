@@ -21,7 +21,7 @@ public class DevRantAuthIT extends ITHelper {
     @Test
     public void testUpvoteRant() throws IOException {
         server.stubFor(stubPost(
-                post(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/843654/" + ApiEndpoint.VOTE.toString()))
+                post(urlPathEqualTo("/api/devrant/rants/843654/vote"))
                         .withRequestBody(equalTo("vote=1&" + authBody + "&app=3&plat=3")),
                 "/vote-rant-up-843654.json"
         ));
@@ -34,7 +34,7 @@ public class DevRantAuthIT extends ITHelper {
     @Test
     public void testDownvoteRant() throws IOException {
         server.stubFor(stubPost(
-                post(urlPathEqualTo(ApiEndpoint.RANTS.toString() + "/843654/" + ApiEndpoint.VOTE.toString()))
+                post(urlPathEqualTo("/api/devrant/rants/843654/vote"))
                         .withRequestBody(equalTo("vote=-1&reason=0&" + authBody + "&app=3&plat=3")),
                 "/vote-rant-down-843654.json"
         ));
