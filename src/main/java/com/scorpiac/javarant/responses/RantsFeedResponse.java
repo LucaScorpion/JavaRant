@@ -6,7 +6,7 @@ import com.scorpiac.javarant.Rant;
 
 import java.util.List;
 
-public class RantFeedResponse extends Response<List<Rant>> {
+public class RantsFeedResponse extends Response<List<Rant>> {
     @JsonProperty
     private News news; // TODO: use this.
 

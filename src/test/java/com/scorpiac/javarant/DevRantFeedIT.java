@@ -53,4 +53,26 @@ public class DevRantFeedIT extends ITHelper {
                 "javascript", "angularjs", "wtf?"
         );
     }
+
+    @Test
+    public void testGetWeekly() throws IOException {
+        server.stubFor(stubGet(
+                get(urlPathEqualTo(ApiEndpoint.WEEKLY.toString()))
+                        .withQueryParam("skip", equalTo("2"))
+                        .withQueryParam("sort", equalTo("algo")),
+                "/feed-weekly.json"
+        ));
+
+        Result<List<Rant>> result = devRant.getFeed().getWeekly(Sort.ALGO, 2);
+        assertFalse(result.getError().isPresent());
+        List<Rant> rants = result.getValue().get();
+
+        validateRant(rants.get(0),
+                843118,
+                "My own OCR library... so far I haven't found a proper recognizer",
+                2,
+                0,
+                "wk69"
+        );
+    }
 }

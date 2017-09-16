@@ -7,6 +7,7 @@ public enum ApiEndpoint {
     RANTS(API_DEVRANT, "rants"),
     SEARCH(API_DEVRANT, "search"),
     SURPRISE(RANTS, "surprise"),
+    WEEKLY(API_DEVRANT, "weekly-rants"),
     // Users.
     USER_ID(API, "get-user-id"),
     USERS(API, "users"),
