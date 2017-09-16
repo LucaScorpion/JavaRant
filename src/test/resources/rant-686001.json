@@ -1,0 +1,114 @@
+{
+    "rant": {
+        "id": 686001,
+        "text": "I only just noticed this is on the git man page :P",
+        "score": 84,
+        "created_time": 1498915304,
+        "attached_image": {
+            "url": "https://img.devrant.io/devrant/rant/r_686001_VfN7X.jpg",
+            "width": 530,
+            "height": 134
+        },
+        "num_comments": 5,
+        "tags": [
+            "terminal",
+            "manual",
+            "git"
+        ],
+        "vote_state": 0,
+        "edited": false,
+        "link": "rants/686001/i-only-just-noticed-this-is-on-the-git-man-page-p",
+        "user_id": 102959,
+        "user_username": "LucaScorpion",
+        "user_score": 3831,
+        "user_avatar": {
+            "b": "7bc8a4",
+            "i": "v-17_c-3_b-1_g-m_9-1_1-2_16-15_3-3_8-3_7-3_5-3_12-2_6-36_10-9_2-36_15-20_18-4_4-3_19-3_20-6_21-2.jpg"
+        },
+        "user_dpp": 1
+    },
+    "comments": [
+        {
+            "id": 686175,
+            "rant_id": 686001,
+            "body": "Hahaha funny. I see the Torvals touch.",
+            "score": 14,
+            "created_time": 1498921583,
+            "vote_state": 0,
+            "user_id": 610004,
+            "user_username": "edwrodrig",
+            "user_score": 1710,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-1_16-4_3-3_8-2_7-2_5-1_12-1_6-31_2-27_15-19_11-2_18-1_4-1_19-2.jpg"
+            },
+            "attached_image": {
+                "url": "https://img.devrant.io/devrant/rant/c_686175_yiid2.jpg",
+                "width": 540,
+                "height": 960
+            }
+        },
+        {
+            "id": 686485,
+            "rant_id": 686001,
+            "body": "It's so stupid that it requires a genius to understand it 😅",
+            "score": 2,
+            "created_time": 1498934323,
+            "vote_state": 0,
+            "user_id": 644830,
+            "user_username": "Condor",
+            "user_score": 709,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-2_16-3_3-2_8-1_7-1_5-1_12-2_6-98_2-26_15-15_18-2_4-1_19-1.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 686655,
+            "rant_id": 686001,
+            "body": "lool",
+            "score": 0,
+            "created_time": 1498943603,
+            "vote_state": 0,
+            "user_id": 433094,
+            "user_username": "gitpush",
+            "user_score": 8533,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-1_16-15_3-1_8-4_7-4_5-4_12-1_6-11_10-8_2-39_15-7_11-7_18-4_4-4_19-3_20-7_21-2.jpg"
+            }
+        },
+        {
+            "id": 686786,
+            "rant_id": 686001,
+            "body": "@edwrodrig \nLol u couldn't even wait to get to a terminal on a pc, you did it on phone.\nI did the same though 🤣",
+            "score": 1,
+            "created_time": 1498950365,
+            "vote_state": 0,
+            "user_id": 432779,
+            "user_username": "DonMcCoy",
+            "user_score": 618,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-3_3-2_8-1_7-1_5-1_12-2_17-1_6-10_10-4_2-10_15-10_18-1_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 687462,
+            "rant_id": 686001,
+            "body": "svn must be the one for geniuses. \nThat's how come I could never wrap my head around it",
+            "score": 0,
+            "created_time": 1498990973,
+            "vote_state": 0,
+            "user_id": 669377,
+            "user_username": "fykto",
+            "user_score": 64,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-12_16-4_3-3_8-1_7-1_5-1_12-12_6-42_2-39_15-10_11-2_4-1.jpg"
+            }
+        }
+    ],
+    "success": true
+}

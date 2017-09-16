@@ -1,21 +1,16 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-class Auth {
-    private String id;
-    private String key;
-    private String userId;
+public class Auth {
+    private final String id;
+    private final String key;
+    private final String userId;
 
-    Auth(String id, String key, String userId) {
+    Auth(@JsonProperty("id") String id, @JsonProperty("key") String key, @JsonProperty("user_id") String userId) {
         this.id = id;
         this.key = key;
         this.userId = userId;
-    }
-
-    static Auth fromJson(JsonObject json) {
-        JsonObject token = json.get("auth_token").getAsJsonObject();
-        return new Auth(token.get("id").getAsString(), token.get("key").getAsString(), token.get("user_id").getAsString());
     }
 
     String getId() {

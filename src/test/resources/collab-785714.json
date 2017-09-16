@@ -1,0 +1,857 @@
+{
+    "rant": {
+        "id": 785714,
+        "text": "Desktop Client to Teach Programming",
+        "score": 54,
+        "created_time": 1503083646,
+        "attached_image": "",
+        "num_comments": 50,
+        "tags": [],
+        "vote_state": 0,
+        "edited": true,
+        "link": "collabs/785714/desktop-client-to-teach-programming",
+        "rt": 2,
+        "c_type": 4,
+        "c_type_long": "Existing project",
+        "c_description": "<Insert collab description here>",
+        "c_tech_stack": "Java",
+        "c_team_size": "6",
+        "c_url": "github.com/some/project",
+        "user_id": 217820,
+        "user_username": "RuntimeError",
+        "user_score": 1038,
+        "user_avatar": {
+            "b": "69c9cd",
+            "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+        },
+        "user_dpp": 1
+    },
+    "comments": [
+        {
+            "id": 785847,
+            "rant_id": 785714,
+            "body": "I'm in",
+            "score": 3,
+            "created_time": 1503089318,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 784166,
+            "user_username": "rozina",
+            "user_score": 615,
+            "user_avatar": {
+                "b": "ecd276",
+                "i": "v-17_c-3_b-7_g-f_9-1_1-2_16-3_3-4_8-1_7-1_5-1_12-2_6-37_10-1_2-10_11-1_18-1_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 785863,
+            "rant_id": 785714,
+            "body": "I'm in to",
+            "score": 3,
+            "created_time": 1503090372,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 678714,
+            "user_username": "Trablarer",
+            "user_score": 391,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-2_16-1_3-5_8-1_7-1_5-1_12-2_6-2_2-2_15-14_11-1_18-1_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 786067,
+            "rant_id": 785714,
+            "body": "I am in as well",
+            "score": 2,
+            "created_time": 1503099469,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 627273,
+            "user_username": "404response",
+            "user_score": 2163,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-8_3-1_8-2_7-2_5-2_12-2_6-1_2-54_18-4_4-2_19-3_20-1_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 786070,
+            "rant_id": 785714,
+            "body": "I could make something about simple algorithms, like binary search, selection sort, quick sort , etc.",
+            "score": 1,
+            "created_time": 1503099604,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 627273,
+            "user_username": "404response",
+            "user_score": 2163,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-8_3-1_8-2_7-2_5-2_12-2_6-1_2-54_18-4_4-2_19-3_20-1_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 786170,
+            "rant_id": 785714,
+            "body": "@404response @Trablarer @rozina alright can you guys email me with your skills at dovzhanyn.alex@gmail.com",
+            "score": 3,
+            "created_time": 1503104280,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 786252,
+            "rant_id": 785714,
+            "body": "I don't know how much I could contribute I know Java did a couple of projects using Java and MySQL but I would love to help if I can.",
+            "score": 2,
+            "created_time": 1503108906,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 775878,
+            "user_username": "AkshatB",
+            "user_score": 64,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-2_16-6_3-3_8-1_7-1_5-1_12-2_6-2_10-1_2-10_4-1.jpg"
+            }
+        },
+        {
+            "id": 786312,
+            "rant_id": 785714,
+            "body": "@AkshatB sure man, email me at dovzhanyn.alex@gmail.com and we can talk further. anyone else who wants to helo out, email me as well!",
+            "score": 2,
+            "created_time": 1503114463,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 786329,
+            "rant_id": 785714,
+            "body": "@RuntimeError I will send you an email in around 8 to 10 hours. Need to get some sleep now",
+            "score": 1,
+            "created_time": 1503115040,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 627273,
+            "user_username": "404response",
+            "user_score": 2163,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-8_3-1_8-2_7-2_5-2_12-2_6-1_2-54_18-4_4-2_19-3_20-1_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 786761,
+            "rant_id": 785714,
+            "body": "Why not use electron for this? It'll allow you to make it really pretty :)",
+            "score": 3,
+            "created_time": 1503139494,
+            "vote_state": 0,
+            "rt": 2,
+            "edited": true,
+            "user_id": 161184,
+            "user_username": "Dacexi",
+            "user_score": 8054,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-1_16-14_3-2_8-3_7-3_5-4_12-1_6-3_10-9_2-54_11-2_4-4_19-2_21-2.jpg"
+            }
+        },
+        {
+            "id": 787127,
+            "rant_id": 785714,
+            "body": "@Dacexi its more integrated than electron would allow for",
+            "score": 1,
+            "created_time": 1503155025,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 787155,
+            "rant_id": 785714,
+            "body": "@RuntimeError Sent.",
+            "score": 1,
+            "created_time": 1503156522,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 775878,
+            "user_username": "AkshatB",
+            "user_score": 64,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-2_16-6_3-3_8-1_7-1_5-1_12-2_6-2_10-1_2-10_4-1.jpg"
+            }
+        },
+        {
+            "id": 787172,
+            "rant_id": 785714,
+            "body": "@AkshatB replied :D",
+            "score": 2,
+            "created_time": 1503157311,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 787458,
+            "rant_id": 785714,
+            "body": "@RuntimeError I have sent you an email",
+            "score": 1,
+            "created_time": 1503167526,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 627273,
+            "user_username": "404response",
+            "user_score": 2163,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-8_3-1_8-2_7-2_5-2_12-2_6-1_2-54_18-4_4-2_19-3_20-1_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 787663,
+            "rant_id": 785714,
+            "body": "Hey if you make it open source I'll do my best to contribute",
+            "score": 5,
+            "created_time": 1503176112,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 310584,
+            "user_username": "dontPanic",
+            "user_score": 5567,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-7_3-2_8-3_7-3_5-1_12-2_6-3_10-8_2-17_11-15_18-1_4-1_19-1_21-1.jpg"
+            }
+        },
+        {
+            "id": 787961,
+            "rant_id": 785714,
+            "body": "I’d love to help.",
+            "score": 1,
+            "created_time": 1503190874,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 364293,
+            "user_username": "calmyourtities",
+            "user_score": 8090,
+            "user_avatar": {
+                "b": "7bc8a4",
+                "i": "v-17_c-3_b-1_g-m_9-2_1-2_16-13_3-2_8-4_7-4_5-3_12-2_6-3_10-8_2-92_18-4_4-3_19-3_20-8_21-1.jpg"
+            }
+        },
+        {
+            "id": 788057,
+            "rant_id": 785714,
+            "body": "What are you thinking for front end? JavaFX?",
+            "score": 3,
+            "created_time": 1503197427,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 272568,
+            "user_username": "ryanmhoffman",
+            "user_score": 4104,
+            "user_avatar": {
+                "b": "a973a2",
+                "i": "v-17_c-3_b-2_g-m_9-1_1-1_16-9_3-1_8-4_7-4_5-3_12-1_17-2_6-96_10-5_2-44_15-9_18-1_4-3_19-2_20-8.jpg"
+            }
+        },
+        {
+            "id": 788096,
+            "rant_id": 785714,
+            "body": "@ryanmhoffman yeah as of right now that seems to be the modt logical option",
+            "score": 1,
+            "created_time": 1503201353,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 788097,
+            "rant_id": 785714,
+            "body": "@calmyourtities cool shoot me an email",
+            "score": 2,
+            "created_time": 1503201366,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 788098,
+            "rant_id": 785714,
+            "body": "@dontPanic i think chances are that it will be open source",
+            "score": 4,
+            "created_time": 1503201385,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 788382,
+            "rant_id": 785714,
+            "body": "I'm in as well! ☺",
+            "score": 1,
+            "created_time": 1503220565,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 12372,
+            "user_username": "bt141516",
+            "user_score": 139,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-2_3-3_8-1_7-1_5-1_12-2_6-3_10-1_2-1_11-2_4-1.jpg"
+            }
+        },
+        {
+            "id": 788408,
+            "rant_id": 785714,
+            "body": "Just out of interest, will this be an open sourced project?",
+            "score": 0,
+            "created_time": 1503221454,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 784166,
+            "user_username": "rozina",
+            "user_score": 615,
+            "user_avatar": {
+                "b": "ecd276",
+                "i": "v-17_c-3_b-7_g-f_9-1_1-2_16-3_3-4_8-1_7-1_5-1_12-2_6-37_10-1_2-10_11-1_18-1_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 788671,
+            "rant_id": 785714,
+            "body": "@rozina i imagine so, although i havent fully thought through it yet",
+            "score": 1,
+            "created_time": 1503233212,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 788971,
+            "rant_id": 785714,
+            "body": "Oh my God so many people. \nI think something is gonna to be big! @RuntimeError",
+            "score": 0,
+            "created_time": 1503243794,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 774806,
+            "user_username": "itsnameless",
+            "user_score": 401,
+            "user_avatar": {
+                "b": "a973a2",
+                "i": "v-17_c-3_b-2_g-f_9-1_1-9_16-7_3-15_8-1_7-1_5-1_12-9_17-1_6-2_10-2_2-7_11-1_18-1_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 789159,
+            "rant_id": 785714,
+            "body": "@itsnameless ahaha yeah its exciting",
+            "score": 1,
+            "created_time": 1503253458,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 790369,
+            "rant_id": 785714,
+            "body": "I am in",
+            "score": 0,
+            "created_time": 1503307258,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 767233,
+            "user_username": "engrravijain",
+            "user_score": 96,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-2_16-15_3-4_8-1_7-1_5-1_12-2_6-2_10-1_2-10_15-14_4-1.jpg"
+            }
+        },
+        {
+            "id": 791222,
+            "rant_id": 785714,
+            "body": "Check out Apples \"sandbox\" app for inspiration. It's quite entertaining.",
+            "score": 0,
+            "created_time": 1503332556,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 127889,
+            "user_username": "shdw",
+            "user_score": 983,
+            "user_avatar": {
+                "b": "f99a66"
+            }
+        },
+        {
+            "id": 791243,
+            "rant_id": 785714,
+            "body": "@RuntimeError I’ve sent an email",
+            "score": 0,
+            "created_time": 1503333292,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 364293,
+            "user_username": "calmyourtities",
+            "user_score": 8090,
+            "user_avatar": {
+                "b": "7bc8a4",
+                "i": "v-17_c-3_b-1_g-m_9-2_1-2_16-13_3-2_8-4_7-4_5-3_12-2_6-3_10-8_2-92_18-4_4-3_19-3_20-8_21-1.jpg"
+            }
+        },
+        {
+            "id": 791926,
+            "rant_id": 785714,
+            "body": "Great idea! Too bad I'm not very experienced in Java...\nWait. This program uses Java. So I need Java to download other Languages? What if I am too dumb to download Java?",
+            "score": 0,
+            "created_time": 1503353768,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 387696,
+            "user_username": "Skayo",
+            "user_score": 2949,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-3_16-8_3-11_8-3_7-3_5-2_12-3_6-12_10-4_2-18_18-4_4-2_19-3_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 791988,
+            "rant_id": 785714,
+            "body": "@Skayo don’t go for programming. Or maybe the program could install JDK for you.",
+            "score": 1,
+            "created_time": 1503356701,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 364293,
+            "user_username": "calmyourtities",
+            "user_score": 8090,
+            "user_avatar": {
+                "b": "7bc8a4",
+                "i": "v-17_c-3_b-1_g-m_9-2_1-2_16-13_3-2_8-4_7-4_5-3_12-2_6-3_10-8_2-92_18-4_4-3_19-3_20-8_21-1.jpg"
+            }
+        },
+        {
+            "id": 792008,
+            "rant_id": 785714,
+            "body": "@calmyourtities ill add you as soon as i can!",
+            "score": 1,
+            "created_time": 1503357833,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 792009,
+            "rant_id": 785714,
+            "body": "@Skayo most systems have java pre installed on em :)",
+            "score": 1,
+            "created_time": 1503357848,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 792026,
+            "rant_id": 785714,
+            "body": "@RuntimeError could you resend me the invitation pls, I fucked up accepting the last one and then it expired",
+            "score": 0,
+            "created_time": 1503358308,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 627273,
+            "user_username": "404response",
+            "user_score": 2163,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-2_16-8_3-1_8-2_7-2_5-2_12-2_6-1_2-54_18-4_4-2_19-3_20-1_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 792123,
+            "rant_id": 785714,
+            "body": "thanks everyone for your interest! because of the huge amount of interest you all have shown we've filled the project quickly with people who are eager to build this :)\n\nfor now, in order to not have too many people working on this and have everyone tripping over each other, im going to close off the 'admissions' until further notice.\n\nvery excited to build this, im sure we'll keep you all posted with how things are going :)",
+            "score": 2,
+            "created_time": 1503362891,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 792748,
+            "rant_id": 785714,
+            "body": "<@Dacexi>\nUsing JavaFX you can also build really pretty apps!",
+            "score": 3,
+            "created_time": 1503391054,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 387696,
+            "user_username": "Skayo",
+            "user_score": 2949,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-3_16-8_3-11_8-3_7-3_5-2_12-3_6-12_10-4_2-18_18-4_4-2_19-3_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 792909,
+            "rant_id": 785714,
+            "body": "@RuntimeError Nah, Electron allows for pretty deep integration. Though I agree that Java is superior because of resource usage.",
+            "score": 1,
+            "created_time": 1503398654,
+            "vote_state": 0,
+            "rt": 2,
+            "edited": true,
+            "user_id": 397822,
+            "user_username": "Jop-",
+            "user_score": 3404,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-1_16-7_3-1_8-1_7-1_5-1_12-1_6-7_10-2_2-51_18-1_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 793459,
+            "rant_id": 785714,
+            "body": "So how do we do this in practice? Is there a plan? A repository?",
+            "score": 0,
+            "created_time": 1503418132,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 678714,
+            "user_username": "Trablarer",
+            "user_score": 391,
+            "user_avatar": {
+                "b": "d55161",
+                "i": "v-17_c-3_b-5_g-m_9-1_1-2_16-1_3-5_8-1_7-1_5-1_12-2_6-2_2-2_15-14_11-1_18-1_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 793628,
+            "rant_id": 785714,
+            "body": "Repo plz",
+            "score": 1,
+            "created_time": 1503424527,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 47060,
+            "user_username": "DeveloperACE",
+            "user_score": 4020,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-6_16-15_3-10_8-4_7-4_5-3_12-6_6-33_10-3_2-10_18-1_4-3_19-3.jpg"
+            }
+        },
+        {
+            "id": 793650,
+            "rant_id": 785714,
+            "body": "@Trablarer @DeveloperACE as of right now, we have a private repo that were working on, but will likely make it public when we feel weve made a good amount of groundwork",
+            "score": 2,
+            "created_time": 1503425489,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 793704,
+            "rant_id": 785714,
+            "body": "@RuntimeError ok!",
+            "score": 0,
+            "created_time": 1503427510,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 47060,
+            "user_username": "DeveloperACE",
+            "user_score": 4020,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-6_16-15_3-10_8-4_7-4_5-3_12-6_6-33_10-3_2-10_18-1_4-3_19-3.jpg"
+            }
+        },
+        {
+            "id": 794771,
+            "rant_id": 785714,
+            "body": "Count me in.",
+            "score": 0,
+            "created_time": 1503481384,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 722396,
+            "user_username": "GodHatesMe",
+            "user_score": 5529,
+            "user_avatar": {
+                "b": "ecd276",
+                "i": "v-17_c-3_b-7_g-m_9-1_1-2_16-15_3-2_8-1_7-1_5-3_12-2_6-98_2-8_4-3_21-2.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 804051,
+            "rant_id": 785714,
+            "body": "If you are looking for some visual work I'd love to contribute. I'm a media design student and could use portfolio additions ;)",
+            "score": 0,
+            "created_time": 1503881884,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 734662,
+            "user_username": "robinofski",
+            "user_score": 27,
+            "user_avatar": {
+                "b": "f99a66",
+                "i": "v-17_c-3_b-3_g-m_9-1_1-2_16-10_3-3_8-1_7-1_5-1_12-2_6-3_10-1_2-18_15-19_4-1.jpg"
+            }
+        },
+        {
+            "id": 804202,
+            "rant_id": 785714,
+            "body": "@robinofski you mean like photoshop designs?",
+            "score": 1,
+            "created_time": 1503895167,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 804339,
+            "rant_id": 785714,
+            "body": "@RuntimeError yes stuff like that.",
+            "score": 1,
+            "created_time": 1503901190,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 734662,
+            "user_username": "robinofski",
+            "user_score": 27,
+            "user_avatar": {
+                "b": "f99a66",
+                "i": "v-17_c-3_b-3_g-m_9-1_1-2_16-10_3-3_8-1_7-1_5-1_12-2_6-3_10-1_2-18_15-19_4-1.jpg"
+            }
+        },
+        {
+            "id": 804951,
+            "rant_id": 785714,
+            "body": "@robinofski shoot me an email bro :)",
+            "score": 0,
+            "created_time": 1503926062,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 804985,
+            "rant_id": 785714,
+            "body": "@RuntimeError I've put some basic info in the mail about what kind of things I do for school and how this would benefit me and your project :D",
+            "score": 0,
+            "created_time": 1503927452,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 734662,
+            "user_username": "robinofski",
+            "user_score": 27,
+            "user_avatar": {
+                "b": "f99a66",
+                "i": "v-17_c-3_b-3_g-m_9-1_1-2_16-10_3-3_8-1_7-1_5-1_12-2_6-3_10-1_2-18_15-19_4-1.jpg"
+            }
+        },
+        {
+            "id": 805941,
+            "rant_id": 785714,
+            "body": "Visual work on the design of the client so far, going well.",
+            "score": 2,
+            "created_time": 1503961110,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 734662,
+            "user_username": "robinofski",
+            "user_score": 27,
+            "user_avatar": {
+                "b": "f99a66",
+                "i": "v-17_c-3_b-3_g-m_9-1_1-2_16-10_3-3_8-1_7-1_5-1_12-2_6-3_10-1_2-18_15-19_4-1.jpg"
+            }
+        },
+        {
+            "id": 807344,
+            "rant_id": 785714,
+            "body": "I am in too!\nIs there more room for people?",
+            "score": 1,
+            "created_time": 1504023993,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 686941,
+            "user_username": "sagarnar",
+            "user_score": 36,
+            "user_avatar": {
+                "b": "7bc8a4"
+            }
+        },
+        {
+            "id": 807872,
+            "rant_id": 785714,
+            "body": "For Java programmers you should also go alittle bit into Kotlin. I would like to learn how to code in that language. :)",
+            "score": 2,
+            "created_time": 1504039483,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 748695,
+            "user_username": "steve-white21",
+            "user_score": 31,
+            "user_avatar": {
+                "b": "f99a66",
+                "i": "v-17_c-3_b-3_g-m_9-1_1-6_16-3_3-6_8-1_7-1_5-1_12-6_6-83_10-1_2-8_15-15_4-1.jpg"
+            }
+        },
+        {
+            "id": 808090,
+            "rant_id": 785714,
+            "body": "@sagarnar as of right now we're pretty full on people, but in the future we might open source it so people can add more languages to it",
+            "score": 0,
+            "created_time": 1504049088,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 217820,
+            "user_username": "RuntimeError",
+            "user_score": 1038,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-8_3-4_8-2_7-2_5-1_12-6_17-2_6-3_10-9_2-39_15-11_18-2_4-1_19-2_20-8.jpg"
+            },
+            "user_dpp": 1
+        },
+        {
+            "id": 811031,
+            "rant_id": 785714,
+            "body": "That escalated quickly!\n\nWould love to help but still a newbie. Good luck to you all - drop a link to source, I would love to keep an eye on it.",
+            "score": 2,
+            "created_time": 1504183663,
+            "vote_state": 0,
+            "rt": 2,
+            "user_id": 807252,
+            "user_username": "CodeKill",
+            "user_score": 677,
+            "user_avatar": {
+                "b": "69c9cd",
+                "i": "v-17_c-3_b-6_g-m_9-1_1-6_16-15_3-14_8-1_7-1_5-1_12-6_6-11_2-12_15-15_11-2_18-1_4-1_19-1.jpg"
+            },
+            "user_dpp": 1
+        }
+    ],
+    "success": true
+}

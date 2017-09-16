@@ -1,59 +1,49 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.net.URI;
 
 public class Image {
-    private String url;
+    @JsonProperty("url")
+    private URI link;
+    @JsonProperty("width")
     private int width;
+    @JsonProperty("height")
     private int height;
-
-    private Image(String url, int width, int height) {
-        this.url = url;
-        this.width = width;
-        this.height = height;
-    }
-
-    /**
-     * Get the image from the JSON, or {@code null} if there is no image.
-     *
-     * @param json The JSON element for the image.
-     * @return The image, or {@code null}.
-     */
-    static Image fromJson(JsonElement json) {
-        if (json == null || !json.isJsonObject())
-            return null;
-
-        JsonObject obj = json.getAsJsonObject();
-        return new Image(obj.get("url").getAsString(), obj.get("width").getAsInt(), obj.get("height").getAsInt());
-    }
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Image && ((Image) obj).getUrl().equals(url);
+        return obj instanceof Image && ((Image) obj).getLink().equals(link);
     }
 
     @Override
     public int hashCode() {
-        return url.hashCode();
+        return link.hashCode();
     }
 
     /**
-     * Get the image url.
+     * Get the image link.
+     *
+     * @return The image link.
      */
-    public String getUrl() {
-        return url;
+    public URI getLink() {
+        return link;
     }
 
     /**
-     * Get the image width.
+     * Get the image width in pixels.
+     *
+     * @return The image width.
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * Get the image height.
+     * Get the image height in pixels.
+     *
+     * @return The image height.
      */
     public int getHeight() {
         return height;

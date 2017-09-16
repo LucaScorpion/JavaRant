@@ -1,28 +1,16 @@
 package com.scorpiac.javarant;
 
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Comment extends RantContent {
-    protected Comment(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
-        super(devRant, id, user, upvotes, downvotes, score, voteState, content, image);
-    }
-
-    static Comment fromJson(DevRant devRant, JsonObject json) {
-        return new Comment(
-                devRant,
-                json.get("id").getAsInt(),
-                User.fromJson(devRant, json),
-                json.get("num_upvotes").getAsInt(),
-                json.get("num_downvotes").getAsInt(),
-                json.get("score").getAsInt(),
-                json.get("vote_state").getAsInt(),
-                json.get("body").getAsString(),
-                Image.fromJson(json.get("attached_image"))
-        );
-    }
-
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj) && obj instanceof Comment;
+    }
+
+    // For comments the text is called "body" instead of "text".
+    @JsonProperty("body")
+    private void setText(String text) {
+        this.text = text;
     }
 }

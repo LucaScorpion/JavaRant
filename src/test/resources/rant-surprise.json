@@ -1,0 +1,24 @@
+{
+    "success": true,
+    "rant": {
+        "id": 26356,
+        "text": "Life of a software engineer.",
+        "score": 91,
+        "created_time": 1463361116,
+        "attached_image": {
+            "url": "https://img.devrant.io/devrant/rant/r_26356_N2S4f.jpg",
+            "width": 504,
+            "height": 381
+        },
+        "num_comments": 1,
+        "tags": [],
+        "vote_state": 0,
+        "edited": false,
+        "user_id": 18401,
+        "user_username": "nhpace",
+        "user_score": 218,
+        "user_avatar": {
+            "b": "2a8b9d"
+        }
+    }
+}

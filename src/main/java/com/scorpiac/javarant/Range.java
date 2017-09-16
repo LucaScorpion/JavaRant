@@ -1,7 +1,10 @@
 package com.scorpiac.javarant;
 
 public enum Range {
-    DAY, WEEK, MONTH, ALL;
+    DAY,
+    WEEK,
+    MONTH,
+    ALL;
 
     @Override
     public String toString() {

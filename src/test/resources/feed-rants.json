@@ -1,0 +1,84 @@
+{
+    "success": true,
+    "rants": [
+        {
+            "id": 814524,
+            "text": "Too real...",
+            "score": 1,
+            "created_time": 1504339145,
+            "attached_image": {
+                "url": "https://img.devrant.io/devrant/rant/r_814524_mSXAP.jpg",
+                "width": 799,
+                "height": 336
+            },
+            "num_comments": 3,
+            "tags": ["tag one", "tag 2"],
+            "vote_state": 0,
+            "edited": false,
+            "user_id": 759598,
+            "user_username": "bleachedsleet",
+            "user_score": 1,
+            "user_avatar": {
+                "b": "7bc8a4"
+            }
+        },
+        {
+            "id": 814516,
+            "text": "Windows Photo Viewer doesn't support GIF animation. Great!",
+            "score": 1,
+            "created_time": 1504338721,
+            "attached_image": "",
+            "num_comments": 0,
+            "tags": [],
+            "vote_state": 0,
+            "edited": false,
+            "user_id": 268318,
+            "user_username": "error503",
+            "user_score": 9347,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-1_16-15_3-11_8-3_7-3_5-4_12-1_6-97_2-1_15-14_11-2_4-4_19-3_20-9.jpg"
+            }
+        },
+        {
+            "id": 814472,
+            "text": "Installed an SSD in my Linux box. Installed fresh distro, tried to log in via SSH on localhost. Didn't work. Tried like three times, turned off firewalls, restarted ssh servers, nothing.\n\nLooked at username. Typo in username when setting things up. *facepalm*",
+            "score": 4,
+            "created_time": 1504335825,
+            "attached_image": "",
+            "num_comments": 1,
+            "tags": [
+                "facepalm"
+            ],
+            "vote_state": 0,
+            "edited": false,
+            "user_id": 410678,
+            "user_username": "ytho",
+            "user_score": 714,
+            "user_avatar": {
+                "b": "2a8b9d",
+                "i": "v-17_c-3_b-4_g-m_9-1_1-3_16-6_3-6_8-1_7-1_5-1_12-3_6-12_10-3_2-86_18-2_4-1_19-1.jpg"
+            }
+        },
+        {
+            "id": 814432,
+            "text": "Why the fuck are people word fighting what should they drink tea or coffee.\nFrom chemical look it doesn't matter you are still getting coffein with tea just in smaller quantity.\nSo it doesn't matter I drink both when I'm OK but need small bzzzz then tea and when I need to stop sleeping then coffee.",
+            "score": 2,
+            "created_time": 1504333286,
+            "attached_image": "",
+            "num_comments": 4,
+            "tags": [],
+            "vote_state": 0,
+            "edited": false,
+            "user_id": 19218,
+            "user_username": "Haxk20",
+            "user_score": 6459,
+            "user_avatar": {
+                "b": "7bc8a4",
+                "i": "v-17_c-3_b-1_g-m_9-1_1-2_16-13_3-3_8-4_7-4_5-4_12-2_6-3_10-2_2-41_18-4_4-4_19-2_20-4_21-1.jpg"
+            }
+        }
+    ],
+    "settings": [],
+    "set": "59aa68e8cdfe8"
+}

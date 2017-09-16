@@ -1,26 +1,26 @@
 package com.scorpiac.javarant;
 
-public abstract class RantContent extends DevRantHolder {
-    private final int id;
-    private final User user;
-    private int upvotes;
-    private int downvotes;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public abstract class RantContent {
+    @JsonProperty
+    private int id;
+    @JsonProperty
     private int score;
-    private VoteState voteState;
-    private String content;
+    @JsonProperty("vote_state")
+    private int voteState;
+    @JsonProperty
+    protected String text;
+    @JsonProperty("attached_image")
     private Image image;
 
-    protected RantContent(DevRant devRant, int id, User user, int upvotes, int downvotes, int score, int voteState, String content, Image image) {
-        super(devRant);
-        this.id = id;
-        this.user = user;
-        this.upvotes = upvotes;
-        this.downvotes = downvotes;
-        this.score = score;
-        this.voteState = VoteState.fromValue(voteState);
-        this.content = content;
-        this.image = image;
-    }
+    // Minimal user info.
+    @JsonProperty("user_id")
+    private int userId;
+    @JsonProperty("user_username")
+    private String username;
+    @JsonProperty("user_score")
+    private int userScore;
 
     @Override
     public int hashCode() {
@@ -34,62 +34,58 @@ public abstract class RantContent extends DevRantHolder {
 
     /**
      * Get the id.
+     *
+     * @return The id.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Get the author.
+     * Get the user.
+     * Note that this user only contains the information which was returned with the rant.
+     * To get the complete {@link User}, use {@link DevRant#getUser}.
+     *
+     * @return The user.
      */
-    public User getUser() {
-        return user;
-    }
-
-    /**
-     * Get the amount of upvotes.
-     */
-    public int getUpvotes() {
-        return upvotes;
-    }
-
-    /**
-     * Get the amount of downvotes.
-     */
-    public int getDownvotes() {
-        return downvotes;
+    public MinimalUser getUser() {
+        return MinimalUser.create(userId, username, userScore);
     }
 
     /**
      * Get the score.
+     *
+     * @return The score.
      */
     public int getScore() {
         return score;
     }
 
     /**
-     * Get the vote state.
+     * Get the vote state of the authenticated user.
+     * If no user is logged in, the vote state is always {@link VoteState#NONE}.
+     *
+     * @return The vote state.
      */
     public VoteState getVoteState() {
-        return voteState;
+        return VoteState.fromValue(voteState);
     }
 
     /**
-     * Get the content (text).
+     * Get the text.
+     *
+     * @return The text.
      */
-    public String getContent() {
-        return content;
+    public String getText() {
+        return text;
     }
 
     /**
      * Get the image, or {@code null} if there is none.
+     *
+     * @return The image.
      */
     public Image getImage() {
         return image;
-    }
-
-    @Override
-    public String toString() {
-        return content;
     }
 }
