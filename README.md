@@ -2,8 +2,8 @@
 A devRant API wrapper for Java.
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.scorpiac.javarant/javarant.svg)](https://mvnrepository.com/artifact/com.scorpiac.javarant/javarant)
-[![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)]()
-[![Jenkins tests](https://img.shields.io/jenkins/t/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)]()
+[![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)](https://jenkins.scorpiac.com/job/JavaRant/)
+[![Jenkins tests](https://img.shields.io/jenkins/t/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)](https://jenkins.scorpiac.com/job/JavaRant/job/master/lastCompletedBuild/testReport/)
 
 ## Using JavaRant
 JavaRant is available on [Maven](http://mvnrepository.com/artifact/com.scorpiac.javarant/javarant), simply add this dependency to your `pom.xml` file:
