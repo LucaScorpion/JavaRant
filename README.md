@@ -24,30 +24,14 @@ To access devRant simply create a new `DevRant` object:
 DevRant devRant = new DevRant();
 ```
 
-Most object that are returned from `DevRant` are wrapped in a `Result` object.
-This will contain an optional result value, along with an error message.
-If the optional result is empty, then an error occurred and the error message will be set.
-For example:
-
-```
-Result<CommentedRant> result = devRant.getRant(832125);
-
-if (!result.getValue().isPresent()) {
-    System.out.println("An error occurred: " + result.getError());
-} else {
-    CommentedRant rant = result.getValue().get();
-    System.out.println(rant.getUser().getUsername() + '\n' + rant.getText());
-}
-```
-
 The `DevRant` class itself can be used to get specific rants and users.
 
 ```
 // Get a specific rant.
-Result<CommentedRant> rant = devRant.getRant(686001);
+CommentedRant rant = devRant.getRant(686001);
 
 // Get a user by username.
-Result<User> me = devRant.getUser("LucaScorpion");
+User me = devRant.getUser("LucaScorpion");
 ```
 
 The `DevRant` class contains 2 methods for getting to specific parts of the api.
@@ -56,13 +40,13 @@ This is used to access the rant and collab feeds.
 
 ```
 // Get the 10 latest rants.
-Result<List<Rant>> recent = devRant.getFeed().getRants(Sort.RECENT, 10, 0);
+List<Rant> recent = devRant.getFeed().getRants(Sort.RECENT, 10, 0);
 
 // Get the 10 best stories.
-Result<List<Rant>> stories = devRant.getFeed().getStories(Sort.TOP, 0);
+List<Rant> stories = devRant.getFeed().getStories(Sort.TOP, 0);
 
 // Get 10 collabs.
-Result<List<Collab>> collabs = devRant.getFeed().getCollabs(10);
+List<Collab> collabs = devRant.getFeed().getCollabs(10);
 ```
 
 Second, `getAuth()` which returns a `DevRantAuth` object, which is used to access user functionality.

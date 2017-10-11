@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNull;
 
 public class DevRantAuthIT extends ITHelper {
     private String authBody;
@@ -27,9 +25,8 @@ public class DevRantAuthIT extends ITHelper {
                 "/vote-rant-up-843654.json"
         ));
 
-        Result<Rant> result = devRant.getAuth().voteRant(843654, Vote.UP);
-        assertNull(result.getError());
-        assertEquals(result.getValue().get().getVoteState(), VoteState.UP);
+        Rant rant = devRant.getAuth().voteRant(843654, Vote.UP);
+        assertEquals(rant.getVoteState(), VoteState.UP);
     }
 
     @Test
@@ -40,9 +37,8 @@ public class DevRantAuthIT extends ITHelper {
                 "/vote-rant-down-843654.json"
         ));
 
-        Result<Rant> result = devRant.getAuth().voteRant(843654, Vote.DOWN(Reason.NOT_FOR_ME));
-        assertNull(result.getError());
-        assertEquals(result.getValue().get().getVoteState(), VoteState.DOWN);
+        Rant rant = devRant.getAuth().voteRant(843654, Vote.DOWN(Reason.NOT_FOR_ME));
+        assertEquals(rant.getVoteState(), VoteState.DOWN);
     }
 
     @Test
@@ -53,8 +49,7 @@ public class DevRantAuthIT extends ITHelper {
                 "/vote-comment-none-843736.json"
         ));
 
-        Result<Comment> result = devRant.getAuth().voteComment(843736, Vote.NONE);
-        assertNull(result.getError());
-        assertEquals(result.getValue().get().getVoteState(), VoteState.NONE);
+        Comment comment = devRant.getAuth().voteComment(843736, Vote.NONE);
+        assertEquals(comment.getVoteState(), VoteState.NONE);
     }
 }

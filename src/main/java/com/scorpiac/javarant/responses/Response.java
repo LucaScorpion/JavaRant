@@ -1,6 +1,9 @@
 package com.scorpiac.javarant.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.scorpiac.javarant.DevRantApiException;
+
+import java.util.Optional;
 
 /**
  * This class is used internally to create a pojo from a response.
@@ -18,25 +21,27 @@ public abstract class Response<T> {
     T value;
 
     /**
-     * Get the error.
-     * Returns {@code null} if there is no error.
+     * Get the error message.
      *
-     * @return The error, or {@code null} if there is no error.
+     * @return The error message.
      */
     public String getError() {
-        if (success) {
-            return null;
-        }
-
         return error != null ? error : "An unknown error occurred.";
     }
 
     /**
      * Get the result value.
      *
-     * @return The result value, or {@code null} if there was an error.
+     * @return An optional containing the result value.
      */
-    public T getValue() {
+    public Optional<T> getValue() {
+        return Optional.ofNullable(value);
+    }
+
+    public T getValueOrError() {
+        if (!success) {
+            throw new DevRantApiException(error);
+        }
         return value;
     }
 }

@@ -70,8 +70,9 @@ public class DevRant {
      * @param id The id of the rant.
      * @return The rant.
      */
-    public Result<CommentedRant> getRant(int id) {
-        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class);
+    public CommentedRant getRant(int id) {
+        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CommentedRantResponse.class)
+                .getValue().orElseThrow(() -> new NoSuchRantException(id));
     }
 
     /**
@@ -80,16 +81,11 @@ public class DevRant {
      * @param username The username of the user.
      * @return The user.
      */
-    public Result<User> getUser(String username) {
-        Result<Integer> result = requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username));
+    public User getUser(String username) {
+        Integer result = requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username))
+                .getValue().orElseThrow(() -> new NoSuchUserException(username));
 
-        // Check the result.
-        if (!result.getValue().isPresent()) {
-            // When the username is invalid, no error message is returned by the API.
-            return new Result<>("Invalid username specified.");
-        }
-
-        return getUser(result.getValue().get());
+        return getUser(result);
     }
 
     /**
@@ -98,19 +94,14 @@ public class DevRant {
      * @param id The id of the user.
      * @return The user.
      */
-    public Result<User> getUser(int id) {
-        Result<User> result = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class);
-
-        // Check the result.
-        if (!result.getValue().isPresent()) {
-            // When the user id is invalid, no error message is returned by the API.
-            return new Result<>("Invalid user id specified.");
-        }
+    public User getUser(int id) {
+        User user = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class)
+                .getValue().orElseThrow(() -> new NoSuchUserException(id));
 
         // Set the id, as that is not part of the response.
-        result.getValue().get().setId(id);
+        user.setId(id);
 
-        return result;
+        return user;
     }
 
     /**
@@ -118,8 +109,8 @@ public class DevRant {
      *
      * @return A random rant.
      */
-    public Result<Rant> getSurprise() {
-        return requestHandler.get(ApiEndpoint.SURPRISE, RantResponse.class);
+    public Rant getSurprise() {
+        return requestHandler.get(ApiEndpoint.SURPRISE, RantResponse.class).getValueOrError();
     }
 
     /**
@@ -128,8 +119,9 @@ public class DevRant {
      * @param id The id of the collab.
      * @return The collab.
      */
-    public Result<Collab> getCollab(int id) {
-        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CollabResponse.class);
+    public Collab getCollab(int id) {
+        return requestHandler.get(ApiEndpoint.RANTS.toString() + '/' + id, CollabResponse.class)
+                .getValue().orElseThrow(() -> new NoSuchRantException(id));
     }
 
     /**
@@ -143,17 +135,17 @@ public class DevRant {
     public boolean login(String username, char[] password) {
         logout();
 
-        Result<Auth> response = requestHandler.post(ApiEndpoint.AUTH_TOKEN, AuthResponse.class,
+        Auth response = requestHandler.post(ApiEndpoint.AUTH_TOKEN, AuthResponse.class,
                 new BasicNameValuePair("username", username),
                 new BasicNameValuePair("password", String.valueOf(password))
-        );
+        ).getValue().orElseThrow(() -> new DevRantException("Could not log in."));
 
         // Clear the password.
         for (int i = 0; i < password.length; i++) {
             password[i] = 0;
         }
 
-        response.getValue().ifPresent(r -> auth = r);
+        auth = response;
         return isLoggedIn();
     }
 

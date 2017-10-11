@@ -1,13 +1,13 @@
 package com.scorpiac.javarant.services;
 
 import com.scorpiac.javarant.ApiEndpoint;
-import com.scorpiac.javarant.Result;
+import com.scorpiac.javarant.DevRantApiException;
+import com.scorpiac.javarant.DevRantException;
 import com.scorpiac.javarant.responses.Response;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.message.BasicNameValuePair;
-import org.slf4j.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 
 @Singleton
 public class RequestHandler {
-    private static final Logger LOGGER = LogFactory.getLog();
-
     public static final URI BASE_URI = URI.create("https://www.devrant.io");
     public static final URI AVATARS_URI = URI.create("https://avatars.devrant.io");
 
@@ -37,22 +35,22 @@ public class RequestHandler {
         this.responseHandlerFactory = responseHandlerFactory;
     }
 
-    public <T, R extends Response> Result<T> get(ApiEndpoint endpoint, Class<R> clazz, NameValuePair... params) {
+    public <T, R extends Response<T>> R get(ApiEndpoint endpoint, Class<R> clazz, NameValuePair... params) {
         return get(endpoint.toString(), clazz, params);
     }
 
-    public <T, R extends Response> Result<T> get(String endpoint, Class<R> clazz, NameValuePair... params) {
+    public <T, R extends Response<T>> R get(String endpoint, Class<R> clazz, NameValuePair... params) {
         return handleRequest(
                 buildRequest(endpoint, Request::Get, getParameters(params)),
                 clazz
         );
     }
 
-    public <T, R extends Response> Result<T> post(ApiEndpoint endpoint, Class<R> clazz, NameValuePair... params) {
+    public <T, R extends Response<T>> R post(ApiEndpoint endpoint, Class<R> clazz, NameValuePair... params) {
         return post(endpoint.toString(), clazz, params);
     }
 
-    public <T, R extends Response> Result<T> post(String endpoint, Class<R> clazz, NameValuePair... params) {
+    public <T, R extends Response<T>> R post(String endpoint, Class<R> clazz, NameValuePair... params) {
         return handleRequest(
                 buildRequest(endpoint, Request::Post, Collections.emptyList()).bodyForm(getParameters(params)),
                 clazz
@@ -107,16 +105,15 @@ public class RequestHandler {
      */
     // This is because of the last line, which cannot be checked. Just make sure it is tested properly.
     @SuppressWarnings("unchecked")
-    private <T, R extends Response> Result<T> handleRequest(Request request, Class<R> clazz) {
+    private <T, R extends Response<T>> R handleRequest(Request request, Class<R> clazz) {
         R response;
         try {
             response = request.execute().handleResponse(responseHandlerFactory.getResponseHandler(clazz));
         } catch (IOException e) {
-            LOGGER.error("Failed to execute request.", e);
-            return new Result<>(e.getMessage());
+            throw new DevRantException("Failed to execute request.", e);
         }
 
-        return new Result<T>(response);
+        return response;
     }
 
     /**

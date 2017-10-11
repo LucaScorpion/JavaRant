@@ -21,12 +21,12 @@ public class DevRantAuth {
      * @param vote The vote to cast.
      * @return The rant.
      */
-    public Result<Rant> voteRant(int id, Vote vote) {
+    public Rant voteRant(int id, Vote vote) {
         return devRant.getRequestHandler().post(
                 ApiEndpoint.RANTS.toString() + '/' + id + '/' + ApiEndpoint.VOTE.toString(),
                 RantResponse.class,
                 getParameters(vote.getOptions())
-        );
+        ).getValueOrError();
     }
 
     /**
@@ -36,12 +36,12 @@ public class DevRantAuth {
      * @param vote The vote to cast.
      * @return The comment.
      */
-    public Result<Comment> voteComment(int id, Vote vote) {
+    public Comment voteComment(int id, Vote vote) {
         return devRant.getRequestHandler().post(
                 ApiEndpoint.COMMENTS.toString() + '/' + id + '/' + ApiEndpoint.VOTE.toString(),
                 CommentResponse.class,
                 getParameters(vote.getOptions())
-        );
+        ).getValueOrError();
     }
 
     private NameValuePair[] getParameters(List<NameValuePair> params) {
