@@ -15,10 +15,7 @@ public class DevRantIT extends ITHelper {
                 "/rant-686001.json"
         ));
 
-        Result<CommentedRant> result = devRant.getRant(686001);
-        assertNull(result.getError());
-        CommentedRant rant = result.getValue().get();
-
+        CommentedRant rant = devRant.getRant(686001);
         validateRant(rant,
                 686001,
                 "I only just noticed this is on the git man page :P",
@@ -34,28 +31,24 @@ public class DevRantIT extends ITHelper {
         validateMinimalUser(rant.getUser(), 102959, "LucaScorpion", 3831);
     }
 
-    @Test
+    @Test(expectedExceptions = NoSuchRantException.class, expectedExceptionsMessageRegExp = ".*852.*")
     public void testGetRantInvalid() throws IOException {
         server.stubFor(stubGet(
-                get(urlPathEqualTo("/api/devrant/rants/0")),
+                get(urlPathEqualTo("/api/devrant/rants/852")),
                 "/rant-invalid.json"
         ));
 
-        Result<CommentedRant> result = devRant.getRant(0);
-        assertFalse(result.getValue().isPresent());
-        assertNotNull(result.getError());
+        devRant.getRant(852);
     }
 
-    @Test
+    @Test(expectedExceptions = DevRantException.class)
     public void testGetRantServerError() throws IOException {
         server.stubFor(
                 get(urlPathEqualTo("/api/devrant/rants/123456"))
-                        .willReturn(serverError().withBody("An unknown error occurred."))
+                        .willReturn(serverError().withBody("A server error occurred."))
         );
 
-        Result<CommentedRant> result = devRant.getRant(123456);
-        assertFalse(result.getValue().isPresent());
-        assertNotNull(result.getError());
+        devRant.getRant(123456);
     }
 
     @Test
@@ -70,10 +63,8 @@ public class DevRantIT extends ITHelper {
                 "/user-102959.json"
         ));
 
-        Result<User> result = devRant.getUser("LucaScorpion");
-        assertNull(result.getError());
-
-        validateUser(result.getValue().get(),
+        User user = devRant.getUser("LucaScorpion");
+        validateUser(user,
                 102959,
                 "LucaScorpion",
                 3831,
@@ -90,29 +81,25 @@ public class DevRantIT extends ITHelper {
         );
     }
 
-    @Test
+    @Test(expectedExceptions = NoSuchUsernameException.class, expectedExceptionsMessageRegExp = ".*'not-a-name'.*")
     public void testGetUserByUsernameInvalid() throws IOException {
         server.stubFor(stubGet(
                 get(urlPathEqualTo("/api/get-user-id"))
-                        .withQueryParam("username", equalTo("invalid")),
+                        .withQueryParam("username", equalTo("not-a-name")),
                 "/user-id-invalid.json"
         ));
 
-        Result<User> result = devRant.getUser("invalid");
-        assertFalse(result.getValue().isPresent());
-        assertNotNull(result.getError());
+        devRant.getUser("not-a-name");
     }
 
-    @Test
+    @Test(expectedExceptions = NoSuchUserIdException.class, expectedExceptionsMessageRegExp = ".*123.*")
     public void testGetUserInvalid() throws IOException {
         server.stubFor(stubGet(
                 get(urlPathEqualTo("/api/users/123")),
                 "/user-id-invalid.json"
         ));
 
-        Result<User> result = devRant.getUser(123);
-        assertFalse(result.getValue().isPresent());
-        assertNotNull(result.getError());
+        devRant.getUser(123);
     }
 
     @Test
@@ -122,8 +109,7 @@ public class DevRantIT extends ITHelper {
                 "/rant-surprise.json"
         ));
 
-        Result<Rant> result = devRant.getSurprise();
-        Rant rant = result.getValue().get();
+        Rant rant = devRant.getSurprise();
 
         validateRant(rant,
                 26356,
@@ -152,9 +138,7 @@ public class DevRantIT extends ITHelper {
                 "/collab-785714.json"
         ));
 
-        Result<Collab> result = devRant.getCollab(785714);
-        assertNull(result.getError());
-        Collab collab = result.getValue().get();
+        Collab collab = devRant.getCollab(785714);
 
         validateCollab(collab,
                 785714,

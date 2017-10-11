@@ -6,7 +6,7 @@
 
     <groupId>com.scorpiac.javarant</groupId>
     <artifactId>javarant</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>JavaRant</name>
@@ -55,21 +55,19 @@
     </properties>
 
     <dependencies>
+        <!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+        <!-- http://mvnrepository.com/artifact/org.apache.httpcomponents/fluent-hc -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>fluent-hc</artifactId>
             <version>${fluent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
+        <!-- http://mvnrepository.com/artifact/com.google.inject/guice -->
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
@@ -77,16 +75,26 @@
         </dependency>
 
         <!-- Test dependencies -->
+
+        <!-- http://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- http://mvnrepository.com/artifact/com.github.tomakehurst/wiremock -->
         <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock</artifactId>
             <version>${wiremock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -105,6 +113,7 @@
 
     <build>
         <plugins>
+            <!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -114,6 +123,7 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+            <!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -143,6 +153,7 @@
             </activation>
             <build>
                 <plugins>
+                    <!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -156,6 +167,7 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -172,6 +184,7 @@
                             <quiet>true</quiet>
                         </configuration>
                     </plugin>
+                    <!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-gpg-plugin -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>

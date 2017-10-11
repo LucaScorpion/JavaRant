@@ -7,7 +7,6 @@ import java.util.List;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
 
 public class DevRantFeedIT extends ITHelper {
     @Test
@@ -20,11 +19,8 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-rants.json"
         ));
 
-        Result<List<Rant>> result = devRant.getFeed().getRants(Sort.RECENT, 4, 1);
-        assertNull(result.getError());
-        List<Rant> rants = result.getValue().get();
+        List<Rant> rants = devRant.getFeed().getRants(Sort.RECENT, 4, 1);
         assertEquals(rants.size(), 4);
-
         validateRant(rants.get(0),
                 814524,
                 "Too real...",
@@ -42,10 +38,8 @@ public class DevRantFeedIT extends ITHelper {
                 "/search-wtf.json"
         ));
 
-        Result<List<Rant>> result = devRant.getFeed().search("wtf");
-        assertNull(result.getError());
-
-        validateRant(result.getValue().get().get(1),
+        List<Rant> rants = devRant.getFeed().search("wtf");
+        validateRant(rants.get(1),
                 542296,
                 "Stages of learning angular js \n1. Wtf \n2. I think I get it. \n3. Wtf",
                 327,
@@ -63,10 +57,7 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-weekly.json"
         ));
 
-        Result<List<Rant>> result = devRant.getFeed().getWeekly(Sort.ALGO, 2);
-        assertNull(result.getError());
-        List<Rant> rants = result.getValue().get();
-
+        List<Rant> rants = devRant.getFeed().getWeekly(Sort.ALGO, 2);
         validateRant(rants.get(0),
                 843118,
                 "My own OCR library... so far I haven't found a proper recognizer",
@@ -85,10 +76,7 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-stories.json"
         ));
 
-        Result<List<Rant>> result = devRant.getFeed().getStories(Sort.TOP, 4);
-        assertNull(result.getError());
-        List<Rant> rants = result.getValue().get();
-
+        List<Rant> rants = devRant.getFeed().getStories(Sort.TOP, 4);
         validateRant(rants.get(0),
                 830647,
                 "<Insert story rant here>",
@@ -106,10 +94,7 @@ public class DevRantFeedIT extends ITHelper {
                 "/feed-collabs.json"
         ));
 
-        Result<List<Collab>> result = devRant.getFeed().getCollabs(2);
-        assertNull(result.getError());
-        List<Collab> rants = result.getValue().get();
-
+        List<Collab> rants = devRant.getFeed().getCollabs(2);
         validateRant(rants.get(0),
                 838945,
                 "Partnerships Matching App [more details]",
