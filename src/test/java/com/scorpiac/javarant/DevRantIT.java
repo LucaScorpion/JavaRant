@@ -81,7 +81,7 @@ public class DevRantIT extends ITHelper {
         );
     }
 
-    @Test(expectedExceptions = NoSuchUserException.class, expectedExceptionsMessageRegExp = ".*'not-a-name'.*")
+    @Test(expectedExceptions = NoSuchUsernameException.class, expectedExceptionsMessageRegExp = ".*'not-a-name'.*")
     public void testGetUserByUsernameInvalid() throws IOException {
         server.stubFor(stubGet(
                 get(urlPathEqualTo("/api/get-user-id"))
@@ -92,7 +92,7 @@ public class DevRantIT extends ITHelper {
         devRant.getUser("not-a-name");
     }
 
-    @Test(expectedExceptions = NoSuchUserException.class, expectedExceptionsMessageRegExp = ".*123.*")
+    @Test(expectedExceptions = NoSuchUserIdException.class, expectedExceptionsMessageRegExp = ".*123.*")
     public void testGetUserInvalid() throws IOException {
         server.stubFor(stubGet(
                 get(urlPathEqualTo("/api/users/123")),

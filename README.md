@@ -5,18 +5,18 @@ A devRant API wrapper for Java.
 [![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)](https://jenkins.scorpiac.com/job/JavaRant/)
 [![Jenkins tests](https://img.shields.io/jenkins/t/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)](https://jenkins.scorpiac.com/job/JavaRant/job/master/lastCompletedBuild/testReport/)
 
-## Using JavaRant
+## Maven
 JavaRant is available on [Maven](http://mvnrepository.com/artifact/com.scorpiac.javarant/javarant), simply add this dependency to your `pom.xml` file:
 
 ```xml
 <dependency>
 	<groupId>com.scorpiac.javarant</groupId>
 	<artifactId>javarant</artifactId>
-	<version>2.0.0</version>
+	<version>2.1.0</version>
 </dependency>
 ```
 
-## Getting started
+## Using JavaRant
 
 To access devRant simply create a new `DevRant` object:
 

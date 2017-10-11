@@ -42,13 +42,13 @@ public class DevRantSmokeTestIT {
         assertTrue(user.getRantsCount() > 0);
     }
 
-    @Test(expectedExceptions = NoSuchUserException.class, expectedExceptionsMessageRegExp = ".*'This-is-a-non-existing-username.*'.*")
+    @Test(expectedExceptions = NoSuchUsernameException.class, expectedExceptionsMessageRegExp = ".*'This-is-a-non-existing-username.*'.*")
     public void testGetUserByUsernameInvalid() {
         // Add some randomness in case someone wants to fuck this test by registering this username.
         devRant.getUser("This-is-a-non-existing-username-" + UUID.randomUUID().toString());
     }
 
-    @Test(expectedExceptions = NoSuchUserException.class, expectedExceptionsMessageRegExp = ".*123.*")
+    @Test(expectedExceptions = NoSuchUserIdException.class, expectedExceptionsMessageRegExp = ".*123.*")
     public void testGetUserInvalid() {
         devRant.getUser(123);
     }

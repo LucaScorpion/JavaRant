@@ -91,7 +91,7 @@ public class DevRant {
      */
     public User getUser(String username) {
         Integer result = requestHandler.get(ApiEndpoint.USER_ID, UserIdResponse.class, new BasicNameValuePair("username", username))
-                .getValue().orElseThrow(() -> new NoSuchUserException(username));
+                .getValue().orElseThrow(() -> new NoSuchUsernameException(username));
 
         return getUser(result);
     }
@@ -104,7 +104,7 @@ public class DevRant {
      */
     public User getUser(int id) {
         User user = requestHandler.get(ApiEndpoint.USERS.toString() + '/' + id, UserResponse.class)
-                .getValue().orElseThrow(() -> new NoSuchUserException(id));
+                .getValue().orElseThrow(() -> new NoSuchUserIdException(id));
 
         // Set the id, as that is not part of the response.
         user.setId(id);
