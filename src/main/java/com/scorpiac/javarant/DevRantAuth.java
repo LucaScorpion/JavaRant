@@ -46,9 +46,9 @@ public class DevRantAuth {
 
     private NameValuePair[] getParameters(List<NameValuePair> params) {
         // Add the auth parameters.
-        params.add(new BasicNameValuePair("token_id", devRant.auth.getId()));
-        params.add(new BasicNameValuePair("token_key", devRant.auth.getKey()));
-        params.add(new BasicNameValuePair("user_id", devRant.auth.getUserId()));
+        params.add(new BasicNameValuePair("token_id", devRant.getAuthObject().getId()));
+        params.add(new BasicNameValuePair("token_key", devRant.getAuthObject().getKey()));
+        params.add(new BasicNameValuePair("user_id", devRant.getAuthObject().getUserId()));
 
         return params.toArray(new NameValuePair[0]);
     }

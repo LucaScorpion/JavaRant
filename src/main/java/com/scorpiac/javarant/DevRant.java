@@ -15,7 +15,7 @@ public class DevRant {
     private final DevRantAuth devRantAuth;
 
     private RequestHandler requestHandler;
-    Auth auth;
+    private Auth auth;
 
     static {
         INJECTOR = Guice.createInjector();
@@ -38,6 +38,14 @@ public class DevRant {
 
     RequestHandler getRequestHandler() {
         return requestHandler;
+    }
+
+    Auth getAuthObject() {
+        return auth;
+    }
+
+    void setAuthObject(Auth auth) {
+        this.auth = auth;
     }
 
     /**

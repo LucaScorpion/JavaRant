@@ -13,7 +13,7 @@ public class DevRantAuthIT extends ITHelper {
 
     @BeforeClass
     public void login() {
-        devRant.auth = new Auth("123", "t0k3n", "456");
+        devRant.setAuthObject(new Auth("123", "t0k3n", "456"));
         authBody = "token_id=123&token_key=t0k3n&user_id=456";
     }
 

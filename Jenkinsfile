@@ -22,5 +22,5 @@ pipeline {
 
 def mvn(String goals) {
     def mvnHome = tool 'Maven 3'
-    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore $goals"
+    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore -Djavarant.test.smoke $goals"
 }
