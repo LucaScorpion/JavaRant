@@ -1,9 +1,12 @@
 package com.scorpiac.javarant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Collections;
 import java.util.List;
 
 public class CommentedRant extends Rant {
+    @JsonProperty
     private List<Comment> comments;
 
     /**

@@ -1,7 +1,6 @@
 package com.scorpiac.javarant.services;
 
 import com.scorpiac.javarant.ApiEndpoint;
-import com.scorpiac.javarant.DevRantApiException;
 import com.scorpiac.javarant.DevRantException;
 import com.scorpiac.javarant.responses.Response;
 import org.apache.http.NameValuePair;
