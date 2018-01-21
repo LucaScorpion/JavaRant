@@ -1,12 +1,19 @@
 # JavaRant
 A devRant API wrapper for Java.
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.scorpiac.javarant/javarant.svg)](https://mvnrepository.com/artifact/com.scorpiac.javarant/javarant)
-[![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)](https://jenkins.scorpiac.com/job/JavaRant/)
-[![Jenkins tests](https://img.shields.io/jenkins/t/https/jenkins.scorpiac.com/job/JavaRant/job/master.svg)](https://jenkins.scorpiac.com/job/JavaRant/job/master/lastCompletedBuild/testReport/)
+[![Maven Central][mavenCentralShield]][mavenCentral]
+[![Jenkins][jenkinsBuildShield]][jenkins]
+[![Jenkins tests][jenkinsTestsShield]][jenkinsTests]
+
+[mavenCentralShield]: https://img.shields.io/maven-central/v/com.scorpiac.javarant/javarant.svg
+[jenkinsBuildShield]: https://img.shields.io/jenkins/s/https/jenkins.scorpiac.com/job/LucaScorpion/job/JavaRant/job/master/.svg
+[jenkinsTestsShield]: https://img.shields.io/jenkins/t/https/jenkins.scorpiac.com/job/LucaScorpion/job/JavaRant/job/master/.svg
+[mavenCentral]: https://mvnrepository.com/artifact/com.scorpiac.javarant/javarant
+[jenkins]: https://jenkins.scorpiac.com/job/LucaScorpion/job/JavaRant/
+[jenkinsTests]: https://jenkins.scorpiac.com/job/LucaScorpion/job/JavaRant/job/master/lastCompletedBuild/testReport/
 
 ## Maven
-JavaRant is available on [Maven](http://mvnrepository.com/artifact/com.scorpiac.javarant/javarant), simply add this dependency to your `pom.xml` file:
+JavaRant is available on [Maven][mavenCentral], simply add this dependency to your `pom.xml` file:
 
 ```xml
 <dependency>
